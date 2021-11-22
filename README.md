@@ -10,8 +10,8 @@
 [Хомулло Степан](https://github.com/stepashx)
 
 # Макет
+[Блинов Егор](https://github.com/fiftysev) <br>
 https://www.figma.com/file/1VNQ8PaMtmatRJCn6XRST5/Nedviga?node-id=0%3A1
-[Блинов Егор](https://github.com/fiftysev)
 
 # Техническое задание
 https://drive.google.com/drive/folders/1UQ75VT58FHPmwkhHI7h_mx7CA_fEbJwV
