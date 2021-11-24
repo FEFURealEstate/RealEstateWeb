@@ -14,4 +14,5 @@
 https://www.figma.com/file/1VNQ8PaMtmatRJCn6XRST5/Nedviga?node-id=0%3A1
 
 # Техническое задание
-https://drive.google.com/drive/folders/1UQ75VT58FHPmwkhHI7h_mx7CA_fEbJwV
+[official](https://drive.google.com/drive/folders/1UQ75VT58FHPmwkhHI7h_mx7CA_fEbJwV) <br>
+[less formal](https://vivacious-course-a95.notion.site/4e2730e497a148e7b3a9fcf62feeeb35)
