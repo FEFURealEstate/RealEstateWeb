@@ -15,8 +15,8 @@ class CreatePersonSetClientsTable extends Migration
     {
         Schema::create('person_set__clients', function (Blueprint $table) {
             $table->bigInteger('id')->primary();
-            $table->text('email');
-            $table->string('phone', 11);
+            $table->text('email')->nullable();
+            $table->string('phone', 11)->nullable();
 
             $table->foreign('id')
                 ->references('id')

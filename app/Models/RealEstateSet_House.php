@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\RealEstateSet_House
@@ -18,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_House whereTotalArea($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_House whereTotalFloors($value)
  */
-class RealEstateSet_House extends Model
+class RealEstateSet_House extends BaseModel
 {
     use HasFactory;
 }

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\DealSet
@@ -18,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|DealSet whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DealSet whereSupplyId($value)
  */
-class DealSet extends Model
+class DealSet extends BaseModel
 {
     use HasFactory;
 }

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\RealEstateFilterSet_LandFilter
@@ -18,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_LandFilter whereMaxArea($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_LandFilter whereMinArea($value)
  */
-class RealEstateFilterSet_LandFilter extends Model
+class RealEstateFilterSet_LandFilter extends BaseModel
 {
     use HasFactory;
 }

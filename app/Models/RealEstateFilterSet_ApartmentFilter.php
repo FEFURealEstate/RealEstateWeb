@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\RealEstateFilterSet_ApartmentFilter
@@ -26,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_ApartmentFilter whereMinFloor($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_ApartmentFilter whereMinRooms($value)
  */
-class RealEstateFilterSet_ApartmentFilter extends Model
+class RealEstateFilterSet_ApartmentFilter extends BaseModel
 {
     use HasFactory;
 }

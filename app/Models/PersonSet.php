@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 
 /**
@@ -25,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet wherePasswordHash($value)
  */
-class PersonSet extends Model
+class PersonSet extends BaseModel
 {
     use HasFactory;
 }

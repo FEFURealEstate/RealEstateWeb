@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Models\RealEstateSet
@@ -26,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet whereCoordinateLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet whereId($value)
  */
-class RealEstateSet extends Model
+class RealEstateSet extends BaseModel
 {
     use HasFactory;
 }
