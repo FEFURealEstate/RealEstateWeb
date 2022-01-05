@@ -24,3 +24,29 @@ Route::get('/sign_up', function () {
 Route::get('/sign_in', function () {
    return view('sign_in_view');
 });
+
+Route::middleware('is_admin')->group(function () {
+    Route::get('/clients', function () {
+        return view('admin_views/clients_view');
+    });
+
+    Route::get('/deals', function () {
+        return view('admin_views/deals_view');
+    });
+
+    Route::get('/needs', function () {
+        return view('admin_views/needs_view');
+    });
+
+    Route::get('/objects', function () {
+        return view('admin_views/objects_view');
+    });
+
+    Route::get('/offers', function () {
+        return view('admin_views/offers_view');
+    });
+
+    Route::get('/realtors', function () {
+        return view('admin_views/realtors_view');
+    });
+});
