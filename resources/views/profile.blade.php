@@ -32,6 +32,8 @@
                 <li>First Name: {{ $user->first_name}}</li>
                 <li>middle Name: {{ $user->middle_name}}</li>
                 <li>last Name: {{ $user->last_name}}</li>
+                <li>Role: </li>
+                
             </ul>
         </div>
     </body>
