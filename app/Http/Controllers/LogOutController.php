@@ -18,6 +18,6 @@ class LogOutController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return view('sign_in');
+        return view('sign_in_view');
     }
 }

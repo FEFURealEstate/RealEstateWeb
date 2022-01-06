@@ -22,7 +22,18 @@ class SignInController extends Controller
 
         if($request->isMethod('post'))
         {
-            //login check
+            $request['login'] = strtolower($request['login']);
+            $validated = $request->validate([
+                'login' => 'required|between: 5, 30',
+                'password' => 'required|between: 10, 30',
+            ]);
+            
+            if(Auth::attempt($validated))
+            {
+                $request->session()->regenerate();
+                return redirect()->route('profile');
+            }
+            return redirect()->route('sign_in')->with('error', 'Invalid login or password');
         }
 
         return view('sign_in_view');

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LogOutController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
@@ -24,6 +26,6 @@ Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_u
 Route::match(['get', 'post'], '/sign_in', SignInController::class)->name('sign_in');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/profile',)->name('profile');
-    Route::get('/logout',)->name('logout');
+    Route::get('/profile', ProfileController::class)->name('profile');
+    Route::get('/logout', LogOutController::class)->name('logout');
 });

@@ -31,4 +31,8 @@ class PersonSet extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     public $timestamps = false;
+
+    public function getAuthPassword() {
+        return $this->password_hash;
+    }
 }
