@@ -58,7 +58,7 @@
                         <br>
                         <span text-align="center">
                  Уже есть аккаунт?
-                 <a href="#" tabindex="-1" class="form__reg">Войти</a>
+                 <a href="{{ route('sign_in') }}" tabindex="-1" class="form__reg">Войти</a>
               </span>
                     </div>
                 </form>

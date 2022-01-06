@@ -41,7 +41,7 @@
                 <button tabindex="3" type="submit" class="form__bth">Войти</button>
                 <p>
                     Ещё нет аккаунта?
-                    <a href="#" tabindex="-1" class="form__reg">Зарегистрироваться</a>
+                    <a href="{{ route('sign_up') }}" tabindex="-1" class="form__reg">Зарегистрироваться</a>
                 </p>
             </form>
 
