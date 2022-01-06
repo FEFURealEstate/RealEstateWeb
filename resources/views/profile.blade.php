@@ -32,8 +32,22 @@
                 <li>First Name: {{ $user->first_name}}</li>
                 <li>middle Name: {{ $user->middle_name}}</li>
                 <li>last Name: {{ $user->last_name}}</li>
-                <li>Role: </li>
-                
+                <li>Role: {{ $role }}</li>
+                @php
+                    use App\Enums\Roles;
+                @endphp
+                @if($role === Roles::CLIENT)
+                    <li>Вы клиент</li>
+                    <li>Email: {{ $payload->email }}</li>
+                    <li>Phone: {{ $payload->phone }}</li>
+                @endif
+                @if($role === Roles::AGENT)
+                    <li>Вы агент</li>
+                    <li>Deal share: {{ $payload->deal_share }}</li>
+                @endif
+                @if($role === Roles::ADMIN)
+                    <li>ВЫ АДМИН</li>
+                @endif
             </ul>
         </div>
     </body>
