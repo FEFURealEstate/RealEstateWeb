@@ -48,6 +48,7 @@
                 @if($role === Roles::ADMIN)
                     <li>ВЫ АДМИН</li>
                 @endif
+                <a href="{{ route('logout') }}"><button>Logout</button></a>
             </ul>
         </div>
     </body>
