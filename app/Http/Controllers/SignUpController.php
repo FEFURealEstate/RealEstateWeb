@@ -52,14 +52,14 @@ class SignUpController extends Controller
                 $person_client->phone = PhoneSanitizer::num_sanitize($validated['phone']);
                 $person_client->save();
                 DB::commit();
-
-                Auth::login($person_user);
-                return redirect()->route('profile');
             }
             catch(Throwable $e){
                 DB::rollBack();
-                echo $e;
+                echo $e;//сделать нормально
             }
+                Auth::login($person_user);
+                return redirect()->route('profile');
+            
         }
 
         return view('sign_up_view');
