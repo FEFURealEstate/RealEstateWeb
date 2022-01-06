@@ -28,11 +28,10 @@
         <h2>Profile</h2>
         <div>
             <ul>
-                <li>Login: {{ $user->login}}</li>
-                <li>First Name: {{ $user->first_name}}</li>
-                <li>middle Name: {{ $user->middle_name}}</li>
-                <li>last Name: {{ $user->last_name}}</li>
-                <li>Role: {{ $role }}</li>
+                <li>Login: {{ $user->login }}</li>
+                <li>First Name: {{ $user->first_name }}</li>
+                <li>middle Name: {{ $user->middle_name }}</li>
+                <li>last Name: {{ $user->last_name }}</li>
                 @php
                     use App\Enums\Roles;
                 @endphp

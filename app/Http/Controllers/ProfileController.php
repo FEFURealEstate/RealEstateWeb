@@ -34,9 +34,12 @@ class ProfileController extends Controller
             ELSE -1
             END
             FROM person_sets
-            LEFT JOIN person_set__clients ON person_sets.id = person_set__clients.id
-            LEFT JOIN person_set__agents ON person_sets.id = person_set__agents.id
-            LEFT JOIN person_set__admins ON person_sets.id = person_set__admins.id
+            LEFT JOIN person_set__clients
+                ON person_sets.id = person_set__clients.id
+            LEFT JOIN person_set__agents
+                ON person_sets.id = person_set__agents.id
+            LEFT JOIN person_set__admins
+                ON person_sets.id = person_set__admins.id
             WHERE person_sets.id = ?
             ASD,
             [$user->id]
@@ -51,6 +54,7 @@ class ProfileController extends Controller
             $payload = PersonSet_Admin::find($user->id);
         }
 
-        return view('profile', ['user' => $user, 'role' => $role, 'payload' => $payload]);
+        return view('profile', ['user' => $user, 'role' => $role,
+            'payload' => $payload]);
     }
 }
