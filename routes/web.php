@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\RealtorsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,27 +28,19 @@ Route::get('/sign_in', function () {
 });
 
 Route::middleware('is_admin')->group(function () {
-    Route::get('/clients', function () {
-        return view('admin_views/clients_view');
-    });
+    Route::match(['get, post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
+    Route::match(['get', 'post'], '/admin/clients/change', admin\ClientChangeController::class)->name('admin_clients_change');
 
-    Route::get('/deals', function () {
-        return view('admin_views/deals_view');
-    });
+    Route::get('/admin/deals',admin\DealsController::class)->name('admin_deals');
 
-    Route::get('/needs', function () {
-        return view('admin_views/needs_view');
-    });
+    Route::get('/admin/needs', admin\NeedsController::class)->name('admin_needs');
 
-    Route::get('/objects', function () {
-        return view('admin_views/objects_view');
-    });
+    Route::match(['get, post'],'/admin/objects', admin\ObjectsController::class)->name('admin_objects');
+    Route::match(['get', 'post'], '/admin/objects/change', admin\ObjectChangeController::class)->name('admin_objects_change');
 
-    Route::get('/offers', function () {
-        return view('admin_views/offers_view');
-    });
 
-    Route::get('/realtors', function () {
-        return view('admin_views/realtors_view');
-    });
+    Route::get('/admin/offers', admin\OffersController::class)->name('admin_offers');
+
+    Route::match(['get, post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
+    Route::match(['get', 'post'], '/admin/realtors/change', admin\RealtorChangeController::class)->name('admin_realtors_change');
 });
