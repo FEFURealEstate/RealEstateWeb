@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 
 /**
@@ -24,7 +27,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet wherePasswordHash($value)
  */
-class PersonSet extends BaseModel
+class PersonSet extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
+    public $timestamps = false;
+
+    public function getAuthPassword() {
+        return $this->password_hash;
+    }
 }
