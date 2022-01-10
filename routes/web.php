@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\LogOutController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SignInController;
+use App\Http\Controllers\SignUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sign_up', function () {
-    return view('sign_up_view');
-});
+Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_up');
 
-Route::get('/sign_in', function () {
-   return view('sign_in_view');
+Route::match(['get', 'post'], '/sign_in', SignInController::class)->name('sign_in');
+
+Route::middleware('auth')->group(function(){
+    Route::get('/profile', ProfileController::class)->name('profile');
+    Route::get('/logout', LogOutController::class)->name('logout');
 });

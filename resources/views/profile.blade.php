@@ -4,11 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Форма авторизации</title>
+        <title>{{ $user->login }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
 
         <!-- Styles -->
         <style>
@@ -19,49 +18,37 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+
+            .bordered {
+                border: 1px solid black;
+            }
         </style>
     </head>
     <body>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div>
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
-    <article class="container">
-        <div class="form-box">
-
-            <form action="{{route('sign_in')}}" method="post" class="form">
-            @csrf
-                <h2 class="form__title">Вход в систему</h2>
-                <div class="form__input">
-                    <p>Имя пользователя<font color="BA1313">*</font></p>
-                    <p>
-                        <input tabindex="1" type="text" name="login" required placeholder="..." class="form__input-name">
-                    </p>
-                    <p>Пароль<font color="BA1313">*</font></p>
-                    <p>
-                        <input tabindex="2" type="password" name="password" required placeholder="..." class="form__input-password">
-                    </p>
-                </div>
-                <button tabindex="3" type="submit" class="form__bth">Войти</button>
-                <p>
-                    Ещё нет аккаунта?
-                    <a href="{{ route('sign_up') }}" tabindex="-1" class="form__reg">Зарегистрироваться</a>
-                </p>
-            </form>
-
+        <h2>Profile</h2>
+        <div>
+            <ul>
+                <li>Login: {{ $user->login }}</li>
+                <li>First Name: {{ $user->first_name }}</li>
+                <li>middle Name: {{ $user->middle_name }}</li>
+                <li>last Name: {{ $user->last_name }}</li>
+                @php
+                    use App\Enums\Roles;
+                @endphp
+                @if($role === Roles::CLIENT)
+                    <li>Вы клиент</li>
+                    <li>Email: {{ $payload->email }}</li>
+                    <li>Phone: {{ $payload->phone }}</li>
+                @endif
+                @if($role === Roles::AGENT)
+                    <li>Вы агент</li>
+                    <li>Deal share: {{ $payload->deal_share }}</li>
+                @endif
+                @if($role === Roles::ADMIN)
+                    <li>ВЫ АДМИН</li>
+                @endif
+                <a href="{{ route('logout') }}"><button>Logout</button></a>
+            </ul>
         </div>
-    </article>
-
     </body>
 </html>

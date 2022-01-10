@@ -35,30 +35,42 @@
         </script>
     </head>
     <body class="antialiased">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <article class="container">
             <div class="form-box">
-                <form action="#" method="post" class="form">
+                <form action="{{route('sign_up')}}" method="post" class="form">
+
+                    @csrf
+
                     <h2 class="form__title">Регистрация</h2>
                     <div class="form__input" style="height: 400px; overflow: auto;">
                         <p>Фамилия<font color="BA1313">*</font></p>
-                        <p><input tabindex="1" type="text" placeholder="..." required class="form__input-next"></p>
+                        <p><input tabindex="1" name="middlename" type="text" placeholder="..." required class="form__input-next" value="{{ old('middlename') }}"></p>
                         <p>Имя<font color="BA1313">*</font></p>
-                        <p><input tabindex="2" type="text" required class="form__input-next"/></p>
+                        <p><input tabindex="2" name="firstname" type="text" required class="form__input-next" value="{{ old('firstname') }}"/></p>
                         <p>Отчество<font color="BA1313">*</font></p>
-                        <p><input tabindex="3" type="text" placeholder="..." required class="form__input-next"></p>
+                        <p><input tabindex="3" name="lastname" type="text" placeholder="..." required class="form__input-next" value="{{ old('lastname') }}"></p>
                         <p>Номер телефона</p>
-                        <p><input tabindex="4" name="phone1" type="tel" placeholder="8xxx-xxx-xx-xx" pattern="8[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" class="form__input-next"/></p>
+                        <p><input tabindex="4" name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ old('phone') }}" class="form__input-next"/></p>
                         <p>Эл. почта</p>
-                        <p><input tabindex="5" name="email1" type="email" placeholder="..." class="form__input-next"/></p>
+                        <p><input tabindex="5" name="email" type="email" value="{{ old('email') }}" placeholder="..." class="form__input-next"/></p>
                         <p>Логин<font color="BA1313">*</font></p>
-                        <p><input tabindex="6" type="text" placeholder="..." required class="form__input-next"></p>
+                        <p><input tabindex="6" name="login" type="text" value="{{ old('login') }}" placeholder="..." required class="form__input-next"></p>
                         <p>Пароль<font color="BA1313">*</font></p>
-                        <p><input tabindex="7" type="password" placeholder="..." required class="form__input-next"></p>
+                        <p><input tabindex="7" name="password" type="password" placeholder="..." required class="form__input-next"></p>
                         <button tabindex="8" type="submit" class="form__bth">Зарегистрироваться</button>
                         <br>
                         <span text-align="center">
                  Уже есть аккаунт?
-                 <a href="#" tabindex="-1" class="form__reg">Войти</a>
+                 <a href="{{ route('sign_in') }}" tabindex="-1" class="form__reg">Войти</a>
               </span>
                     </div>
                 </form>
