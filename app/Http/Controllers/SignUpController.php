@@ -30,7 +30,7 @@ class SignUpController extends Controller
         {
             $request['login'] = strtolower($request['login']);
             $validated = $request->validate([
-                'login' => 'unique:person_sets|required|between: 5, 30|regex: /^[\w\-]+$/',
+                'login' => 'unique:person_sets|required|between: 5, 30|regex: /^[a-z0-9\-._]+$/i',
                 'password' => 'required|between: 10, 30|regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&].{10,}$/',
                 'phone' => ['nullable','required_without:email','string', 'regex: /^(\+7|7|8){1}\ ?\(?[0-9]{3}\)?\ ?[0-9]{3}\ ?\-?\ ?[0-9]{2}\ ?\-?\ ?[0-9]{2}$/'],
                 'email' => ['nullable','required_without:phone','string', 'email:rfc'],
@@ -55,7 +55,7 @@ class SignUpController extends Controller
             }
             catch(Throwable $e){
                 DB::rollBack();
-                echo $e;//сделать нормально
+                echo $e;//work pretty normal(maybe)
             }
                 Auth::login($person_user);
                 return redirect()->route('profile');
