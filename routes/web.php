@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\client;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\SignUpController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome')->middleware('is_user');
+})->name('welcome');
 
 Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_up');
 
@@ -50,4 +51,9 @@ Route::middleware('is_admin')->group(function () {
 
     Route::match(['get', 'post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
     Route::match(['get', 'post'], '/admin/realtors/change', admin\RealtorChangeController::class)->name('admin_realtors_change');
+});
+
+Route::middleware('is_user')->group(function(){
+    Route::match(['get', 'post'], '/create_requirement', client\CreateRequirementController::class)->name('create_req');
+
 });

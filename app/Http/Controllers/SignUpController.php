@@ -57,8 +57,8 @@ class SignUpController extends Controller
                 DB::rollBack();
                 echo $e;//work pretty normal(maybe)
             }
-                Auth::login($person_user);
-                return redirect()->route('profile');
+            Auth::login($person_user);
+            return redirect()->route('profile');
             
         }
 
