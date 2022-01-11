@@ -24,11 +24,9 @@ class IsAdmin
             $admin_id = PersonSet_Admin::query()->where('id', $user_id)->value('id');
             if($admin_id !== null)
             {
-                // echo "<script>console.log(' $userid ');</script>";
-                // echo "<script>console.log(' $adm ');</script>";
                 return $next($request);
             }
-            return abort(404);
+            return abort(403);
         }
         return redirect()->route('sign_in');
     }
