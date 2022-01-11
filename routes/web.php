@@ -21,18 +21,20 @@ use App\Http\Controllers\SignUpController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_up');
 
 Route::match(['get', 'post'], '/sign_in', SignInController::class)->name('sign_in');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/profile', ProfileController::class)->name('profile');
     Route::get('/logout', LogOutController::class)->name('logout');
+    Route::get('/profile', ProfileController::class)->name('profile');
 });
 
+
 Route::middleware('is_admin')->group(function () {
+  
     Route::match(['get', 'post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
     Route::match(['get', 'post'], '/admin/clients/change', admin\ClientChangeController::class)->name('admin_clients_change');
 

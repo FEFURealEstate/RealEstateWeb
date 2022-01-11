@@ -2,12 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\PersonSet_Admin;
+use App\Models\PersonSet_Client;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsUser
 {
     /**
      * Handle an incoming request.
@@ -21,8 +21,8 @@ class IsAdmin
         if(Auth::check())
         {   
             $user_id = Auth::user()->id;
-            $admin_id = PersonSet_Admin::query()->where('id', $user_id)->value('id');
-            if($admin_id !== null)
+            $user_id = PersonSet_Client::query()->where('id', $user_id)->value('id');
+            if($user_id !== null)
             {
                 // echo "<script>console.log(' $userid ');</script>";
                 // echo "<script>console.log(' $adm ');</script>";
