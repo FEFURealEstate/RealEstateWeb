@@ -20,9 +20,8 @@ class IsUser
     {
         if(Auth::check())
         {   
-            $user_id = Auth::user()->id;
-            $user_id = PersonSet_Client::query()->where('id', $user_id)->value('id');
-            if($user_id !== null)
+            $user = Auth::user()->client;
+            if($user !== null)
             {
                 return $next($request);
             }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\PersonSet;
 use App\Models\PersonSet_Admin;
 use Closure;
 use Illuminate\Http\Request;
@@ -19,10 +20,9 @@ class IsAdmin
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check())
-        {   
-            $user_id = Auth::user()->id;
-            $admin_id = PersonSet_Admin::query()->where('id', $user_id)->value('id');
-            if($admin_id !== null)
+        {
+            $admin = Auth::user()->admin;
+            if($admin !== null)
             {
                 return $next($request);
             }

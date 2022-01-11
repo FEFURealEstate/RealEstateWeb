@@ -20,9 +20,8 @@ class IsRealtor
     {
         if(Auth::check())
         {   
-            $user_id = Auth::user()->id;
-            $realtor_id = PersonSet_Agent::query()->where('id', $user_id)->value('id');
-            if($realtor_id !== null)
+            $realtor = Auth::user()->agent;
+            if($realtor !== null)
             {
                 return $next($request);
             }
