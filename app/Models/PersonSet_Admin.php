@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * App\Models\PersonSet_Admin
  *
  * @property int $id
+ * @property-read \App\Models\PersonSet $person
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet_Admin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet_Admin newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet_Admin query()
@@ -16,4 +17,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PersonSet_Admin extends BaseModel
 {
     use HasFactory;
+
+    public function person()
+    {
+        return $this->belongsTo(PersonSet::class, 'id');
+    }
 }

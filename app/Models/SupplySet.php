@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $agent_id
  * @property int $client_id
  * @property int $real_estate_id
+ * @property-read \App\Models\PersonSet_Client $agent
+ * @property-read \App\Models\PersonSet_Client $client
+ * @property-read \App\Models\DealSet|null $deal
+ * @property-read \App\Models\RealEstateSet $realEstate
  * @method static \Illuminate\Database\Eloquent\Builder|SupplySet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SupplySet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SupplySet query()
@@ -24,4 +28,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class SupplySet extends BaseModel
 {
     use HasFactory;
+
+    public function agent()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function realEstate()
+    {
+        return $this->belongsTo(RealEstateSet::class, 'real_estate_id');
+    }
+
+    public function deal()
+    {
+        return $this->hasOne(DealSet::class, 'supply_id');
+    }
 }

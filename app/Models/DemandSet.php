@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $agent_id
  * @property int $client_id
  * @property int $real_estate_filter_id
+ * @property-read \App\Models\PersonSet_Client $agent
+ * @property-read \App\Models\PersonSet_Client $client
+ * @property-read \App\Models\DealSet|null $deal
+ * @property-read \App\Models\RealEstateFilterSet $realEstateFilter
  * @method static \Illuminate\Database\Eloquent\Builder|DemandSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DemandSet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DemandSet query()
@@ -34,4 +38,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DemandSet extends BaseModel
 {
     use HasFactory;
+
+    public function agent()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function realEstateFilter()
+    {
+        return $this->belongsTo(RealEstateFilterSet::class,
+            'real_estate_filter_id');
+    }
+
+    public function deal()
+    {
+        return $this->hasOne(DealSet::class, 'demand_id');
+    }
 }

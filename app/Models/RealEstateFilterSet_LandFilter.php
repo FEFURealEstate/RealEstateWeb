@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $id
  * @property float $min_area
  * @property float $max_area
+ * @property-read \App\Models\RealEstateFilterSet $realEstateFilter
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_LandFilter newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_LandFilter newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_LandFilter query()
@@ -20,4 +21,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateFilterSet_LandFilter extends BaseModel
 {
     use HasFactory;
+
+    public function realEstateFilter()
+    {
+        return $this->belongsTo(RealEstateFilterSet::class, 'id');
+    }
 }

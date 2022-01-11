@@ -34,20 +34,20 @@ Route::middleware('auth')->group(function(){
 
 
 Route::middleware('is_admin')->group(function () {
-
-    Route::match(['get, post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
+  
+    Route::match(['get', 'post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
     Route::match(['get', 'post'], '/admin/clients/change', admin\ClientChangeController::class)->name('admin_clients_change');
 
     Route::get('/admin/deals',admin\DealsController::class)->name('admin_deals');
 
     Route::get('/admin/needs', admin\NeedsController::class)->name('admin_needs');
 
-    Route::match(['get, post'],'/admin/objects', admin\ObjectsController::class)->name('admin_objects');
+    Route::match(['get', 'post'],'/admin/objects', admin\ObjectsController::class)->name('admin_objects');
     Route::match(['get', 'post'], '/admin/objects/change', admin\ObjectChangeController::class)->name('admin_objects_change');
 
 
     Route::get('/admin/offers', admin\OffersController::class)->name('admin_offers');
 
-    Route::match(['get, post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
+    Route::match(['get', 'post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
     Route::match(['get', 'post'], '/admin/realtors/change', admin\RealtorChangeController::class)->name('admin_realtors_change');
 });
