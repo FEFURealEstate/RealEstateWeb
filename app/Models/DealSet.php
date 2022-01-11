@@ -20,4 +20,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DealSet extends BaseModel
 {
     use HasFactory;
+
+    public function supply()
+    {
+        return $this->belongsTo(SupplySet::class, 'supply_id');
+    }
+
+    public function demand()
+    {
+        return $this->belongsTo(DemandSet::class, 'demand_id');
+    }
 }

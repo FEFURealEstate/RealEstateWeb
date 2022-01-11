@@ -34,4 +34,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DemandSet extends BaseModel
 {
     use HasFactory;
+
+    public function agent()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+    }
+
+    public function realEstateFilter()
+    {
+        return $this->belongsTo(RealEstateFilterSet::class,
+            'real_estate_filter_id');
+    }
+
+    public function deal()
+    {
+        return $this->hasOne(DealSet::class, 'demand_id');
+    }
 }

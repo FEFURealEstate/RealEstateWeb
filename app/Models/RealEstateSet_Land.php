@@ -18,4 +18,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet_Land extends BaseModel
 {
     use HasFactory;
+
+    public function realEstate()
+    {
+        return $this->belongsTo(RealEstateSet::class, 'id');
+    }
 }

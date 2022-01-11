@@ -32,6 +32,22 @@ class PersonSet extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     public $timestamps = false;
 
+    public function admin()
+    {
+        return $this->hasOne(PersonSet_Admin::class, 'id');
+    }
+
+    public function agent()
+    {
+        return $this->hasOne(PersonSet_Agent::class, 'id');
+    }
+
+    public function client()
+    {
+        return $this->hasOne(PersonSet_Client::class, 'id');
+    }
+
+
     public function getAuthPassword() {
         return $this->password_hash;
     }

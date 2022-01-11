@@ -16,4 +16,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PersonSet_Admin extends BaseModel
 {
     use HasFactory;
+
+    public function person()
+    {
+        return $this->belongsTo(PersonSet::class, 'id');
+    }
 }

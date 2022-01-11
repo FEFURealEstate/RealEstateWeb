@@ -20,4 +20,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet_House extends BaseModel
 {
     use HasFactory;
+
+    public function realEstate()
+    {
+        return $this->belongsTo(RealEstateSet::class, 'id');
+    }
 }

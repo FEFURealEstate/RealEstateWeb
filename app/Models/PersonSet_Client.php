@@ -20,4 +20,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class PersonSet_Client extends BaseModel
 {
     use HasFactory;
+
+    public function person()
+    {
+        return $this->belongsTo(PersonSet::class, 'id');
+    }
+
+    public function demant()
+    {
+        return $this->hasMany(DemandSet::class, 'client_id');
+    }
+
+    public function supply()
+    {
+        return $this->hasMany(SupplySet::class, 'client_id');
+    }
 }

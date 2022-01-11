@@ -28,4 +28,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet extends BaseModel
 {
     use HasFactory;
+
+    public function supply()
+    {
+        return $this->hasMany(SupplySet::class, 'real_estate_id');
+    }
+
+    public function apartment()
+    {
+        return $this->hasOne(RealEstateSet_Apartment::class, 'id');
+    }
+
+    public function land()
+    {
+        return $this->hasOne(RealEstateSet_Land::class, 'id');
+    }
+
+    public function house()
+    {
+        return $this->hasOne(RealEstateSet_House::class, 'id');
+    }
 }

@@ -16,4 +16,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateFilterSet extends BaseModel
 {
     use HasFactory;
+
+    public function demand()
+    {
+        return $this->hasOne(DemandSet::class, 'real_estate_filter_id');
+    }
+    public function houseFilter()
+    {
+        return $this->hasOne(RealEstateFilterSet_HouseFilter::class, 'id');
+    }
+
+    public function apartmentFilter()
+    {
+        return $this->hasOne(RealEstateFilterSet_ApartmentFilter::class, 'id');
+    }
+
+    public function landFilter()
+    {
+        return $this->hasOne(RealEstateFilterSet_LandFilter::class, 'id');
+    }
 }

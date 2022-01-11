@@ -20,4 +20,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateFilterSet_LandFilter extends BaseModel
 {
     use HasFactory;
+
+    public function realEstateFilter()
+    {
+        return $this->belongsTo(RealEstateFilterSet::class, 'id');
+    }
 }

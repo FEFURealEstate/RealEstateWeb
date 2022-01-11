@@ -19,5 +19,18 @@ class PersonSet_Agent extends BaseModel
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public function person()
+    {
+        return $this->belongsTo(PersonSet::class, 'id');
+    }
+
+    public function demant()
+    {
+        return $this->hasMany(DemandSet::class, 'agent_id');
+    }
+
+    public function supply()
+    {
+        return $this->hasMany(SupplySet::class, 'agent_id');
+    }
 }
