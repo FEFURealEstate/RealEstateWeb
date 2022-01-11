@@ -17,6 +17,14 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string|null $last_name
  * @property string $login
  * @property string $password_hash
+ * @property string|null $remember_token
+ * @property-read \App\Models\PersonSet_Admin|null $admin
+ * @property-read \App\Models\PersonSet_Agent|null $agent
+ * @property-read \App\Models\PersonSet_Client|null $client
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet query()
@@ -26,6 +34,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet whereLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet whereMiddleName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PersonSet wherePasswordHash($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PersonSet whereRememberToken($value)
  */
 class PersonSet extends Authenticatable
 {

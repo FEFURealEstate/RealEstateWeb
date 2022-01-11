@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * App\Models\RealEstateFilterSet
  *
  * @property int $id
+ * @property-read \App\Models\RealEstateFilterSet_ApartmentFilter|null $apartmentFilter
+ * @property-read \App\Models\DemandSet|null $demand
+ * @property-read \App\Models\RealEstateFilterSet_HouseFilter|null $houseFilter
+ * @property-read \App\Models\RealEstateFilterSet_LandFilter|null $landFilter
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet query()

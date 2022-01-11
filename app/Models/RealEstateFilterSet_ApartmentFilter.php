@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $min_floor
  * @property int|null $max_floor
  * @property int $id
+ * @property-read \App\Models\RealEstateFilterSet $realEstateFilter
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_ApartmentFilter newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_ApartmentFilter newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateFilterSet_ApartmentFilter query()

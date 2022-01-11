@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $address_number
  * @property float|null $coordinate_latitude
  * @property float|null $coordinate_longitude
+ * @property-read \App\Models\RealEstateSet_Apartment|null $apartment
+ * @property-read \App\Models\RealEstateSet_House|null $house
+ * @property-read \App\Models\RealEstateSet_Land|null $land
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SupplySet[] $supply
+ * @property-read int|null $supply_count
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet query()
