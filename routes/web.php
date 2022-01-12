@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function(){
 
 
 Route::middleware('is_admin')->group(function () {
-  
     Route::match(['get', 'post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
     Route::match(['get', 'post'], '/admin/clients/change', admin\ClientChangeController::class)->name('admin_clients_change');
 
@@ -55,5 +54,11 @@ Route::middleware('is_admin')->group(function () {
 
 Route::middleware('is_user')->group(function(){
     Route::match(['get', 'post'], '/create_requirement', client\CreateRequirementController::class)->name('create_req');
+
+    Route::get('/my_requirements', [client\MyRequirementsController::class, 'get_requirements'])->name('my_req');
+
+    Route::get('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'get_req_info'])->name('my_req_info')->middleware('demand_owns');
+
+    Route::delete('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'delete_req'])->name('delete_req')->middleware('demand_owns');
 
 });

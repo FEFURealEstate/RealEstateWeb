@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\IsAdmin;
+use GuzzleHttp\Middleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,5 +68,29 @@ class Kernel extends HttpKernel
         'is_admin' => IsAdmin::class,
         'is_user' => \App\Http\Middleware\IsUser::class,
         'is_realtor' => \App\Http\Middleware\IsRealtor::class,
+        'demand_owns' => \App\Http\Middleware\CheckDemandOwner::class,
+    ];
+
+        /**
+     * Список посредников, отсортированный по приоритетности.
+     *
+     * Заставит неглобальных посредников всегда быть в заданном порядке.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        \Illuminate\Cookie\Middleware\EncryptCookies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
+        \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        \Illuminate\Routing\Middleware\ThrottleRequestsWithRedis::class,
+        \Illuminate\Session\Middleware\AuthenticateSession::class,
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        \Illuminate\Auth\Middleware\Authorize::class,
+        \App\Http\Middleware\IsUser::class,
+        \App\Http\Middleware\IsRealtor::class,
+        \App\Http\Middleware\IsAdmin::class,
+        \App\Http\Middleware\CheckDemandOwner::class,
     ];
 }

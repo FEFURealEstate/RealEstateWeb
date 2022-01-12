@@ -36,8 +36,21 @@ class CreateRequirementController extends Controller
             try{
                 $estate_filter_set = new RealEstateFilterSet();
                 $estate_filter_set->save();
-
+                
                 if($request['estate_type'] == 1)
+                {
+                    $estate_filter_set_apartment = new RealEstateFilterSet_ApartmentFilter();
+                    $estate_filter_set_apartment->min_floor = $request['min_floor'];
+                    $estate_filter_set_apartment->max_floor = $request['max_floor'];
+                    $estate_filter_set_apartment->min_area = $request['min_s'];
+                    $estate_filter_set_apartment->max_area = $request['max_s'];
+                    $estate_filter_set_apartment->min_rooms = $request['min_count'];
+                    $estate_filter_set_apartment->max_rooms = $request['max_count'];
+                    $estate_filter_set_apartment->id = $estate_filter_set->id;
+                    $estate_filter_set_apartment->save();
+                }
+
+                if($request['estate_type'] == 2)
                 {
                     $estate_filter_set_house = new RealEstateFilterSet_HouseFilter();
                     $estate_filter_set_house->min_floors = $request['min_floor'];
@@ -50,18 +63,6 @@ class CreateRequirementController extends Controller
                     $estate_filter_set_house->save();
                 }
 
-                if($request['estate_type'] == 2)
-                {
-                    $estate_filter_set_apartment = new RealEstateFilterSet_ApartmentFilter();
-                    $estate_filter_set_apartment->min_floor = $request['min_floor'];
-                    $estate_filter_set_apartment->max_floor = $request['max_floor'];
-                    $estate_filter_set_apartment->min_area = $request['min_s'];
-                    $estate_filter_set_apartment->max_area = $request['max_s'];
-                    $estate_filter_set_apartment->min_rooms = $request['min_count'];
-                    $estate_filter_set_apartment->max_rooms = $request['max_count'];
-                    $estate_filter_set_apartment->id = $estate_filter_set->id;
-                    $estate_filter_set_apartment->save();
-                }
 
                 if($request['estate_type'] == 3)
                 {
@@ -90,7 +91,7 @@ class CreateRequirementController extends Controller
                 DB::rollBack();
                 echo $e;//work pretty normal(maybe)
             }
-            return redirect()->route('welcome');
+            return redirect()->route('my_req');
         }
         
         $user = Auth::user();
