@@ -21,7 +21,7 @@ use App\Http\Controllers\SignUpController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome')->middleware('is_user');
 
 Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_up');
 
