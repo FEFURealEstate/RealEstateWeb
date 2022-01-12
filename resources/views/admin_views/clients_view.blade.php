@@ -30,53 +30,78 @@
     </style>
 </head>
 <body class="antialiased">
-<h2>Изменить данные клиента</h2>
-    <form method="POST" action="{{ route('admin_clients') }}">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+<h2>Добавить клиента</h2>
+    <form method="POST" action="{{ route('admin_clients_add') }}">
         @csrf
         <div>
             <label>Фамилиля</label>
             <hr>
             <label>
-                <input class="bordered" name="surname" type="text" value="{{ request()->isMethod('post') ? old('surname') : '' }}">
+                <input class="bordered" name="last_name" type="text" value="{{ old('last_name') }}">
             </label>
         </div>
-        <!-- Ошибок тоже пока нет -->
         <hr>
         <div>
             <label>Имя</label>
             <hr>
             <label>
-                <input class="bordered" name="name" type="text" value="{{ request()->isMethod('post') ? old('name') : '' }}">
+                <input class="bordered" name="first_name" type="text" value="{{ old('first_name') }}">
             </label>
         </div>
-        <!-- Ошибок тоже пока нет -->
         <hr>
         <div>
             <label>Отчество</label>
             <hr>
             <label>
-                <input class="bordered" name="middle_name" type="text" value="{{ request()->isMethod('post') ? old('middle_name') : '' }}">
+                <input class="bordered" name="middle_name" type="text" value="{{ old('middle_name') }}">
             </label>
         </div>
-        <!-- Ошибок тоже пока нет -->
         <hr>
         <div>
             <label>Номер телефона</label>
             <hr>
             <label>
-                <input class="bordered" name="phone" type="text" value="{{ request()->isMethod('post') ? old('phone') : '' }}">
+                <input class="bordered" name="phone" type="text" value="{{ old('phone') }}">
             </label>
         </div>
-        <!-- Ошибок тоже пока нет -->
         <hr>
         <div>
             <label>Электронная почта</label>
             <hr>
             <label>
-                <input class="bordered" name="email" type="text" value="{{ request()->isMethod('post') ? old('email') : '' }}">
+                <input class="bordered" name="email" type="text" value="{{ old('email') }}">
             </label>
         </div>
-        <!-- Ошибок тоже пока нет -->
+        <hr>
+        <div>
+            <label>Логин</label>
+            <hr>
+            <label>
+                <input class="bordered" name="login" type="text" value="{{ old('email') }}">
+            </label>
+        </div>
+        <hr>
+        <div>
+            <label>Пароль</label>
+            <hr>
+            <label>
+                <input class="bordered" name="password" type="password" value="">
+            </label>
+        </div>
         <hr>
         <input type="submit">
     </form>
@@ -86,20 +111,25 @@
         @endif
         <div class="client bordered">
             <div class="client__full_name">
-                <!-- Не знаю как обратиться к PersonSet -->
+                {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
             </div>
             <div class="client__telephone_or_email">
-                <p>{{ $client->phone ?? $client->email }}</p>
+                @if($client->phone !== null && $client->email !== null)
+                    <p>{{ $client->phone }} / {{ $client->email }}</p>
+                @else
+                    <p>{{ $client->phone ?? $client->email }}</p>
+                @endif
             </div>
             <div class="client__buttons">
                 <div class="client__change_button">
-                    <a href="#">Изменить</a> <!-- Не знаю как ты захочешь прям это реализовать, но я создал страницу для изменения change_client -->
+                    <a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a>
                 </div>
                 <div class="client__delete_button">
-                    <a href="#">Удалить</a> <!-- Не знаю как удалять из базы -->
+                    <a href="{{ route('admin_clients_delete', ['id' => $client->id]) }}">Удалить</a>
                 </div>
             </div>
         </div>
     @endforeach
+    {{ $clients->links() }}
 </body>
 </html>
