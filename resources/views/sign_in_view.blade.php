@@ -33,6 +33,10 @@
 		"@type": "Organization",
 		"name": "coursework",
 		"logo": "{{ asset('images/default-logo.png') }}"}</script>
+
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Login">
+        <meta property="og:type" content="website">
     </head>
     <body class="u-body">
     <header class="u-clearfix u-custom-color-6 u-header u-sticky u-sticky-c736 u-header" id="sec-2df4">
@@ -46,13 +50,13 @@
                 <div class="u-custom-menu u-nav-container">
                     <ul class="u-custom-font u-font-roboto u-nav u-spacing-30 u-unstyled u-nav-1">
                         <li class="u-nav-item">
-                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="Main.html" style="padding: 10px 0px; color: white;">Главная</a>
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('welcome') }}" style="padding: 10px 0px;">Главная</a>
                         </li>
                         <li class="u-nav-item">
-                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="Login.html" style="padding: 10px 0px; color: white;">Вход</a>
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('sign_in') }}" style="padding: 10px 0px;">Вход</a>
                         </li>
                         <li class="u-nav-item">
-                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="Registration.html" style="padding: 10px 0px; color: white;">Регистрация</a>
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('sign_up') }}" style="padding: 10px 0px; color: white;">Регистрация</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +66,7 @@
                             <div class="u-menu-close"></div>
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                                 <li class="u-nav-item">
-                                    <a class="u-button-style u-nav-link" href="#" style="padding: 10px 0px;">Главная</a>
+                                    <a class="u-button-style u-nav-link" href="{{ route('welcome') }}" style="padding: 10px 0px;">Главная</a>
                                 </li>
                                 <li class="u-nav-item">
                                     <a class="u-button-style u-nav-link" href="{{ route('sign_in') }}" style="padding: 10px 0px;">Вход</a>
