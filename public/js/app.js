@@ -19307,6 +19307,123 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
+/***/ "./resources/css/Account-client.css":
+/*!******************************************!*\
+  !*** ./resources/css/Account-client.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Account-realtor.css":
+/*!*******************************************!*\
+  !*** ./resources/css/Account-realtor.css ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Blog-Template.css":
+/*!*****************************************!*\
+  !*** ./resources/css/Blog-Template.css ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Buy.css":
+/*!*******************************!*\
+  !*** ./resources/css/Buy.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Main.css":
+/*!********************************!*\
+  !*** ./resources/css/Main.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Post-Template.css":
+/*!*****************************************!*\
+  !*** ./resources/css/Post-Template.css ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Property.css":
+/*!************************************!*\
+  !*** ./resources/css/Property.css ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Registration.css":
+/*!****************************************!*\
+  !*** ./resources/css/Registration.css ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Sell.css":
+/*!********************************!*\
+  !*** ./resources/css/Sell.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
@@ -19337,6 +19454,32 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./resources/css/style_reg.css ***!
   \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/Login.css":
+/*!*********************************!*\
+  !*** ./resources/css/Login.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/page.css":
+/*!********************************!*\
+  !*** ./resources/css/page.css ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19664,7 +19807,18 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"/js/app": 0,
 /******/ 			"css/style_reg": 0,
 /******/ 			"css/style_login": 0,
-/******/ 			"css/app": 0
+/******/ 			"css/page": 0,
+/******/ 			"css/Login": 0,
+/******/ 			"css/app": 0,
+/******/ 			"css/Sell": 0,
+/******/ 			"css/Registration": 0,
+/******/ 			"css/Property": 0,
+/******/ 			"css/Post-Template": 0,
+/******/ 			"css/Main": 0,
+/******/ 			"css/Buy": 0,
+/******/ 			"css/Blog-Template": 0,
+/******/ 			"css/Account-realtor": 0,
+/******/ 			"css/Account-client": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -19714,10 +19868,21 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/app"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/app"], () => (__webpack_require__("./resources/css/style_login.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/app"], () => (__webpack_require__("./resources/css/style_reg.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/style_login.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/style_reg.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Login.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/page.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Account-client.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Account-realtor.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Blog-Template.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Buy.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Main.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Post-Template.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Property.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Registration.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style_reg","css/style_login","css/page","css/Login","css/app","css/Sell","css/Registration","css/Property","css/Post-Template","css/Main","css/Buy","css/Blog-Template","css/Account-realtor","css/Account-client"], () => (__webpack_require__("./resources/css/Sell.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
