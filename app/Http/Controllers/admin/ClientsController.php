@@ -43,7 +43,7 @@ class ClientsController extends Controller
             $request->flush();
         } catch (Throwable $e) {
             DB::rollBack();
-            echo $e;
+            $request->session()->flash('error', 'Ошибка создания');
         }
         return redirect()->route('admin_clients_get');
     }
@@ -92,5 +92,17 @@ class ClientsController extends Controller
             $request->session()->flash('error', 'Ошибка удаления: клиент связан с потребностью или предложением');
         }
         return redirect()->route('admin_clients_get');
+    }
+
+    public function view($id)
+    {
+        $client = PersonSet_Client::whereId($id)->first();
+        if ($client === null) {
+            abort(404);
+        }
+        $demands = DemandSet::whereClientId($id)->get();
+        $supplies = SupplySet::whereClientId($id)->get();
+
+        return view('admin_views.client_view_all_d&s', ['client' => $client, 'demands' => $demands, 'supplies' => $supplies]);
     }
 }

@@ -91,7 +91,7 @@
             <label>Логин</label>
             <hr>
             <label>
-                <input class="bordered" name="login" type="text" value="{{ old('email') }}">
+                <input class="bordered" name="login" type="text" value="{{ old('login') }}">
             </label>
         </div>
         <hr>
@@ -111,7 +111,9 @@
         @endif
         <div class="client bordered">
             <div class="client__full_name">
-                {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
+                <a href="{{ route('admin_client_view', ['id' => $client->id]) }}">
+                    {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
+                </a>
             </div>
             <div class="client__telephone_or_email">
                 @if($client->phone !== null && $client->email !== null)
