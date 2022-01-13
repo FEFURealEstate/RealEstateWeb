@@ -21,7 +21,7 @@ class MySellController extends Controller
             ->leftJoin('deal_sets', 'supply_sets.id', 'deal_sets.supply_id')
             ->whereNull('deal_sets.supply_id')
             ->select('supply_sets.*')
-            ->orderBy('real_estate_id')
+            ->orderByDesc('real_estate_id')
             ->get();
         
         $sells_close = SupplySet::query()
@@ -29,7 +29,7 @@ class MySellController extends Controller
             ->leftJoin('deal_sets', 'supply_sets.id', 'deal_sets.supply_id')
             ->select('supply_sets.*')
             ->where('deal_sets.supply_id', '!=', null)
-            ->orderBy('real_estate_id')
+            ->orderByDesc('real_estate_id')
             ->get();
         return view('client_views/my_sells', ['sells_open' => $sells_open, 'sells_close' => $sells_close]);
     }

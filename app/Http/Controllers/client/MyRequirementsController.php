@@ -24,7 +24,7 @@ class MyRequirementsController extends Controller
             ->leftJoin('deal_sets', 'demand_sets.id', 'deal_sets.demand_id')
             ->whereNull('deal_sets.demand_id')
             ->select('demand_sets.*')
-            ->orderBy('real_estate_filter_id')
+            ->orderByDesc('real_estate_filter_id')
             ->get();
         
         $req_close = DemandSet::query()
@@ -32,7 +32,7 @@ class MyRequirementsController extends Controller
             ->leftJoin('deal_sets', 'demand_sets.id', 'deal_sets.demand_id')
             ->select('demand_sets.*')
             ->where('deal_sets.demand_id', '!=', null)
-            ->orderBy('real_estate_filter_id')
+            ->orderByDesc('real_estate_filter_id')
             ->get();
         return view('client_views/my_requirements', ['req_open' => $req_open, 'req_close' => $req_close]);
     }
