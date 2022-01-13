@@ -21,51 +21,96 @@
     </style>
 </head>
 <body class="antialiased">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<h2>Изменить данные риэлтора</h2>
-<form method="POST" action="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">
-    @csrf
-    <div>
-        <label>Фамилиля</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="last_name" type="text" value="{{ $agent->person->last_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Имя</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="first_name" type="text" value="{{ $agent->person->first_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Отчество</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="middle_name" type="text" value="{{ $agent->person->middle_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Доля от комиссии</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="deal_share" type="number" min="0" max="100" value="{{ $agent->deal_share }}">
-        </label>
-    </div>
-    <hr>
-    <input type="submit">
-</form>
+
+<div class="agent">
+    {{ $agent->person->last_name }}
+    {{ $agent->person->first_name }}
+    {{ $agent->person->middle_name }}
+    {{ $agent->deal_share }}
+    <br>
+    <a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a>
+</div>
+
+{{-- TODO изменить стили --}}
+<style type="text/css">
+    TABLE {
+        width: 300px; /* Ширина таблицы */
+        border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    }
+    TD, TH {
+        padding: 3px; /* Поля вокруг содержимого таблицы */
+        border: 1px solid black; /* Параметры рамки */
+    }
+    TH {
+        background: #b0e0e6; /* Цвет фона */
+    }
+</style>
+
+<div class="demands">
+    <p>Потребности пользователей</p>
+    <table>
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>address_city</td>
+            <td>address_street</td>
+            <td>address_house</td>
+            <td>address_number</td>
+            <td>min_price</td>
+            <td>max_price</td>
+            <td>client</td>
+            <td>real_estate_filter_data</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($demands as $demand)
+            <tr>
+                <td>{{ $demand->id }}</td>
+                <td>{{ $demand->address_city }}</td>
+                <td>{{ $demand->address_street }}</td>
+                <td>{{ $demand->address_house }}</td>
+                <td>{{ $demand->address_number }}</td>
+                <td>{{ $demand->min_price }}</td>
+                <td>{{ $demand->max_price }}</td>
+                <td>
+                    @if($demand->client !== null)
+                        <a href="{{ route('admin_client_view', ['id' => $demand->client_id]) }}">{{ $demand->client->person->last_name }} {{ $demand->client->person->first_name }} {{ $demand->client->person->middle_name }}</a>
+                    @endif
+                </td>
+                <td><a href="">{{ $demand->realEstateFilter->apartmentFilter }} {{ $demand->realEstateFilter->houseFilter }} {{ $demand->realEstateFilter->landFilter }}</a></td> {{-- TODO href на потребность--}}
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+
+<div class="supplies">
+    <p>Предложения пользователей</p>
+    <table>
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>price</td>
+            <td>client</td>
+            <td>address</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($supplies as $supply)
+            <tr>
+                <td>{{ $supply->id }}</td>
+                <td>{{ $supply->price }}</td>
+                <td>
+                    @if($supply->client !== null)
+                        <a href="{{ route('admin_client_view', ['id' => $supply->client_id]) }}">{{ $supply->client->person->last_name }} {{ $supply->client->person->first_name }} {{ $supply->client->person->middle_name }}</a>
+                    @endif
+                </td>
+                <td><a href="">{{ $supply->realEstate->address_city }} {{ $supply->realEstate->address_street }} {{ $supply->realEstate->address_house }} {{ $supply->realEstate->address_number }}</a></td> {{-- TODO href на потребность--}}
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

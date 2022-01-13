@@ -40,6 +40,12 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/admin/clients/delete/{id}', [admin\ClientsController::class, 'delete'])->name('admin_clients_delete');
     Route::get('/admin/client/{id}', [admin\ClientsController::class, 'view'])->name('admin_client_view');
 
+    Route::post('/admin/realtors', [admin\RealtorsController::class, 'add'])->name('admin_realtors_add');
+    Route::get('/admin/realtors', [admin\RealtorsController::class, 'get'])->name('admin_realtors_get');
+    Route::match(['get', 'post'], '/admin/realtors/change/{id}', [admin\RealtorsController::class, 'change'])->name('admin_realtors_change');
+    Route::get('/admin/realtors/delete/{id}', [admin\RealtorsController::class, 'delete'])->name('admin_realtors_delete');
+    Route::get('/admin/realtor/{id}', [admin\RealtorsController::class, 'view'])->name('admin_realtor_view');
+
     Route::get('/admin/deals',admin\DealsController::class)->name('admin_deals');
 
     Route::get('/admin/needs', admin\NeedsController::class)->name('admin_needs');
@@ -49,7 +55,4 @@ Route::middleware('is_admin')->group(function () {
 
 
     Route::get('/admin/offers', admin\OffersController::class)->name('admin_offers');
-
-    Route::match(['get', 'post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
-    Route::match(['get', 'post'], '/admin/realtors/change', admin\RealtorChangeController::class)->name('admin_realtors_change');
 });

@@ -30,66 +30,96 @@
     </style>
 </head>
 <body class="antialiased">
-<form method="POST" action="{{ route('admin_realtors') }}">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+<h2>Добавить риэлтора</h2>
+<form method="POST" action="{{ route('admin_realtors_add') }}">
     @csrf
     <div>
         <label>Фамилиля</label>
         <hr>
         <label>
-            <input class="bordered" name="surname" type="text" value="{{ request()->isMethod('post') ? old('surname') : '' }}">
+            <input class="bordered" required name="last_name" type="text" value="{{ old('last_name') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Имя</label>
         <hr>
         <label>
-            <input class="bordered" name="name" type="text" value="{{ request()->isMethod('post') ? old('name') : '' }}">
+            <input class="bordered" required name="first_name" type="text" value="{{ old('first_name') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Отчество</label>
         <hr>
         <label>
-            <input class="bordered" name="middle_name" type="text" value="{{ request()->isMethod('post') ? old('middle_name') : '' }}">
+            <input class="bordered" required name="middle_name" type="text" value="{{ old('middle_name') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Доля от комиссии</label>
         <hr>
         <label>
-            <input class="bordered" name="deal_share" type="text" value="{{ request()->isMethod('post') ? old('deal_share') : '' }}">
+            <input class="bordered" name="deal_share" type="number" min="0" max="100" value="{{ old('deal_share') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
+    <hr>
+    <div>
+        <label>Логин</label>
+        <hr>
+        <label>
+            <input class="bordered" name="login" type="text" value="{{ old('login') }}">
+        </label>
+    </div>
+    <hr>
+    <div>
+        <label>Пароль</label>
+        <hr>
+        <label>
+            <input class="bordered" name="password" type="password" value="">
+        </label>
+    </div>
     <hr>
     <input type="submit">
 </form>
-@foreach($realtors as $index => $realtor)
+@foreach($agents as $index => $agent)
     @if ($index > 0)
         <hr>
     @endif
     <div class="realtor bordered">
         <div class="realtor__full_name">
-            <!-- Не знаю как обратиться к PersonSet -->
+            <a href="{{ route('admin_realtor_view', ['id' => $agent->id]) }}">
+                {{ $agent->person->last_name }} {{ $agent->person->first_name }} {{ $agent->person->middle_name }}
+            </a>
         </div>
         <div class="realtor__deal_share">
-            <p>{{ $realtor->deal_share }}</p>
+            <p>{{ $agent->deal_share }}</p>
         </div>
         <div class="realtor__buttons">
             <div class="realtor__change_button">
-                <a href="#">Изменить</a> <!-- Не знаю как ты захочешь прям это реализовать, но я создал страницу для изменения change_realtors -->
+                <a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a>
             </div>
             <div class="realtor__delete_button">
-                <a href="#">Удалить</a> <!-- Не знаю как удалять из базы -->
+                <a href="{{ route('admin_realtors_delete', ['id' => $agent->id]) }}">Удалить</a>
             </div>
         </div>
     </div>
 @endforeach
+{{ $agents->links() }}
 </body>
 </html>
