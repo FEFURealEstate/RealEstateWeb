@@ -35,8 +35,10 @@ Route::middleware('auth')->group(function(){
 
 
 Route::middleware('is_admin')->group(function () {
-    Route::match(['get', 'post'], '/admin/clients', admin\ClientsController::class)->name('admin_clients');
-    Route::match(['get', 'post'], '/admin/clients/change', admin\ClientChangeController::class)->name('admin_clients_change');
+    Route::post('/admin/clients', [admin\ClientsController::class, 'add'])->name('admin_clients_add');
+    Route::get('/admin/clients', [admin\ClientsController::class, 'get'])->name('admin_clients_get');
+    Route::match(['get', 'post'], '/admin/clients/change/{id}', [admin\ClientsController::class, 'change'])->name('admin_clients_change');
+    Route::get('/admin/clients/delete/{id}', [admin\ClientsController::class, 'delete'])->name('admin_clients_delete');
 
     Route::get('/admin/deals',admin\DealsController::class)->name('admin_deals');
 

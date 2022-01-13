@@ -22,52 +22,56 @@
 </head>
 <body class="antialiased">
 <h2>Изменить данные клиента</h2>
-<form method="POST" action="{{ route('admin_clients_change') }}">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<form method="POST" action="{{ route('admin_clients_change', ['id' => $client->id]) }}">
     @csrf
     <div>
         <label>Фамилиля</label>
         <hr>
         <label>
-            <input class="bordered" name="surname" type="text" value=""> <!-- Хз как засунуть данные выбранного клиента -->
+            <input class="bordered" name="last_name" type="text" value="{{ $client->person->last_name }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Имя</label>
         <hr>
         <label>
-            <input class="bordered" name="name" type="text" value=""> <!-- Хз как засунуть данные выбранного клиента -->
+            <input class="bordered" name="first_name" type="text" value="{{ $client->person->first_name }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Отчество</label>
         <hr>
         <label>
-            <input class="bordered" name="middle_name" type="text" value=""> <!-- Хз как засунуть данные выбранного клиента -->
+            <input class="bordered" name="middle_name" type="text" value="{{ $client->person->middle_name }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Номер телефона</label>
         <hr>
         <label>
-            <input class="bordered" name="phone" type="text" value=""> <!-- Хз как засунуть данные выбранного клиента -->
+            <input class="bordered" name="phone" type="text" value="{{ $client->phone }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Электронная почта</label>
         <hr>
         <label>
-            <input class="bordered" name="email" type="text" value=""> <!-- Хз как засунуть данные выбранного клиента -->
+            <input class="bordered" name="email" type="text" value="{{ $client->email }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <input type="submit">
 </form>
