@@ -20,72 +20,52 @@
         }
     </style>
 
-    <script>
-        function optchange(select) {
-            var selected = select.options[select.selectedIndex];
-            if(selected.id == 1)
-            {
-                document.getElementById("estateopt").innerHTML = `
-                    <p>Минимальная площадь</p>
-                    <p><input name="min_s" type="number" placeholder="..."  value=""></p>
-                    
-                    <p>Максимальная площадь</p>
-                    <p><input name="max_s" type="number" placeholder="..."  value=""></p>
+<script>
+    function optchange(select) {
+        var selected = select.options[select.selectedIndex];
+        if(selected.id == 1)
+        {
+            document.getElementById("estateopt").innerHTML = `
+                <p>Этаж"</p>
+                <p><input name="floor" type="number" placeholder="..."  value=""></p>
 
-                    <p>Мин кол-во комнат</p>
-                    <p><input name="min_count" type="number"  value=""/></p>
+                <p>Количество комнат</p>
+                <p><input name="rooms" type="number" placeholder="..."  value=""></p>
 
-                    <p>Макс кол-во комнат</p>
-                    <p><input name="max_count" type="number" placeholder="..."  value=""></p>
-
-                    <p>Мин этаж</p>
-                    <p><input name="min_floor" type="number"value=""/></p>
-
-                    <p>Макс этаж</p>
-                    <p><input name="max_floor" type="number" value="" placeholder="..."/></p>`;
-            }
-            if(selected.id == 2)
-            {
-                document.getElementById("estateopt").innerHTML = `
-                    <p>Минимальная площадь</p>
-                    <p><input name="min_s" type="number" placeholder="..."  value=""></p>
-
-                    <p>Максимальная площадь</p>
-                    <p><input name="max_s" type="number" placeholder="..."  value=""></p>
-
-                    <p>Мин кол-во комнат</p>
-                    <p><input name="min_count" type="number"  value=""/></p>
-
-                    <p>Макс кол-во комнат</p>
-                    <p><input name="max_count" type="number" placeholder="..."  value=""></p>
-
-                    <p>Мин этажей</p>
-                    <p><input name="min_floor" type="number"value=""/></p>
-
-                    <p>Макс этажей</p>
-                    <p><input name="max_floor" type="number" value="" placeholder="..."/></p>`;
-            }
-            if(selected.id == 3)
-            {
-                document.getElementById("estateopt").innerHTML = `
-                    <p>Минимальная площадь</p>
-                    <p><input name="min_s" type="number" placeholder="..."  value=""></p>
-
-                    <p>Максимальная площадь</p>
-                    <p><input name="max_s" type="number" placeholder="..."  value=""></p>`;
-            }
-            if(selected.id == 0)
-            {
-                document.getElementById("estateopt").innerHTML = "";
-            }
-            document.getElementById("estate_type").value = selected.id;
-            //console.log(document.getElementById("estate_type").value);
+                <p>Площадь</p>
+                <p><input name="total_area" type="number"  value=""/></p>`;
         }
-    </script>
+        if(selected.id == 2)
+        {
+            document.getElementById("estateopt").innerHTML = `
+                <p>Этаж"</p>
+                <p><input name="floor" type="number" placeholder="..."  value=""></p>
+
+                <p>Количество комнат</p>
+                <p><input name="rooms" type="number" placeholder="..."  value=""></p>
+
+                <p>Площадь</p>
+                <p><input name="total_area" type="number"  value=""/></p>`;
+        }
+        if(selected.id == 3)
+        {
+            document.getElementById("estateopt").innerHTML = `
+                <p>Площадь</p>
+                <p><input name="total_area" type="number" placeholder="..."  value=""></p>`;
+        }
+        if(selected.id == 0)
+        {
+            document.getElementById("estateopt").innerHTML = "";
+        }
+        document.getElementById("estate_type").value = selected.id;
+        //console.log(document.getElementById("estate_type").value);
+    }
+</script>
+
 </head>
 <body class="antialiased">
-    <h2>Создание заявки на покупку недвижимости</h2>
-    <form action="{{route('create_req')}}" method="post">
+    <h1>Выставление на продажу</h1>
+    <form action="{{route('create_sell')}}" method="post">
         @csrf
         <div class="client_card">
             <h2>Данные клиента</h2>
@@ -111,15 +91,15 @@
             <p><input name="house_num" type="number" value="{{ old('house_num') }}" placeholder="..."/></p>
             <p>Номер квартиры</p>
             <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
-            <p>Минимальная цена</p>
-            <p><input name="min_price" type="number" value="{{ old('min_price') }}" placeholder="..."/></p>
-            <p>Максимальная цена</p>
-            <p><input name="max_price" type="number" value="{{ old('max_price') }}" placeholder="..."/></p>
+            <p>Широта</p>
+            <p><input name="latitude" type="number" value="{{ old('latitude') }}" placeholder="..."/></p>
+            <p>Долгота</p>
+            <p><input name="longtitude" type="number" value="{{ old('longtitude') }}" placeholder="..."/></p>
         </div>
 
         <div class="req_card">
             <h2>Данные недвижимости</h2>
-            <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
+            <select onload="optchange(this)" onchange="optchange(this)" required="required" name="estate_type" id="opt">
                 <option id="0" value="">Выбирите тип недвижимости</option>
                 <option id="1">Квартира</option>
                 <option id="2">Дом</option>
@@ -128,11 +108,13 @@
             <div id="estateopt">
                 {{-- содержимое меняется скриптом --}}
             </div>
+            <p>Цена продажи</p>
+            <p><input name="price" type="number" value="{{ old('price') }}" placeholder="..."/></p>
 
             <input type="hidden" id="estate_type" name="estate_type" type="text" value="">
             <input type="hidden" name="user_id" type="number" value="{{ $user->id }}">
         </div>
-        <button type="submit">Отправить заявку</button>
+        <button type="submit">Выставить недвижимость на продажу</button>
     </form>
 </body>
 </html>

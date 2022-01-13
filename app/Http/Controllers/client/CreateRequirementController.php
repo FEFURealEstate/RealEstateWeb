@@ -66,11 +66,11 @@ class CreateRequirementController extends Controller
 
                 if($request['estate_type'] == 3)
                 {
-                    $estate_filter_set_apartment = new RealEstateFilterSet_LandFilter();
-                    $estate_filter_set_apartment->min_area = $request['min_s'];
-                    $estate_filter_set_apartment->max_area = $request['max_s'];
-                    $estate_filter_set_apartment->id = $estate_filter_set->id;
-                    $estate_filter_set_apartment->save();
+                    $estate_filter_set_lands = new RealEstateFilterSet_LandFilter();
+                    $estate_filter_set_lands->min_area = $request['min_s'];
+                    $estate_filter_set_lands->max_area = $request['max_s'];
+                    $estate_filter_set_lands->id = $estate_filter_set->id;
+                    $estate_filter_set_lands->save();
                 }
                 
                 $demand_sets = new DemandSet();

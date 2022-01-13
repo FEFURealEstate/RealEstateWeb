@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'is_user' => \App\Http\Middleware\IsUser::class,
         'is_realtor' => \App\Http\Middleware\IsRealtor::class,
         'demand_owns' => \App\Http\Middleware\CheckDemandOwner::class,
+        'supply_owns' => \App\Http\Middleware\CheckSupplyOwn::class,
     ];
 
         /**
@@ -92,5 +93,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\IsRealtor::class,
         \App\Http\Middleware\IsAdmin::class,
         \App\Http\Middleware\CheckDemandOwner::class,
+        \App\Http\Middleware\CheckSupplyOwn::class,
     ];
 }

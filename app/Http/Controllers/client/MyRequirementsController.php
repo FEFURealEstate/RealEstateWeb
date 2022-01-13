@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\DealSet;
 use App\Models\DemandSet;
 use App\Models\PersonSet_Client;
 use App\Models\RealEstateFilterSet;
 use App\Models\RealEstateSet;
 use Faker\Core\Number;
 use Illuminate\Http\Request;
+use App\Models\NotFinishDeals;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Matcher\Not;
 
 class MyRequirementsController extends Controller
 {
@@ -40,6 +43,11 @@ class MyRequirementsController extends Controller
         $user_payload = PersonSet_Client::find($user->id);
         $demand = DemandSet::whereId($req_id)->first();
         $estate_type = null;
+        $not_finish_deals = NotFinishDeals::query()->where('demand_id', $demand->id)->get();
+        
+        $finished = DealSet::query()->whereDemandId($demand->id)->get();
+
+
         abort_if($demand === null, 404);
 
         if($demand->realEstateFilter->apartmentFilter !== null)
@@ -59,16 +67,35 @@ class MyRequirementsController extends Controller
         }
         abort_if($estate_type === null, 404);
 
-        return view('client_views/requirements_info', ['user' => $user, 'user_payload' => $user_payload, 'demand' => $demand, 'estate_payload' => $estate_payload, 'type' => $estate_type]);
+        return view('client_views/requirements_info', ['finished' => $finished, 'user' => $user, 'user_payload' => $user_payload, 'demand' => $demand, 'estate_payload' => $estate_payload, 'type' => $estate_type, 'not_finish_deals' => $not_finish_deals]);
     }
 
     public function delete_req($req_id)
     {
         $estate_id = DemandSet::whereId($req_id)->first()->realEstateFilter->id;
         RealEstateFilterSet::query()->whereId($estate_id)->delete();
-        return route('my_req');
-        //detele demond_sets
-        //estate_filter_set
-        //estate_filter_set_...
+        return redirect()->route('my_req');
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function buy_estate(Request $request)
+    {
+        $demand_id = $request['req_id'];
+        $supply_id = $request['supply_id'];
+
+        $deal = new DealSet();
+        $deal->demand_id = $demand_id;
+        $deal->supply_id = $supply_id;
+        $deal->save();
+
+        NotFinishDeals::query()->whereDemandId($demand_id)->delete();
+        NotFinishDeals::query()->whereSupplyId($supply_id)->delete();
+
+        return redirect()->route('my_req_info', ['req_id' => $demand_id]);
     }
 }

@@ -56,9 +56,15 @@ Route::middleware('is_user')->group(function(){
     Route::match(['get', 'post'], '/create_requirement', client\CreateRequirementController::class)->name('create_req');
 
     Route::get('/my_requirements', [client\MyRequirementsController::class, 'get_requirements'])->name('my_req');
-
     Route::get('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'get_req_info'])->name('my_req_info')->middleware('demand_owns');
-
     Route::delete('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'delete_req'])->name('delete_req')->middleware('demand_owns');
+    Route::post('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'buy_estate'])->name('buy_estate')->middleware('demand_owns');
+
+    Route::match(['get', 'post'], '/create_sell', client\SellEstateController::class)->name('create_sell');
+
+    Route::get('/my_sells', [client\MySellController::class, 'get_sell'])->name('my_sell');
+    Route::get('/my_sell/{sell_id}', [client\MySellController::class, 'get_sell_info'])->name('my_sell_info')->middleware('supply_owns');
+    Route::delete('/my_sell/{sell_id}', [client\MySellController::class, 'delete_sell'])->name('delete_sell')->middleware('supply_owns');
+    Route::post('/my_sell/{sell_id}', [client\MySellController::class, 'sell_estate'])->name('sell_estate')->middleware('supply_owns');
 
 });
