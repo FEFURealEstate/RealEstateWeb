@@ -76,9 +76,9 @@
                 <td>{{ $demand->max_price }}</td>
                 <td>
                     @if($demand->agent !== null)
-                        <a href="">{{ $demand->agent->person->last_name }} {{ $demand->agent->person->first_name }} {{ $demand->agent->person->middle_name }}</a>
+                        <a href="{{ route('admin_realtor_view', ['id' => $demand->agent_id]) }}">{{ $demand->agent->person->last_name }} {{ $demand->agent->person->first_name }} {{ $demand->agent->person->middle_name }}</a>
                     @endif
-                </td> {{-- TODO href на агента--}}
+                </td>
                 <td><a href="">{{ $demand->realEstateFilter->apartmentFilter }} {{ $demand->realEstateFilter->houseFilter }} {{ $demand->realEstateFilter->landFilter }}</a></td> {{-- TODO href на потребность--}}
             </tr>
         @endforeach
@@ -104,9 +104,9 @@
                 <td>{{ $supply->price }}</td>
                 <td>
                     @if($supply->agent !== null)
-                        <a href="">{{ $supply->agent->person->last_name }} {{ $supply->agent->person->first_name }} {{ $supply->agent->person->middle_name }}</a>
+                        <a href="{{ route('admin_realtor_view', ['id' => $supply->agent_id]) }}">{{ $supply->agent->person->last_name }} {{ $supply->agent->person->first_name }} {{ $supply->agent->person->middle_name }}</a>
                     @endif
-                </td> {{-- TODO href на агента--}}
+                </td>
                 <td><a href="">{{ $supply->realEstate->address_city }} {{ $supply->realEstate->address_street }} {{ $supply->realEstate->address_house }} {{ $supply->realEstate->address_number }}</a></td> {{-- TODO href на потребность--}}
             </tr>
         @endforeach
