@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \App\Models\PersonSet_Agent $agent
  * @property-read \App\Models\PersonSet_Client $client
  * @property-read \App\Models\DealSet|null $deal
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NotFinishDeals[] $notFinishDeals
+ * @property-read int|null $not_finish_deals_count
  * @property-read \App\Models\RealEstateSet $realEstate
  * @method static \Illuminate\Database\Eloquent\Builder|SupplySet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SupplySet newQuery()
@@ -47,5 +49,10 @@ class SupplySet extends BaseModel
     public function deal()
     {
         return $this->hasOne(DealSet::class, 'supply_id');
+    }
+
+    public function notFinishDeals()
+    {
+        return $this->hasMany(NotFinishDeals::class, 'supply_id');
     }
 }

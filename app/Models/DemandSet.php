@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \App\Models\PersonSet_Agent $agent
  * @property-read \App\Models\PersonSet_Client $client
  * @property-read \App\Models\DealSet|null $deal
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\NotFinishDeals[] $notFinishDeals
+ * @property-read int|null $not_finish_deals_count
  * @property-read \App\Models\RealEstateFilterSet $realEstateFilter
  * @method static \Illuminate\Database\Eloquent\Builder|DemandSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DemandSet newQuery()
@@ -58,5 +60,10 @@ class DemandSet extends BaseModel
     public function deal()
     {
         return $this->hasOne(DealSet::class, 'demand_id');
+    }
+
+    public function notFinishDeals()
+    {
+        return $this->hasMany(NotFinishDeals::class, 'demand_id');
     }
 }

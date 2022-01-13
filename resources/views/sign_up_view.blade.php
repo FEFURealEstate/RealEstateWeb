@@ -3,6 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="page_type" content="np-template-header-footer-from-plugin">
+        <title>Registration</title>
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
+        <link rel="stylesheet" href="{{ asset('css/Registration.css') }}" media="screen">
+        <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+        <script class="u-script" type="text/javascript" src="{{ asset('js/page.js') }}" defer=""></script>
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+        <script type="application/ld+json">{
+		"@type": "Organization",
+		"name": "coursework",
+		"logo": "{{ asset('images/default-logo.png') }}"}</script>
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Registration">
+        <meta property="og:type" content="website">
 
         <title>Форма регистрации</title>
 
@@ -34,47 +52,110 @@
             }
         </script>
     </head>
-    <body class="antialiased">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <article class="container">
-            <div class="form-box">
-                <form action="{{route('sign_up')}}" method="post" class="form">
+    <body class="u-body">
+    <header class="u-clearfix u-custom-color-6 u-header u-sticky u-sticky-c736 u-header" id="sec-2df4">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <nav class="u-align-right-md u-align-right-sm u-align-right-xs u-menu u-menu-dropdown u-offcanvas u-menu-1">
+                <div class="menu-collapse u-custom-font u-font-roboto" style="font-size: 1.125rem; letter-spacing: 0px; text-transform: uppercase; font-weight: 700;">
+                    <a class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-file-icon u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base u-file-icon-1" href="#">
+                        <img src="{{ asset('images/menu.png') }}" alt="">
+                    </a>
+                </div>
+                <div class="u-custom-menu u-nav-container">
+                    <ul class="u-custom-font u-font-roboto u-nav u-spacing-30 u-unstyled u-nav-1">
+                        <li class="u-nav-item">
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('welcome') }}" style="padding: 10px 0px;">Главная</a>
+                        </li>
+                        <li class="u-nav-item">
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('sign_in') }}" style="padding: 10px 0px;">Вход</a>
+                        </li>
+                        <li class="u-nav-item">
+                            <a class="u-border-3 u-border-active-custom-color-2 u-border-hover-custom-color-10 u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-custom-color-2 u-text-custom-color-5 u-text-hover-custom-color-10" href="{{ route('sign_up') }}" style="padding: 10px 0px;">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="u-custom-menu u-nav-container-collapse">
+                    <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                        <div class="u-inner-container-layout u-sidenav-overflow">
+                            <div class="u-menu-close"></div>
+                            <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                                <li class="u-nav-item">
+                                    <a class="u-button-style u-nav-link" href="{{ route('welcome') }}" style="padding: 10px 0px;">Главная</a>
+                                </li>
+                                <li class="u-nav-item">
+                                    <a class="u-button-style u-nav-link" href="{{ route('sign_in') }}" style="padding: 10px 0px;">Вход</a>
+                                </li>
+                                <li class="u-nav-item">
+                                    <a class="u-button-style u-nav-link" href="{{ route('sign_up') }}" style="padding: 10px 0px;">Регистрация</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+                </div>
+            </nav>
+            <a href="" class="u-image u-logo u-image-1">
+                <img src="{{ asset('images/default-logo.png') }}" class="u-logo-image u-logo-image-1" alt="">
+            </a>
+        </div>
+    </header>
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-325b" data-image-width="150" data-image-height="100" style="background-image: {{ asset('images/home1.jpg') }} ">
+        <div class="u-clearfix u-sheet u-valign-top u-sheet-1" style="color: white">
+            <div class="body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <article class="container">
+                    <div class="form-box">
+                        <form action="{{route('sign_up')}}" method="post" class="form">
 
-                    @csrf
+                            @csrf
 
-                    <h2 class="form__title">Регистрация</h2>
-                    <div class="form__input" style="height: 400px; overflow: auto;">
-                        <p>Фамилия<font color="BA1313">*</font></p>
-                        <p><input tabindex="1" name="middlename" type="text" placeholder="..." required class="form__input-next" value="{{ old('middlename') }}"></p>
-                        <p>Имя<font color="BA1313">*</font></p>
-                        <p><input tabindex="2" name="firstname" type="text" required class="form__input-next" value="{{ old('firstname') }}"/></p>
-                        <p>Отчество<font color="BA1313">*</font></p>
-                        <p><input tabindex="3" name="lastname" type="text" placeholder="..." required class="form__input-next" value="{{ old('lastname') }}"></p>
-                        <p>Номер телефона</p>
-                        <p><input tabindex="4" name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ old('phone') }}" class="form__input-next"/></p>
-                        <p>Эл. почта</p>
-                        <p><input tabindex="5" name="email" type="email" value="{{ old('email') }}" placeholder="..." class="form__input-next"/></p>
-                        <p>Логин<font color="BA1313">*</font></p>
-                        <p><input tabindex="6" name="login" type="text" value="{{ old('login') }}" placeholder="..." required class="form__input-next"></p>
-                        <p>Пароль<font color="BA1313">*</font></p>
-                        <p><input tabindex="7" name="password" type="password" placeholder="..." required class="form__input-next"></p>
-                        <button tabindex="8" type="submit" class="form__bth">Зарегистрироваться</button>
-                        <br>
-                        <span text-align="center">
+                            <h2 class="form__title">Регистрация</h2>
+                            <div class="form__input" style="height: 400px; overflow: auto;">
+                                <p>Фамилия<font color="BA1313">*</font></p>
+                                <p><input tabindex="1" name="middlename" type="text" placeholder="..." required class="form__input-next" value="{{ old('middlename') }}" style="color: black"></p>
+                                <p>Имя<font color="BA1313">*</font></p>
+                                <p><input tabindex="2" name="firstname" type="text" required class="form__input-next" value="{{ old('firstname') }}" style="color: black"/></p>
+                                <p>Отчество<font color="BA1313">*</font></p>
+                                <p><input tabindex="3" name="lastname" type="text" placeholder="..." required class="form__input-next" value="{{ old('lastname') }}" style="color: black"></p>
+                                <p>Номер телефона</p>
+                                <p><input tabindex="4" name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ old('phone') }}" class="form__input-next" style="color: black"/></p>
+                                <p>Эл. почта</p>
+                                <p><input tabindex="5" name="email" type="email" value="{{ old('email') }}" placeholder="..." class="form__input-next" style="color: black"/></p>
+                                <p>Логин<font color="BA1313">*</font></p>
+                                <p><input tabindex="6" name="login" type="text" value="{{ old('login') }}" placeholder="..." required class="form__input-next" style="color: black"></p>
+                                <p>Пароль<font color="BA1313">*</font></p>
+                                <p><input tabindex="7" name="password" type="password" placeholder="..." required class="form__input-next" style="color: black"></p>
+                                <button tabindex="8" type="submit" class="form__bth">Зарегистрироваться</button>
+                                <br>
+                                <span text-align="center">
                  Уже есть аккаунт?
                  <a href="{{ route('sign_in') }}" tabindex="-1" class="form__reg">Войти</a>
               </span>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </article>
             </div>
-        </article>
+        </div>
+    </section>
+
+
+    <footer class="u-clearfix u-footer u-grey-80" id="sec-8702">
+        <div class="u-clearfix u-sheet u-sheet-1">
+            <a href="" class="u-image u-logo u-image-1">
+                <img src="{{ asset('images/default-logo.png') }}" class="u-logo-image u-logo-image-1">
+            </a>
+            <div class="u-align-left u-border-1 u-border-custom-color-8 u-expanded-width u-line u-line-horizontal u-opacity u-opacity-30 u-line-1"></div>
+            <p class="u-heading-font u-large-text u-text u-text-custom-color-8 u-text-default u-text-variant u-text-1">Данный сайт создан студентами ДВФУ в целях сдачи курсовой</p>
+        </div>
+    </footer>
     </body>
 </html>
