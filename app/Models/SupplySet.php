@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int|null $agent_id
  * @property int $client_id
  * @property int $real_estate_id
- * @property-read \App\Models\PersonSet_Client $agent
+ * @property-read \App\Models\PersonSet_Agent $agent
  * @property-read \App\Models\PersonSet_Client $client
  * @property-read \App\Models\DealSet|null $deal
  * @property-read \App\Models\RealEstateSet $realEstate
@@ -31,7 +31,7 @@ class SupplySet extends BaseModel
 
     public function agent()
     {
-        return $this->belongsTo(PersonSet_Client::class, 'client_id');
+        return $this->belongsTo(PersonSet_Agent::class, 'agent_id');
     }
 
     public function client()
