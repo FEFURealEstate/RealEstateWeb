@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\client;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\SignUpController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome')->middleware('is_user');
+})->name('welcome');
 
 Route::match(['get', 'post'], '/sign_up', SignUpController::class)->name('sign_up');
 
@@ -51,4 +52,21 @@ Route::middleware('is_admin')->group(function () {
 
     Route::match(['get', 'post'], '/admin/realtors', admin\RealtorsController::class)->name('admin_realtors');
     Route::match(['get', 'post'], '/admin/realtors/change', admin\RealtorChangeController::class)->name('admin_realtors_change');
+});
+
+Route::middleware('is_user')->group(function(){
+    Route::match(['get', 'post'], '/create_requirement', client\CreateRequirementController::class)->name('create_req');
+
+    Route::get('/my_requirements', [client\MyRequirementsController::class, 'get_requirements'])->name('my_req');
+    Route::get('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'get_req_info'])->name('my_req_info')->middleware('demand_owns');
+    Route::delete('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'delete_req'])->name('delete_req')->middleware('demand_owns');
+    Route::post('/my_requirements/{req_id}', [client\MyRequirementsController::class, 'buy_estate'])->name('buy_estate')->middleware('demand_owns');
+
+    Route::match(['get', 'post'], '/create_sell', client\SellEstateController::class)->name('create_sell');
+
+    Route::get('/my_sells', [client\MySellController::class, 'get_sell'])->name('my_sell');
+    Route::get('/my_sell/{sell_id}', [client\MySellController::class, 'get_sell_info'])->name('my_sell_info')->middleware('supply_owns');
+    Route::delete('/my_sell/{sell_id}', [client\MySellController::class, 'delete_sell'])->name('delete_sell')->middleware('supply_owns');
+    Route::post('/my_sell/{sell_id}', [client\MySellController::class, 'sell_estate'])->name('sell_estate')->middleware('supply_owns');
+
 });
