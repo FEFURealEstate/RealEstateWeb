@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\admin\RealtorsController;
 use App\Http\Controllers\admin;
+use App\Http\Controllers\AllReqController;
+use App\Http\Controllers\AllSellsController;
 use App\Http\Controllers\LogOutController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -69,4 +71,14 @@ Route::middleware('is_user')->group(function(){
     Route::delete('/my_sell/{sell_id}', [client\MySellController::class, 'delete_sell'])->name('delete_sell')->middleware('supply_owns');
     Route::post('/my_sell/{sell_id}', [client\MySellController::class, 'sell_estate'])->name('sell_estate')->middleware('supply_owns');
 
+});
+
+Route::middleware('is_realtor')->group(function(){
+    Route::match(['get', 'post'], '/all_req', [AllReqController::class, 'all_req'])->name('all_req');
+    Route::get('/all_req/{req_id}', [AllReqController::class, 'cur_req'])->name('cur_req');
+    Route::post('/all_req/{req_id}', [AllReqController::class, 'offer_estate'])->name('offer_estate');
+
+    Route::match(['get', 'post'], '/all_sells', [AllSellsController::class, 'all_sells'])->name('all_sells');
+    Route::get('/all_sells/{sell_id}', [AllSellsController::class, 'cur_sell'])->name('cur_sell');
+    Route::post('/all_sells/{sell_id}', [AllSellsController::class, 'offer_estate_sell'])->name('offer_estate_sell');
 });
