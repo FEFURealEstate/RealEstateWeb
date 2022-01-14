@@ -3,6 +3,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="Личный кабинет">
+        <meta name="description" content="">
+        <meta name="page_type" content="np-template-header-footer-from-plugin">
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
+        <link rel="stylesheet" href="{{ asset('css/Account-client.css') }}" media="screen">
+        <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+        <script class="u-script" type="text/javascript" src="{{ asset('js/page.js') }}" defer=""></script>
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+
+        <script type="application/ld+json">{
+		"@type": "Organization",
+		"name": "coursework",
+		"logo": "images/default-logo.png"
+}</script>
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Account-client">
+        <meta property="og:type" content="website">
 
         <title>{{ $user->login }}</title>
 
@@ -25,30 +44,38 @@
         </style>
     </head>
     <body>
-        <h2>Profile</h2>
-        <div>
-            <ul>
-                <li>Login: {{ $user->login }}</li>
-                <li>First Name: {{ $user->first_name }}</li>
-                <li>middle Name: {{ $user->middle_name }}</li>
-                <li>last Name: {{ $user->last_name }}</li>
-                @php
-                    use App\Enums\Roles;
-                @endphp
-                @if($role === Roles::CLIENT)
-                    <li>Вы клиент</li>
-                    <li>Email: {{ $payload->email }}</li>
-                    <li>Phone: {{ $payload->phone }}</li>
-                @endif
-                @if($role === Roles::AGENT)
-                    <li>Вы агент</li>
-                    <li>Deal share: {{ $payload->deal_share }}</li>
-                @endif
-                @if($role === Roles::ADMIN)
-                    <li>ВЫ АДМИН</li>
-                @endif
-                <a href="{{ route('logout') }}"><button>Logout</button></a>
-            </ul>
+    @include("partials.navbar")
+    <section class="u-clearfix u-image u-section-1" id="carousel_fc23" data-image-width="1280" data-image-height="800">
+        <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+            <div class="u-align-left u-container-style u-custom-color-13 u-expanded-width u-group u-radius-50 u-shape-round u-group-1">
+                <div class="u-container-layout u-container-layout-1">
+                    <h2 class="u-align-center u-text u-text-1">Личный кабинет</h2>
+                    <p class="u-align-center u-heading-font u-large-text u-text u-text-variant u-text-2">Здравствуйте, {{ $user->login }}!<br>
+                    <ul>
+                        <li>First Name: {{ $user->first_name }}</li>
+                        <li>middle Name: {{ $user->middle_name }}</li>
+                        <li>last Name: {{ $user->last_name }}</li>
+                        @php
+                            use App\Enums\Roles;
+                        @endphp
+                        @if($role === Roles::CLIENT)
+                            <li>Вы клиент</li>
+                            <li>Email: {{ $payload->email }}</li>
+                            <li>Phone: {{ $payload->phone }}</li>
+                        @endif
+                        @if($role === Roles::AGENT)
+                            <li>Вы агент</li>
+                            <li>Deal share: {{ $payload->deal_share }}</li>
+                        @endif
+                        @if($role === Roles::ADMIN)
+                            <li>ВЫ АДМИН</li>
+                        @endif
+                        <a href="{{ route('logout') }}"><button>Logout</button></a>
+                    </ul>
+                    </p>
+                </div>
+            </div>
         </div>
+    @include("partials.footer")
     </body>
 </html>
