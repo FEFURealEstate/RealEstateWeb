@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Laravel</title>
 
@@ -20,52 +21,58 @@
         }
     </style>
 </head>
-<body class="antialiased">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <h2>Изменить данные риэлтора</h2>
+        <form method="POST" action="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">
+            @csrf
+            <div>
+                <label>Фамилиля</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="last_name" type="text" value="{{ $agent->person->last_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Имя</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="first_name" type="text" value="{{ $agent->person->first_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Отчество</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="middle_name" type="text" value="{{ $agent->person->middle_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Доля от комиссии</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="deal_share" type="number" min="0" max="100" value="{{ $agent->deal_share }}">
+                </label>
+            </div>
+            <hr>
+            <input type="submit">
+        </form>
     </div>
-@endif
-<h2>Изменить данные риэлтора</h2>
-<form method="POST" action="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">
-    @csrf
-    <div>
-        <label>Фамилиля</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="last_name" type="text" value="{{ $agent->person->last_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Имя</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="first_name" type="text" value="{{ $agent->person->first_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Отчество</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="middle_name" type="text" value="{{ $agent->person->middle_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Доля от комиссии</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="deal_share" type="number" min="0" max="100" value="{{ $agent->deal_share }}">
-        </label>
-    </div>
-    <hr>
-    <input type="submit">
-</form>
+    @include("partials.footer")
+</div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Потребности</title>
 
@@ -20,7 +21,19 @@
         }
     </style>
 </head>
-<body class="antialiased">
-
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h1>Заявки без риэлтора</h1>
+        @foreach ($req as $re)
+            <p>Id заявки: {{ $re->id }}</p>
+            <p>Id клиента: {{ $re->client_id}}</p>
+            <a href="{{ route('admin_needs_view', ['req_id' => $re->id])}}">Назначить риэлтора</a>
+            <br>
+        @endforeach
+    </div>
+    @include("partials.footer")
+</div>
 </body>
 </html>

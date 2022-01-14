@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Предложения</title>
 
@@ -20,7 +21,20 @@
         }
     </style>
 </head>
-<body class="antialiased">
-
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h1>Предложения без риэлтора</h1>
+        @foreach ($sells as $sell)
+            <p>Id предложения: {{ $sell->id }}</p>
+            <p>Id клиента: {{ $sell->client_id}}</p>
+            <p>Цена: {{ $sell->price}}</p>
+            <a href="{{ route('admin_offers_view', ['sell_id' => $sell->id])}}">Назначить риэлтора</a>
+            <br>
+        @endforeach
+    </div>
+    @include("partials.footer")
+</div>
 </body>
 </html>

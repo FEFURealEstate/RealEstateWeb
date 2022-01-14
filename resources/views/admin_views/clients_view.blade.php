@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Клиенты</title>
 
@@ -29,109 +30,117 @@
         }
     </style>
 </head>
-<body class="antialiased">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-<h2>Добавить клиента</h2>
-    <form method="POST" action="{{ route('admin_clients_add') }}">
-        @csrf
-        <div>
-            <label>Фамилиля</label>
-            <hr>
-            <label>
-                <input class="bordered" name="last_name" type="text" value="{{ old('last_name') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Имя</label>
-            <hr>
-            <label>
-                <input class="bordered" name="first_name" type="text" value="{{ old('first_name') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Отчество</label>
-            <hr>
-            <label>
-                <input class="bordered" name="middle_name" type="text" value="{{ old('middle_name') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Номер телефона</label>
-            <hr>
-            <label>
-                <input class="bordered" name="phone" type="text" value="{{ old('phone') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Электронная почта</label>
-            <hr>
-            <label>
-                <input class="bordered" name="email" type="text" value="{{ old('email') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Логин</label>
-            <hr>
-            <label>
-                <input class="bordered" name="login" type="text" value="{{ old('login') }}">
-            </label>
-        </div>
-        <hr>
-        <div>
-            <label>Пароль</label>
-            <hr>
-            <label>
-                <input class="bordered" name="password" type="password" value="">
-            </label>
-        </div>
-        <hr>
-        <input type="submit">
-    </form>
-    @foreach($clients as $index => $client)
-        @if ($index > 0)
-            <hr>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-        <div class="client bordered">
-            <div class="client__full_name">
-                <a href="{{ route('admin_client_view', ['id' => $client->id]) }}">
-                    {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
-                </a>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
-            <div class="client__telephone_or_email">
-                @if($client->phone !== null && $client->email !== null)
-                    <p>{{ $client->phone }} / {{ $client->email }}</p>
-                @else
-                    <p>{{ $client->phone ?? $client->email }}</p>
-                @endif
+        @endif
+        <h2>Добавить клиента</h2>
+        <form method="POST" action="{{ route('admin_clients_add') }}">
+            @csrf
+            <div>
+                <label>Фамилиля</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="last_name" type="text" value="{{ old('last_name') }}">
+                </label>
             </div>
-            <div class="client__buttons">
-                <div class="client__change_button">
-                    <a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a>
+            <hr>
+            <div>
+                <label>Имя</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="first_name" type="text" value="{{ old('first_name') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Отчество</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="middle_name" type="text" value="{{ old('middle_name') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер телефона</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="phone" type="text" value="{{ old('phone') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Электронная почта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="email" type="text" value="{{ old('email') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Логин</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="login" type="text" value="{{ old('login') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Пароль</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="password" type="password" value="">
+                </label>
+            </div>
+            <hr>
+            <input type="submit">
+        </form>
+            <br>
+            <h2>Список клиентов</h2>
+        @foreach($clients as $index => $client)
+            @if ($index > 0)
+                <hr>
+            @endif
+            <div class="client bordered" style="display: flex; flex-direction: row">
+                <div class="client__full_name" style="margin: 10px;">
+                    <a href="{{ route('admin_client_view', ['id' => $client->id]) }}">
+                        {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
+                    </a>
                 </div>
-                <div class="client__delete_button">
-                    <a href="{{ route('admin_clients_delete', ['id' => $client->id]) }}">Удалить</a>
+                <div class="client__telephone_or_email">
+                    @if($client->phone !== null && $client->email !== null)
+                        <p>{{ $client->phone }} / {{ $client->email }}</p>
+                    @else
+                        <p>{{ $client->phone ?? $client->email }}</p>
+                    @endif
+                </div>
+                <div class="client__buttons">
+                    <div class="client__change_button">
+                        <a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a>
+                    </div>
+                    <div class="client__delete_button">
+                        <a href="{{ route('admin_clients_delete', ['id' => $client->id]) }}">Удалить</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-    {{ $clients->links() }}
+        @endforeach
+        {{ $clients->links() }}
+    </div>
+    @include("partials.footer")
+</div>
 </body>
 </html>

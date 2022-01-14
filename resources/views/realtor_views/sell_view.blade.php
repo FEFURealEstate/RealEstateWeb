@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
-        <title>Форма регистрации</title>
+        <title>Предложения</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,36 +23,42 @@
 
 
     </head>
-    <body class="antialiased">
-        <h1>Предложения ваших клиентов</h1>
-        <h2>Открытые предложения</h2>
-        @if ($sells_open->isEmpty())
-            <h3>Отсутствуют открытые предложения</h3>
-        @else
-            @foreach ($sells_open as $sell)
-            <ul>
-                <li>Id предложения: {{ $sell->id }}</li>
-                <li>Id продавца: {{ $sell->client_id }}</li>
-                <li>Id риэлтора: {{ $sell->agent_id }}</li>
-            </ul>
-            <a href="{{ route('cur_sell', ['sell_id' => $sell->id]) }}"> Открыть предложение</a>
-            <br>
-            @endforeach
-        @endif
-        
-        <h2>Закрытые предложения</h2>
-        @if ($sells_close->isEmpty())
-            <h3>Отсутствуют закрытые заявки</h3>
-        @else
-            @foreach ($sells_close as $sell)
-            <ul>
-                <li>Id предложения: {{ $sell->id }}</li>
-                <li>Id продавца: {{ $sell->client_id }}</li>
-                <li>Id риэлтора: {{ $sell->agent_id }}</li>
-            </ul>
-            <a href="{{ route('cur_sell', ['sell_id' => $sell->id]) }}"> Открыть предложение</a>
-            <br>
-            @endforeach
-        @endif
+    <body class="antialiased" style="height: 100%">
+    <div style="min-height: 100%; display: flex; flex-direction: column;">
+        @include("partials.navbar")
+        <div style="margin: 20px; flex: 1 1 auto;">
+            <h1>Предложения ваших клиентов</h1>
+            <h2>Открытые предложения</h2>
+            @if ($sells_open->isEmpty())
+                <h3>Отсутствуют открытые предложения</h3>
+            @else
+                @foreach ($sells_open as $sell)
+                    <ul>
+                        <li>Id предложения: {{ $sell->id }}</li>
+                        <li>Id продавца: {{ $sell->client_id }}</li>
+                        <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                    </ul>
+                    <a href="{{ route('cur_sell', ['sell_id' => $sell->id]) }}"> Открыть предложение</a>
+                    <br>
+                @endforeach
+            @endif
+
+            <h2>Закрытые предложения</h2>
+            @if ($sells_close->isEmpty())
+                <h3>Отсутствуют закрытые заявки</h3>
+            @else
+                @foreach ($sells_close as $sell)
+                    <ul>
+                        <li>Id предложения: {{ $sell->id }}</li>
+                        <li>Id продавца: {{ $sell->client_id }}</li>
+                        <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                    </ul>
+                    <a href="{{ route('cur_sell', ['sell_id' => $sell->id]) }}"> Открыть предложение</a>
+                    <br>
+                @endforeach
+            @endif
+        </div>
+    </div>
+    @include("partials.footer")
     </body>
 </html>

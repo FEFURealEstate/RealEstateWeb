@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Объекты</title>
 
@@ -29,6 +30,20 @@
         }
     </style>
 
+    <style type="text/css">
+        TABLE {
+            width: 300px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+        }
+        TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+        }
+        TH {
+            background: #b0e0e6; /* Цвет фона */
+        }
+    </style>
+
     <script>
         function optchange(select) {
             const selected = select.options[select.selectedIndex];
@@ -39,198 +54,187 @@
         }
     </script>
 </head>
-<body class="antialiased">
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+        <h2>Добавить объект</h2>
+        <form method="POST" action="{{ route('admin_objects_add') }}">
+            @csrf
+            <div>
+                <label>Город</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_city" type="text" value="{{ old('address_city') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Улица</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_street" type="text" value="{{ old('address_street') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер дома</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_house" type="text" value="{{ old('address_house') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер квартиры</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_number" type="text" value="{{ old('address_number') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Широта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="coordinate_latitude" type="number" value="{{ old('coordinate_latitude') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Долгота</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="coordinate_longitude" type="number" value="{{ old('coordinate_longitude') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Тип объекта</label>
+                <hr>
+                <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
+                    <option disabled selected id="0" value="">Выбирите тип недвижимости</option>
+                    <option id="1">Квартира</option>
+                    <option id="2">Дом</option>
+                    <option id="3">Земельный участок</option>
+                </select>
+            </div>
+            <hr>
 
-{{-- TODO изменить стили --}}
-<style type="text/css">
-    TABLE {
-        width: 300px; /* Ширина таблицы */
-        border-collapse: collapse; /* Убираем двойные линии между ячейками */
-    }
-    TD, TH {
-        padding: 3px; /* Поля вокруг содержимого таблицы */
-        border: 1px solid black; /* Параметры рамки */
-    }
-    TH {
-        background: #b0e0e6; /* Цвет фона */
-    }
-</style>
+            <div hidden id="input_select_id_1">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Этаж</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="floor" type="number" value="{{ old('floor') }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во комнат</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="rooms" type="number" value="{{ old('rooms') }}">
+                    </label>
+                </div>
+            </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <div hidden id="input_select_id_2">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во этажей</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_floors" type="number" value="{{ old('total_floors') }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во комнат</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_rooms" type="number" value="{{ old('total_rooms') }}">
+                    </label>
+                </div>
+            </div>
+
+            <div hidden id="input_select_id_3">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+                    </label>
+                </div>
+            </div>
+
+            <input type="submit">
+        </form>
+
+        <table>
+            <thead>
+            <tr>
+                <td>Тип объекта</td>
+                <td>Город</td>
+                <td>Улица</td>
+                <td>Дом</td>
+                <td>Квартира</td>
+                <td>Широта</td>
+                <td>Долгота</td>
+                <td>Площадь</td>
+                <td>Кол-во комнат</td>
+                <td>Этаж / Кол-во этажей</td>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($objects as $object)
+                @php
+                $now = $object->land ?: ($object->house ?: ($object->apartment))
+                @endphp
+                <tr>
+                    <td>{{ $object->land ? "Земельный участок" : ($object->house ? "Дом" : ($object->apartment ? "Квартира" : "")) }}</td>
+                    <td>{{ $object->address_city }}</td>
+                    <td>{{ $object->address_street }}</td>
+                    <td>{{ $object->address_house }}</td>
+                    <td>{{ $object->address_number }}</td>
+                    <td>{{ $object->coordinate_latitude }}</td>
+                    <td>{{ $object->coordinate_longitude }}</td>
+                    <td>{{ $now->total_area }}</td>
+                    <td>{{ $now->rooms ?: ($now->total_rooms ?: '-') }}</td>
+                    <td>{{ $now->floor ?: ($now->total_floors ?: '-') }}</td>
+                    <td><a href="{{ route('admin_objects_change', ['id' => $object->id]) }}">Изменить</a></td>
+                    <td><a href="{{ route('admin_objects_delete', ['id' => $object->id]) }}">Удалить</a></td>
+                </tr>
             @endforeach
-        </ul>
+            </tbody>
+        </table>
     </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-<h2>Добавить объект</h2>
-<form method="POST" action="{{ route('admin_objects_add') }}">
-    @csrf
-    <div>
-        <label>Город</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_city" type="text" value="{{ old('address_city') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Улица</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_street" type="text" value="{{ old('address_street') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Номер дома</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_house" type="text" value="{{ old('address_house') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Номер квартиры</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_number" type="text" value="{{ old('address_number') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Широта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="coordinate_latitude" type="number" value="{{ old('coordinate_latitude') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Долгота</label>
-        <hr>
-        <label>
-            <input class="bordered" name="coordinate_longitude" type="number" value="{{ old('coordinate_longitude') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Тип объекта</label>
-        <hr>
-        <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
-            <option disabled selected id="0" value="">Выбирите тип недвижимости</option>
-            <option id="1">Квартира</option>
-            <option id="2">Дом</option>
-            <option id="3">Земельный участок</option>
-        </select>
-    </div>
-    <hr>
-
-    <div hidden id="input_select_id_1">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
-            </label>
-        </div>
-        <div>
-            <label>Этаж</label>
-            <hr>
-            <label>
-                <input class="bordered" name="floor" type="number" value="{{ old('floor') }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во комнат</label>
-            <hr>
-            <label>
-                <input class="bordered" name="rooms" type="number" value="{{ old('rooms') }}">
-            </label>
-        </div>
-    </div>
-
-    <div hidden id="input_select_id_2">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во этажей</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_floors" type="number" value="{{ old('total_floors') }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во комнат</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_rooms" type="number" value="{{ old('total_rooms') }}">
-            </label>
-        </div>
-    </div>
-
-    <div hidden id="input_select_id_3">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
-            </label>
-        </div>
-    </div>
-
-    <input type="submit">
-</form>
-
-<table>
-    <thead>
-    <tr>
-        <td>Тип объекта</td>
-        <td>Город</td>
-        <td>Улица</td>
-        <td>Дом</td>
-        <td>Квартира</td>
-        <td>Широта</td>
-        <td>Долгота</td>
-        <td>Площадь</td>
-        <td>Кол-во комнат</td>
-        <td>Этаж / Кол-во этажей</td>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach($objects as $object)
-        @php
-        $now = $object->land ?: ($object->house ?: ($object->apartment))
-        @endphp
-        <tr>
-            <td>{{ $object->land ? "Земельный участок" : ($object->house ? "Дом" : ($object->apartment ? "Квартира" : "")) }}</td>
-            <td>{{ $object->address_city }}</td>
-            <td>{{ $object->address_street }}</td>
-            <td>{{ $object->address_house }}</td>
-            <td>{{ $object->address_number }}</td>
-            <td>{{ $object->coordinate_latitude }}</td>
-            <td>{{ $object->coordinate_longitude }}</td>
-            <td>{{ $now->total_area }}</td>
-            <td>{{ $now->rooms ?: ($now->total_rooms ?: '-') }}</td>
-            <td>{{ $now->floor ?: ($now->total_floors ?: '-') }}</td>
-            <td><a href="{{ route('admin_objects_change', ['id' => $object->id]) }}">Изменить</a></td>
-            <td><a href="{{ route('admin_objects_delete', ['id' => $object->id]) }}">Удалить</a></td>
-        </tr>
-    @endforeach
-    </tbody>
-</table>
-
+    @include("partials.footer")
+</div>
 </body>
 </html>

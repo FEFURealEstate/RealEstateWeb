@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
-        <title>Форма регистрации</title>
+        <title>Потребности</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,36 +23,42 @@
 
 
     </head>
-    <body class="antialiased">
-        <h1>Заявки ваших клиентов на покупку</h1>
-        @if ($req_open->isEmpty())
-            <h3>Отсутствуют открытые заявки</h3>
-        @else
-            @foreach ($req_open as $req)
-                <ul>
-                    <li>Id заявки: {{ $req->id }}</li>
-                    <li>Id клиента: {{ $req->client_id }}</li>
-                    <li>Id риэлтора: {{ $req->agent_id }}</li>
-                </ul>
-                <a href="{{ route('cur_req', ['req_id' => $req->id]) }}"> Открыть заявку </a>
-                <br>
-            @endforeach
-        @endif
-        
-        <h2>Закрытые заявки</h2>
-        @if ($req_close->isEmpty())
-            <h3>Отсутствуют закрытые заявки</h3>
-        @else
-            @foreach ($req_close as $req)
-                <ul>
-                    <li>Id заявки: {{ $req->id }}</li>
-                    <li>Id клиента: {{ $req->client_id }}</li>
-                    <li>Id риэлтора: {{ $req->agent_id }}</li>
-                    
-                </ul>
-                <a href="{{ route('cur_req', ['req_id' => $req->id]) }}"> Открыть заявку </a>
-                <br>
-            @endforeach
-        @endif
+    <body class="antialiased" style="height: 100%">
+    <div style="min-height: 100%; display: flex; flex-direction: column;">
+        @include("partials.navbar")
+        <div style="margin: 20px; flex: 1 1 auto;">
+            <h1>Заявки ваших клиентов на покупку</h1>
+            @if ($req_open->isEmpty())
+                <h3>Отсутствуют открытые заявки</h3>
+            @else
+                @foreach ($req_open as $req)
+                    <ul>
+                        <li>Id заявки: {{ $req->id }}</li>
+                        <li>Id клиента: {{ $req->client_id }}</li>
+                        <li>Id риэлтора: {{ $req->agent_id }}</li>
+                    </ul>
+                    <a href="{{ route('cur_req', ['req_id' => $req->id]) }}"> Открыть заявку </a>
+                    <br>
+                @endforeach
+            @endif
+
+            <h2>Закрытые заявки</h2>
+            @if ($req_close->isEmpty())
+                <h3>Отсутствуют закрытые заявки</h3>
+            @else
+                @foreach ($req_close as $req)
+                    <ul>
+                        <li>Id заявки: {{ $req->id }}</li>
+                        <li>Id клиента: {{ $req->client_id }}</li>
+                        <li>Id риэлтора: {{ $req->agent_id }}</li>
+
+                    </ul>
+                    <a href="{{ route('cur_req', ['req_id' => $req->id]) }}"> Открыть заявку </a>
+                    <br>
+                @endforeach
+            @endif
+        </div>
+        @include("partials.footer")
+    </div>
     </body>
 </html>

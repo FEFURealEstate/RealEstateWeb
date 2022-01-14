@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
-    <title>Laravel</title>
+    <title>Создать заявку</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,7 +29,7 @@
                 document.getElementById("estateopt").innerHTML = `
                     <p>Минимальная площадь</p>
                     <p><input name="min_s" type="number" placeholder="..."  value=""></p>
-                    
+
                     <p>Максимальная площадь</p>
                     <p><input name="max_s" type="number" placeholder="..."  value=""></p>
 
@@ -84,55 +85,59 @@
     </script>
 </head>
 <body class="antialiased">
-    <h2>Создание заявки на покупку недвижимости</h2>
-    <form action="{{route('create_req')}}" method="post">
-        @csrf
-        <div class="client_card">
-            <h2>Данные клиента</h2>
-            <p>Фамилия</p>
-            <p><input name="middlename" type="text" placeholder="..."  value="{{ $user->middle_name }}" readonly/></p>
-            <p>Имя</p>
-            <p><input name="firstname" type="text"  value="{{ $user->first_name }}" readonly/></p>
-            <p>Отчество</p>
-            <p><input name="lastname" type="text" placeholder="..."  value="{{ $user->last_name }}"readonly /></p>
-            <p>Номер телефона</p>
-            <p><input name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ $payload->phone }}" readonly/></p>
-            <p>Эл. почта</p>
-            <p><input name="email" type="email" value="{{ $payload->email }}" placeholder="..." readonly/></p>
-        </div>
-
-        <div class="adress_card">
-            <h2>Адрес</h2>
-            <p>Город</p>
-            <p><input name="city" type="text" value="{{ old('city') }}" placeholder="..."/></p>
-            <p>Улица</p>
-            <p><input name="street" type="text" value="{{ old('street') }}" placeholder="..."/></p>
-            <p>Номер дома</p>
-            <p><input name="house_num" type="number" value="{{ old('house_num') }}" placeholder="..."/></p>
-            <p>Номер квартиры</p>
-            <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
-            <p>Минимальная цена</p>
-            <p><input name="min_price" type="number" value="{{ old('min_price') }}" placeholder="..."/></p>
-            <p>Максимальная цена</p>
-            <p><input name="max_price" type="number" value="{{ old('max_price') }}" placeholder="..."/></p>
-        </div>
-
-        <div class="req_card">
-            <h2>Данные недвижимости</h2>
-            <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
-                <option id="0" value="">Выбирите тип недвижимости</option>
-                <option id="1">Квартира</option>
-                <option id="2">Дом</option>
-                <option id="3">Земельный участок</option>
-            </select>
-            <div id="estateopt">
-                {{-- содержимое меняется скриптом --}}
+    @include("partials.navbar")
+    <div style="margin: 20px">
+        <h2>Создание заявки на покупку недвижимости</h2>
+        <form action="{{route('create_req')}}" method="post">
+            @csrf
+            <div class="client_card">
+                <h2>Данные клиента</h2>
+                <p>Фамилия</p>
+                <p><input name="middlename" type="text" placeholder="..."  value="{{ $user->middle_name }}" readonly/></p>
+                <p>Имя</p>
+                <p><input name="firstname" type="text"  value="{{ $user->first_name }}" readonly/></p>
+                <p>Отчество</p>
+                <p><input name="lastname" type="text" placeholder="..."  value="{{ $user->last_name }}"readonly /></p>
+                <p>Номер телефона</p>
+                <p><input name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ $payload->phone }}" readonly/></p>
+                <p>Эл. почта</p>
+                <p><input name="email" type="email" value="{{ $payload->email }}" placeholder="..." readonly/></p>
             </div>
 
-            <input type="hidden" id="estate_type" name="estate_type" type="text" value="">
-            <input type="hidden" name="user_id" type="number" value="{{ $user->id }}">
-        </div>
-        <button type="submit">Отправить заявку</button>
-    </form>
+            <div class="adress_card">
+                <h2>Адрес</h2>
+                <p>Город</p>
+                <p><input name="city" type="text" value="{{ old('city') }}" placeholder="..."/></p>
+                <p>Улица</p>
+                <p><input name="street" type="text" value="{{ old('street') }}" placeholder="..."/></p>
+                <p>Номер дома</p>
+                <p><input name="house_num" type="number" value="{{ old('house_num') }}" placeholder="..."/></p>
+                <p>Номер квартиры</p>
+                <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
+                <p>Минимальная цена</p>
+                <p><input name="min_price" type="number" value="{{ old('min_price') }}" placeholder="..."/></p>
+                <p>Максимальная цена</p>
+                <p><input name="max_price" type="number" value="{{ old('max_price') }}" placeholder="..."/></p>
+            </div>
+
+            <div class="req_card">
+                <h2>Данные недвижимости</h2>
+                <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
+                    <option id="0" value="">Выбирите тип недвижимости</option>
+                    <option id="1">Квартира</option>
+                    <option id="2">Дом</option>
+                    <option id="3">Земельный участок</option>
+                </select>
+                <div id="estateopt">
+                    {{-- содержимое меняется скриптом --}}
+                </div>
+
+                <input type="hidden" id="estate_type" name="estate_type" type="text" value="">
+                <input type="hidden" name="user_id" type="number" value="{{ $user->id }}">
+            </div>
+            <button type="submit">Отправить заявку</button>
+        </form>
+    </div>
+    @include("partials.footer")
 </body>
 </html>

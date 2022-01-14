@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Изменить объект</title>
 
@@ -30,138 +31,144 @@
         }
     </script>
 </head>
-<body class="antialiased">
-<h2>Изменить данные объекта</h2>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-<form method="POST" action="{{ route('admin_objects_change', ['id' => $real_estate->id]) }}">
-    @csrf
-    <div>
-        <label>Город</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_city" type="text" value="{{ $real_estate->address_city }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Улица</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_street" type="text" value="{{ $real_estate->address_street }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Номер дома</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_house" type="text" value="{{ $real_estate->address_house }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Номер квартиры</label>
-        <hr>
-        <label>
-            <input class="bordered" name="address_number" type="text" value="{{ $real_estate->address_number }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Широта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="coordinate_latitude" type="number" value="{{ $real_estate->coordinate_latitude }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Долгота</label>
-        <hr>
-        <label>
-            <input class="bordered" name="coordinate_longitude" type="number" value="{{ $real_estate->coordinate_longitude }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Тип объекта</label>
-        <hr>
-        <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
-            <option disabled id="0" value="">Выбирите тип недвижимости</option>
-            <option {{ $real_estate->apartment ? 'selected' : '' }} id="1">Квартира</option>
-            <option {{ $real_estate->house ? 'selected' : '' }} id="2">Дом</option>
-            <option {{ $real_estate->land ? 'selected' : '' }} id="3">Земельный участок</option>
-        </select>
-    </div>
-    <hr>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h2>Изменить данные объекта</h2>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="POST" action="{{ route('admin_objects_change', ['id' => $real_estate->id]) }}">
+            @csrf
+            <div>
+                <label>Город</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_city" type="text" value="{{ $real_estate->address_city }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Улица</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_street" type="text" value="{{ $real_estate->address_street }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер дома</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_house" type="text" value="{{ $real_estate->address_house }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер квартиры</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="address_number" type="text" value="{{ $real_estate->address_number }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Широта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="coordinate_latitude" type="number" value="{{ $real_estate->coordinate_latitude }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Долгота</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="coordinate_longitude" type="number" value="{{ $real_estate->coordinate_longitude }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Тип объекта</label>
+                <hr>
+                <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
+                    <option disabled id="0" value="">Выбирите тип недвижимости</option>
+                    <option {{ $real_estate->apartment ? 'selected' : '' }} id="1">Квартира</option>
+                    <option {{ $real_estate->house ? 'selected' : '' }} id="2">Дом</option>
+                    <option {{ $real_estate->land ? 'selected' : '' }} id="3">Земельный участок</option>
+                </select>
+            </div>
+            <hr>
 
-    <div {{ $real_estate->apartment ? '' : 'hidden' }} id="input_select_id_1">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ $real_estate->apartment->total_area ?? '' }}">
-            </label>
-        </div>
-        <div>
-            <label>Этаж</label>
-            <hr>
-            <label>
-                <input class="bordered" name="floor" type="number" value="{{ $real_estate->apartment->floor ?? '' }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во комнат</label>
-            <hr>
-            <label>
-                <input class="bordered" name="rooms" type="number" value="{{ $real_estate->apartment->rooms ?? '' }}">
-            </label>
-        </div>
-    </div>
+            <div {{ $real_estate->apartment ? '' : 'hidden' }} id="input_select_id_1">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ $real_estate->apartment->total_area ?? '' }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Этаж</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="floor" type="number" value="{{ $real_estate->apartment->floor ?? '' }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во комнат</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="rooms" type="number" value="{{ $real_estate->apartment->rooms ?? '' }}">
+                    </label>
+                </div>
+            </div>
 
-    <div {{ $real_estate->house ? '' : 'hidden' }} id="input_select_id_2">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ $real_estate->house->total_area ?? '' }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во этажей</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_floors" type="number" value="{{ $real_estate->house->total_floors ?? '' }}">
-            </label>
-        </div>
-        <div>
-            <label>Кол-во комнат</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_rooms" type="number" value="{{ $real_estate->house->total_rooms ?? '' }}">
-            </label>
-        </div>
-    </div>
+            <div {{ $real_estate->house ? '' : 'hidden' }} id="input_select_id_2">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ $real_estate->house->total_area ?? '' }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во этажей</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_floors" type="number" value="{{ $real_estate->house->total_floors ?? '' }}">
+                    </label>
+                </div>
+                <div>
+                    <label>Кол-во комнат</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_rooms" type="number" value="{{ $real_estate->house->total_rooms ?? '' }}">
+                    </label>
+                </div>
+            </div>
 
-    <div {{ $real_estate->land ? '' : 'hidden' }} id="input_select_id_3">
-        <div>
-            <label>Площадь</label>
-            <hr>
-            <label>
-                <input class="bordered" name="total_area" type="number" value="{{ $real_estate->land->total_area ?? '' }}">
-            </label>
-        </div>
-    </div>
+            <div {{ $real_estate->land ? '' : 'hidden' }} id="input_select_id_3">
+                <div>
+                    <label>Площадь</label>
+                    <hr>
+                    <label>
+                        <input class="bordered" name="total_area" type="number" value="{{ $real_estate->land->total_area ?? '' }}">
+                    </label>
+                </div>
+            </div>
 
-    <input type="submit">
-</form>
+            <input type="submit">
+        </form>
+    </div>
+    @include("partials.footer")
+</div>
 </body>
 </html>

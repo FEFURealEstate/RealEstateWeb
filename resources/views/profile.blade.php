@@ -52,9 +52,9 @@
                     <h2 class="u-align-center u-text u-text-1">Личный кабинет</h2>
                     <p class="u-align-center u-heading-font u-large-text u-text u-text-variant u-text-2">Здравствуйте, {{ $user->login }}!<br>
                     <ul>
-                        <li>First Name: {{ $user->first_name }}</li>
-                        <li>middle Name: {{ $user->middle_name }}</li>
-                        <li>last Name: {{ $user->last_name }}</li>
+                        <li>Фамилия: {{ $user->last_name }}</li>
+                        <li>Имя: {{ $user->first_name }}</li>
+                        <li>Отчество: {{ $user->middle_name }}</li>
                         @php
                             use App\Enums\Roles;
                         @endphp
@@ -70,7 +70,7 @@
                         @if($role === Roles::ADMIN)
                             <li>ВЫ АДМИН</li>
                         @endif
-                        <a href="{{ route('logout') }}"><button>Logout</button></a>
+                        <a href="{{ route('logout') }}"><button>Выход</button></a>
                     </ul>
                     </p>
                 </div>
