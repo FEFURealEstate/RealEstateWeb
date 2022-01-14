@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
@@ -21,53 +22,59 @@
     </style>
 
 </head>
-<body class="antialiased">
-    <h1>Мои заякви</h1>
-    <h2>Открытые заявки</h2>
-    @if ($req_open->isEmpty())
-        <h3>Отсутствуют открытые заявки</h3>
-    @else
-        @foreach ($req_open as $req)
-        <ul>
-            <li>Id заявки: {{ $req->id }}</li>
-            <li>Id клиента: {{ $req->client_id }}</li>
-            @if ($req->agent_id == null)
-                <li>
-                    Риэлтор ещё не назначен
-                </li>
+<body class="antialiased" style="height: 100%">
+    <div style="min-height: 100%; display: flex; flex-direction: column;">
+        @include("partials.navbar")
+        <div style="margin: 20px; flex: 1 1 auto">
+            <h1>Мои заякви</h1>
+            <h2>Открытые заявки</h2>
+            @if ($req_open->isEmpty())
+                <h3>Отсутствуют открытые заявки</h3>
             @else
-            <li>Id риэлтора: {{ $req->agent_id }}</li>
+                @foreach ($req_open as $req)
+                    <ul>
+                        <li>Id заявки: {{ $req->id }}</li>
+                        <li>Id клиента: {{ $req->client_id }}</li>
+                        @if ($req->agent_id == null)
+                            <li>
+                                Риэлтор ещё не назначен
+                            </li>
+                        @else
+                            <li>Id риэлтора: {{ $req->agent_id }}</li>
+                        @endif
+                    </ul>
+                    <a href="{{ route('my_req_info', ['req_id' => $req->id]) }}"> Открыть заявку </a>
+                    <form action="{{ route('delete_req', ['req_id' => $req->id]) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Удалить заявку" @if($req->agent_id != null) disabled @endif>
+                    </form>
+                    <br>
+                @endforeach
             @endif
-        </ul>
-        <a href="{{ route('my_req_info', ['req_id' => $req->id]) }}"> Открыть заявку </a>
-        <form action="{{ route('delete_req', ['req_id' => $req->id]) }}" method="post">
-            @method('DELETE')
-            @csrf
-            <input type="submit" value="Удалить заявку" @if($req->agent_id != null) disabled @endif>
-        </form>
-        <br>
-        @endforeach
-    @endif
-    
-    <h2>Закрытые заявки</h2>
-    @if ($req_close->isEmpty())
-        <h3>Отсутствуют закрытые заявки</h3>
-    @else
-        @foreach ($req_close as $req)
-        <ul>
-            <li>Id заявки: {{ $req->id }}</li>
-            <li>Id клиента: {{ $req->client_id }}</li>
-            @if ($req->agent_id == null)
-                <li>
-                    Риэлтор ещё не назначен
-                </li>
+
+            <h2>Закрытые заявки</h2>
+            @if ($req_close->isEmpty())
+                <h3>Отсутствуют закрытые заявки</h3>
             @else
-            <li>Id риэлтора: {{ $req->agent_id }}</li>
+                @foreach ($req_close as $req)
+                    <ul>
+                        <li>Id заявки: {{ $req->id }}</li>
+                        <li>Id клиента: {{ $req->client_id }}</li>
+                        @if ($req->agent_id == null)
+                            <li>
+                                Риэлтор ещё не назначен
+                            </li>
+                        @else
+                            <li>Id риэлтора: {{ $req->agent_id }}</li>
+                        @endif
+                    </ul>
+                    <a href="{{ route('my_req_info', ['req_id' => $req->id]) }}"> Открыть заявку </a>
+                    <br>
+                @endforeach
             @endif
-        </ul>
-        <a href="{{ route('my_req_info', ['req_id' => $req->id]) }}"> Открыть заявку </a>
-        <br>
-        @endforeach
-    @endif
+        </div>
+        @include("partials.footer")
+    </div>
 </body>
 </html>
