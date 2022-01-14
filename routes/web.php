@@ -49,13 +49,14 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/admin/realtors/delete/{id}', [admin\RealtorsController::class, 'delete'])->name('admin_realtors_delete');
     Route::get('/admin/realtor/{id}', [admin\RealtorsController::class, 'view'])->name('admin_realtor_view');
 
+    Route::post('/admin/objects', [admin\ObjectsController::class, 'add'])->name('admin_objects_add');
+    Route::get('/admin/objects', [admin\ObjectsController::class, 'get'])->name('admin_objects_get');
+    Route::match(['get', 'post'], '/admin/objects/change/{id}', [admin\ObjectsController::class, 'change'])->name('admin_objects_change');
+    Route::get('/admin/objects/delete/{id}', [admin\ObjectsController::class, 'delete'])->name('admin_objects_delete');
+
     Route::get('/admin/deals',admin\DealsController::class)->name('admin_deals');
 
     Route::get('/admin/needs', admin\NeedsController::class)->name('admin_needs');
-
-    Route::match(['get', 'post'],'/admin/objects', admin\ObjectsController::class)->name('admin_objects');
-    Route::match(['get', 'post'], '/admin/objects/change', admin\ObjectChangeController::class)->name('admin_objects_change');
-
 
     Route::get('/admin/offers', admin\OffersController::class)->name('admin_offers');
 });

@@ -28,116 +28,209 @@
             border: 1px solid black;
         }
     </style>
+
+    <script>
+        function optchange(select) {
+            const selected = select.options[select.selectedIndex];
+            document.getElementById('input_select_id_1').hidden = true;
+            document.getElementById('input_select_id_2').hidden = true;
+            document.getElementById('input_select_id_3').hidden = true;
+            document.getElementById('input_select_id_' + selected.id).hidden = false;
+        }
+    </script>
 </head>
 <body class="antialiased">
-<form method="POST" action="{{ route('admin_objects') }}">
+
+{{-- TODO изменить стили --}}
+<style type="text/css">
+    TABLE {
+        width: 300px; /* Ширина таблицы */
+        border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    }
+    TD, TH {
+        padding: 3px; /* Поля вокруг содержимого таблицы */
+        border: 1px solid black; /* Параметры рамки */
+    }
+    TH {
+        background: #b0e0e6; /* Цвет фона */
+    }
+</style>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+<h2>Добавить объект</h2>
+<form method="POST" action="{{ route('admin_objects_add') }}">
     @csrf
     <div>
         <label>Город</label>
         <hr>
         <label>
-            <input class="bordered" name="city" type="text" value="{{ request()->isMethod('post') ? old('city') : '' }}">
+            <input class="bordered" name="address_city" type="text" value="{{ old('address_city') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Улица</label>
         <hr>
         <label>
-            <input class="bordered" name="street" type="text" value="{{ request()->isMethod('post') ? old('street') : '' }}">
+            <input class="bordered" name="address_street" type="text" value="{{ old('address_street') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Номер дома</label>
         <hr>
         <label>
-            <input class="bordered" name="street_number" type="text" value="{{ request()->isMethod('post') ? old('street_number') : '' }}">
+            <input class="bordered" name="address_house" type="text" value="{{ old('address_house') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Номер квартиры</label>
         <hr>
         <label>
-            <input class="bordered" name="apartment_number" type="text" value="{{ request()->isMethod('post') ? old('apartment_number') : '' }}">
+            <input class="bordered" name="address_number" type="text" value="{{ old('address_number') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Широта</label>
         <hr>
         <label>
-            <input class="bordered" name="latitude" type="text" value="{{ request()->isMethod('post') ? old('latitude') : '' }}">
+            <input class="bordered" name="coordinate_latitude" type="number" value="{{ old('coordinate_latitude') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Долгота</label>
         <hr>
         <label>
-            <input class="bordered" name="longitude" type="text" value="{{ request()->isMethod('post') ? old('longitude') : '' }}">
+            <input class="bordered" name="coordinate_longitude" type="number" value="{{ old('coordinate_longitude') }}">
         </label>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
     <div>
         <label>Тип объекта</label>
         <hr>
-        <label>
-            <input class="bordered" name="object_type" type="text" value="{{ request()->isMethod('post') ? old('object_type') : '' }}">
-        </label>
+        <select onchange="optchange(this)" required="required" name="estate_type" id="opt">
+            <option disabled selected id="0" value="">Выбирите тип недвижимости</option>
+            <option id="1">Квартира</option>
+            <option id="2">Дом</option>
+            <option id="3">Земельный участок</option>
+        </select>
     </div>
-    <!-- Ошибок тоже пока нет -->
     <hr>
+
+    <div hidden id="input_select_id_1">
+        <div>
+            <label>Площадь</label>
+            <hr>
+            <label>
+                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+            </label>
+        </div>
+        <div>
+            <label>Этаж</label>
+            <hr>
+            <label>
+                <input class="bordered" name="floor" type="number" value="{{ old('floor') }}">
+            </label>
+        </div>
+        <div>
+            <label>Кол-во комнат</label>
+            <hr>
+            <label>
+                <input class="bordered" name="rooms" type="number" value="{{ old('rooms') }}">
+            </label>
+        </div>
+    </div>
+
+    <div hidden id="input_select_id_2">
+        <div>
+            <label>Площадь</label>
+            <hr>
+            <label>
+                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+            </label>
+        </div>
+        <div>
+            <label>Кол-во этажей</label>
+            <hr>
+            <label>
+                <input class="bordered" name="total_floors" type="number" value="{{ old('total_floors') }}">
+            </label>
+        </div>
+        <div>
+            <label>Кол-во комнат</label>
+            <hr>
+            <label>
+                <input class="bordered" name="total_rooms" type="number" value="{{ old('total_rooms') }}">
+            </label>
+        </div>
+    </div>
+
+    <div hidden id="input_select_id_3">
+        <div>
+            <label>Площадь</label>
+            <hr>
+            <label>
+                <input class="bordered" name="total_area" type="number" value="{{ old('total_area') }}">
+            </label>
+        </div>
+    </div>
+
     <input type="submit">
 </form>
-@foreach($objects as $index => $object)
-    @if ($index > 0)
-        <hr>
-    @endif
-    <div class="object bordered">
-        <div class="object__type">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__city">
-            <p>{{ $object->address_city }}</p>
-        </div>
-        <div class="object__street">
-            <p>{{ $object->address_street }}</p>
-        </div>
-        <div class="object__house">
-            <p>{{ $object->address_house }}</p>
-        </div>
-        <div class="object__number">
-            <p>{{ $object->address_number }}</p>
-        </div>
-        <div class="object__latitude">
-            <p>{{ $object->coordinate_latitude }}</p>
-        </div>
-        <div class="object__longitude">
-            <p>{{ $object->coordinate_longitude }}</p>
-        </div>
-        <div class="object__floor">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__rooms_number">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__buttons">
-            <div class="object__change_button">
-                <a href="#">Изменить</a> <!-- Не знаю как ты захочешь прям это реализовать, но я создал страницу для изменения change_objects -->
-            </div>
-            <div class="object__delete_button">
-                <a href="#">Удалить</a> <!-- Не знаю как удалять из базы -->
-            </div>
-        </div>
-    </div>
-@endforeach
+
+<table>
+    <thead>
+    <tr>
+        <td>Тип объекта</td>
+        <td>Город</td>
+        <td>Улица</td>
+        <td>Дом</td>
+        <td>Квартира</td>
+        <td>Широта</td>
+        <td>Долгота</td>
+        <td>Площадь</td>
+        <td>Кол-во комнат</td>
+        <td>Этаж / Кол-во этажей</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($objects as $object)
+        @php
+        $now = $object->land ?: ($object->house ?: ($object->apartment))
+        @endphp
+        <tr>
+            <td>{{ $object->land ? "Земельный участок" : ($object->house ? "Дом" : ($object->apartment ? "Квартира" : "")) }}</td>
+            <td>{{ $object->address_city }}</td>
+            <td>{{ $object->address_street }}</td>
+            <td>{{ $object->address_house }}</td>
+            <td>{{ $object->address_number }}</td>
+            <td>{{ $object->coordinate_latitude }}</td>
+            <td>{{ $object->coordinate_longitude }}</td>
+            <td>{{ $now->total_area }}</td>
+            <td>{{ $now->rooms ?: ($now->total_rooms ?: '-') }}</td>
+            <td>{{ $now->floor ?: ($now->total_floors ?: '-') }}</td>
+            <td><a href="{{ route('admin_objects_change', ['id' => $object->id]) }}">Изменить</a></td>
+            <td><a href="{{ route('admin_objects_delete', ['id' => $object->id]) }}">Удалить</a></td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
+
 </body>
 </html>
