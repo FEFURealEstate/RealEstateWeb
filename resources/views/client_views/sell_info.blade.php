@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Информация о предложении</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 <body class="antialiased">
     @include("partials.navbar")
     <div style="margin: 20px;">
-        <h1>Детали заявки</h1>
+        <h1>Детали предложения</h1>
         <div class="client_card">
             <p>Фамилия: {{ $user->last_name }}</p>
             <p>Имя: {{ $user->first_name }}</p>
