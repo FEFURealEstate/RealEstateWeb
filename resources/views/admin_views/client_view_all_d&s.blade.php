@@ -20,6 +20,20 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
+
+    <style type="text/css">
+        TABLE {
+            width: 300px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+        }
+        TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+        }
+        TH {
+            background: #b0e0e6; /* Цвет фона */
+        }
+    </style>
 </head>
 <body class="antialiased" style="height: 100%">
 <div style="min-height: 100%; display: flex; flex-direction: column;">
@@ -35,21 +49,6 @@
             <br>
             <a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a>
         </div>
-
-        {{--TODO изменить стили--}}
-        <style type="text/css">
-            TABLE {
-                width: 300px; /* Ширина таблицы */
-                border-collapse: collapse; /* Убираем двойные линии между ячейками */
-            }
-            TD, TH {
-                padding: 3px; /* Поля вокруг содержимого таблицы */
-                border: 1px solid black; /* Параметры рамки */
-            }
-            TH {
-                background: #b0e0e6; /* Цвет фона */
-            }
-        </style>
 
         <div class="demands">
             <p>Потребности пользователя</p>

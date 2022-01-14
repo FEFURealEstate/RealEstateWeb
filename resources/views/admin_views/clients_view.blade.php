@@ -29,6 +29,20 @@
             border: 1px solid black;
         }
     </style>
+
+    <style type="text/css">
+        TABLE {
+            width: 300px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+        }
+        TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+        }
+        TH {
+            background: #b0e0e6; /* Цвет фона */
+        }
+    </style>
 </head>
 <body class="antialiased" style="height: 100%">
 <div style="min-height: 100%; display: flex; flex-direction: column;">
@@ -111,33 +125,32 @@
         </form>
             <br>
             <h2>Список клиентов</h2>
-        @foreach($clients as $index => $client)
-            @if ($index > 0)
-                <hr>
-            @endif
-            <div class="client bordered" style="display: flex; flex-direction: row">
-                <div class="client__full_name" style="margin: 10px;">
-                    <a href="{{ route('admin_client_view', ['id' => $client->id]) }}">
-                        {{ $client->person->last_name }} {{ $client->person->first_name }} {{ $client->person->middle_name }}
-                    </a>
-                </div>
-                <div class="client__telephone_or_email">
-                    @if($client->phone !== null && $client->email !== null)
-                        <p>{{ $client->phone }} / {{ $client->email }}</p>
-                    @else
-                        <p>{{ $client->phone ?? $client->email }}</p>
-                    @endif
-                </div>
-                <div class="client__buttons">
-                    <div class="client__change_button">
-                        <a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a>
-                    </div>
-                    <div class="client__delete_button">
-                        <a href="{{ route('admin_clients_delete', ['id' => $client->id]) }}">Удалить</a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+            <table>
+                <thead>
+                <tr>
+                    <td>Фамилия</td>
+                    <td>Имя</td>
+                    <td>Отчество</td>
+                    <td>phone</td>
+                    <td>email</td>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($clients as $client)
+                    <tr>
+                        <td>{{ $client->person->last_name }}</td>
+                        <td>{{ $client->person->first_name }}</td>
+                        <td>{{ $client->person->middle_name }}</td>
+
+                        <td>{{ $client->phone }}</td>
+                        <td>{{ $client->email }}</td>
+                        <td><a href="{{ route('admin_client_view', ['id' => $client->id]) }}">Подробнее</a></td>
+                        <td><a href="{{ route('admin_clients_change', ['id' => $client->id]) }}">Изменить</a></td>
+                        <td><a href="{{ route('admin_clients_delete', ['id' => $client->id]) }}">Удалить</a></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         {{ $clients->links() }}
     </div>
     @include("partials.footer")

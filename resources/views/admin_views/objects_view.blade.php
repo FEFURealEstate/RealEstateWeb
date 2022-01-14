@@ -233,6 +233,7 @@
             @endforeach
             </tbody>
         </table>
+ =        {{ $objects->links() }}
     </div>
     @include("partials.footer")
 </div>
