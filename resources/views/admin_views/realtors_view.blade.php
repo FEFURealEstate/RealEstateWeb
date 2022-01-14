@@ -29,6 +29,20 @@
             border: 1px solid black;
         }
     </style>
+
+    <style type="text/css">
+        TABLE {
+            width: 300px; /* Ширина таблицы */
+            border-collapse: collapse; /* Убираем двойные линии между ячейками */
+        }
+        TD, TH {
+            padding: 3px; /* Поля вокруг содержимого таблицы */
+            border: 1px solid black; /* Параметры рамки */
+        }
+        TH {
+            background: #b0e0e6; /* Цвет фона */
+        }
+    </style>
 </head>
 <body class="antialiased" style="height: 100%">
 <div style="min-height: 100%; display: flex; flex-direction: column;">
@@ -103,29 +117,30 @@
         </form>
             <br>
             <h2>Список риэлторов</h2>
-        @foreach($agents as $index => $agent)
-            @if ($index > 0)
-                <hr>
-            @endif
-            <div class="realtor bordered" style="display: flex; flex-direction: row">
-                <div class="realtor__full_name" style="margin: 10px;">
-                    <a href="{{ route('admin_realtor_view', ['id' => $agent->id]) }}">
-                        {{ $agent->person->last_name }} {{ $agent->person->first_name }} {{ $agent->person->middle_name }}
-                    </a>
-                </div>
-                <div class="realtor__deal_share" style="margin: 10px">
-                    <p>{{ $agent->deal_share }}</p>
-                </div>
-                <div class="realtor__buttons" style="margin: 10px;">
-                    <div class="realtor__change_button">
-                        <a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a>
-                    </div>
-                    <div class="realtor__delete_button">
-                        <a href="{{ route('admin_realtors_delete', ['id' => $agent->id]) }}">Удалить</a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
+
+            <table>
+                <thead>
+                <tr>
+                    <td>Фамилия</td>
+                    <td>Имя</td>
+                    <td>Отчество</td>
+                    <td>Доля от комиссии</td>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($agents as $agent)
+                    <tr>
+                        <td>{{ $agent->person->last_name }}</td>
+                        <td>{{ $agent->person->first_name }}</td>
+                        <td>{{ $agent->person->middle_name }}</td>
+                        <td>{{ $agent->deal_share }}</td>
+                        <td><a href="{{ route('admin_realtor_view', ['id' => $agent->id]) }}">Подробнее</td>
+                        <td><a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a></td>
+                        <td><a href="{{ route('admin_realtors_delete', ['id' => $agent->id]) }}">Удалить</a></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         {{ $agents->links() }}
     </div>
     @include("partials.footer")
