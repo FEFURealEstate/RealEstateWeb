@@ -3,8 +3,25 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="Недвижимость в России">
+        <meta name="description" content="">
+        <meta name="page_type" content="np-template-header-footer-from-plugin">
+        <title>Main</title>
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
+        <link rel="stylesheet" href="{{ asset('css/Main.css') }}" media="screen">
+        <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+        <script class="u-script" type="text/javascript" src="{{ asset('js/page.js') }}" defer=""></script>
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
 
-        <title>Laravel</title>
+        <script type="application/ld+json">{
+		"@type": "Organization",
+		"name": "coursework",
+		"logo": "{{ asset('images/default-logo.png') }}"}</script>
+
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Main">
+        <meta property="og:type" content="website">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,112 +38,194 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                        <g clip-path="url(#clip0)" fill="#EF3B2D">
-                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                        </g>
-                    </svg>
-                </div>
-
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                                </div>
-                            </div>
-                        </div>
+        @include("partials.navbar")
+        <section class="u-align-left u-clearfix u-image u-section-1" data-image-width="150" data-image-height="99">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <div class="u-border-1 u-border-custom-color-2 u-container-style u-custom-color-8 u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-opacity u-opacity-90 u-radius-20 u-shape-round u-group-1">
+                    <div class="u-container-layout u-valign-bottom-xl u-container-layout-1">
+                        <h1 class="u-align-center u-text u-text-custom-color-6 u-title u-text-1">Недвижимость в России</h1>
+                        <a href="Property.html" class="u-align-left u-border-none u-btn u-btn-round u-button-style u-custom-color-9 u-custom-font u-heading-font u-hover-custom-color-2 u-radius-3 u-text-custom-color-8 u-btn-1">Купить</a>
+                        <a href="Sell.html" class="u-align-right u-border-none u-btn u-btn-round u-button-style u-custom-color-9 u-custom-font u-heading-font u-hover-custom-color-2 u-radius-3 u-text-custom-color-8 u-btn-2">Продать</a>
                     </div>
-                </div>
+                </div><span class="u-file-icon u-icon u-icon-rectangle u-opacity u-opacity-95 u-text-custom-color-10 u-icon-1"><img src="{{ asset('images/arrow.png') }}" alt=""></span>
+            </div>
+        </section>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
-
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
+        <section class="u-align-center u-clearfix u-custom-color-8 u-section-2">
+            <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+                <h1 class="u-text u-text-default u-text-1"> Преимущества<span class="u-text-custom-color-6"></span></h1>
+                <p class="u-custom-font u-heading-font u-text u-text-custom-color-6 u-text-default u-text-2">Сделки с помощью агентства</p>
+                <div class="u-expanded-width u-list u-list-1">
+                    <div class="u-repeater u-repeater-1">
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1">
+                            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-icon-circle u-text-custom-color-6 u-icon-1"><img src="{{ asset('images/safe.png') }}" alt=""></span>
+                                <h4 class="u-text u-text-default u-text-3">Безопастность<span class="u-text-custom-color-6"></span></h4>
+                                <p class="u-text u-text-custom-color-6 u-text-4">Каждый объект и документы проверяются нашими сотрудниками. Обеспечение законности процесса проведения сделки.&nbsp;</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2">
+                            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-icon-circle u-text-custom-color-6 u-icon-2"><img src="{{ asset('images/money.png') }}" alt=""></span>
+                                <h4 class="u-text u-text-default u-text-5">Выгода<span class="u-text-custom-color-6"></span></h4>
+                                <p class="u-text u-text-custom-color-6 u-text-6">Находить самые выгодные и "горячие" предложения - наша специальность. Торгуемся в пользу нашего клиента.</p>
+                            </div>
+                        </div>
+
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3">
+                            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+
+                <span class="u-icon u-icon-circle u-text-custom-color-6 u-icon-3">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 128 128" style="">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-bb16"></use>
+                  </svg>
+                  <svg class="u-svg-content" viewBox="0 0 128 128" id="svg-bb16">
+                    <path d="m44.1 63.9h39.8c4.6 0 8.4-3.9 8.4-8.8v-1.8c0-5.6-2.8-10.7-7.3-13.3-2.4-1.4-5.4-2.9-8.8-4.1 2.8-3 4.6-6.9 4.6-11.3-0.1-9.2-7.6-16.6-16.8-16.6s-16.7 7.4-16.7 16.5c0 4.4 1.7 8.4 4.6 11.3-3.4 1.2-6.5 2.7-8.8 4.1-4.5 2.7-7.3 7.7-7.3 13.3v1.8c-0.1 4.9 3.7 8.9 8.3 8.9zm19.9-48c4.8 0 8.7 3.9 8.7 8.6 0 4.8-3.9 8.6-8.7 8.6s-8.7-3.9-8.7-8.6 3.9-8.6 8.7-8.6zm-20.3 37.3c0-2.7 1.3-5.3 3.4-6.5 4-2.3 10.2-5.1 16.9-5.1s12.9 2.8 16.9 5.1c2.1 1.2 3.4 3.8 3.4 6.5v1.8c0 0.6-0.3 0.9-0.4 0.9h-39.8c-0.1 0-0.4-0.3-0.4-0.9v-1.8zm5.5 40.9c-2.4-1.4-5.4-2.9-8.8-4.1 2.8-3 4.6-7 4.6-11.3 0-9.1-7.5-16.5-16.7-16.5s-16.7 7.4-16.7 16.5c0 4.4 1.7 8.4 4.6 11.3-3.4 1.2-6.5 2.7-8.8 4.1-4.6 2.6-7.4 7.7-7.4 13.3v1.8c0 4.9 3.8 8.8 8.4 8.8h39.8c4.6 0 8.4-3.9 8.4-8.8v-1.8c0-5.6-2.8-10.7-7.4-13.3zm-20.9-24.1c4.8 0 8.7 3.9 8.7 8.6 0 4.8-3.9 8.6-8.7 8.6s-8.7-3.9-8.7-8.6 3.9-8.6 8.7-8.6zm20.3 39.2c0 0.6-0.3 0.9-0.4 0.9h-39.8c-0.1 0-0.4-0.3-0.4-0.9v-1.8c0-2.7 1.3-5.3 3.4-6.5 4-2.3 10.2-5.1 16.9-5.1s12.9 2.8 16.9 5.1c2.1 1.2 3.4 3.8 3.4 6.5v1.8zm72.1-15.1c-2.4-1.4-5.4-2.9-8.8-4.1 2.8-3 4.6-6.9 4.6-11.3 0-9.1-7.5-16.5-16.7-16.5s-16.7 7.4-16.7 16.5c-0.1 4.3 1.7 8.3 4.5 11.3-3.4 1.2-6.5 2.7-8.8 4.1-4.5 2.7-7.3 7.7-7.3 13.3v1.8c0 4.9 3.8 8.8 8.4 8.8h39.8c4.6 0 8.4-3.9 8.4-8.8v-1.8c-0.1-5.6-2.9-10.7-7.4-13.3zm-21-24.1c4.8 0 8.7 3.9 8.7 8.6 0 4.8-3.9 8.6-8.7 8.6s-8.7-3.9-8.7-8.6 3.9-8.6 8.7-8.6zm20.3 39.2c0 0.6-0.3 0.9-0.4 0.9h-39.8c-0.1 0-0.4-0.3-0.4-0.9v-1.8c0-2.7 1.3-5.3 3.4-6.5 4-2.3 10.2-5.1 16.9-5.1s12.9 2.8 16.9 5.1c2.1 1.2 3.4 3.8 3.4 6.5v1.8z">
+                    </path>
+                  </svg>
+                </span>
+
+                                <h4 class="u-text u-text-default u-text-7">Меньше стресса</h4>
+                                <p class="u-text u-text-custom-color-6 u-text-8">Работая с профессионалами Вам не нужно беспокоиться о множестве "подводных камней" по ходу сделки - мы поможем обратить внимание на все факторы.</p>
+                            </div>
+                        </div>
+
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-4">
+                            <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
+
+                <span class="u-icon u-icon-circle u-text-custom-color-6 u-icon-4">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 128 128" style="">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-439e"></use>
+                  </svg>
+                  <svg class="u-svg-content" viewBox="0 0 128 128" id="svg-439e">
+                    <path d="m93.8 13.5 18.4 25.2h-5.7c-2 0-3.6 1.6-3.6 3.6v77.7h-18.3v-77.7c0-2-1.6-3.6-3.6-3.6h-5.7l18.5-25.2m-22.4 55.6c3.3 0 6 2.7 6 6.1v44.8h-18.4v-44.8c0-3.3 2.7-6.1 6-6.1h6.4m-25.5 19.4c3.3 0 6 2.7 6 6.1v25.4h-18.4v-25.5c0-3.3 2.7-6.1 6-6.1h6.4m-25.6 19.4c3.3 0 6 2.7 6 6.1v6.1h-18.4v-6.1c0-3.3 2.7-6.1 6-6.1h6.4m73.5-107.8-6.4 8.7-18.4 25.2-9.4 12.8h17.1v15.4c-1.6-0.7-3.4-1-5.2-1h-6.5c-7.7 0-13.9 6.3-13.9 14.1v6.3c-1.6-0.7-3.4-1-5.2-1h-6.4c-7.7 0-13.9 6.3-13.9 14.1v6.3c-1.6-0.7-3.4-1-5.2-1h-6.4c-7.7-0.1-14 6.2-14 14v14.1h110.9v-81.3h17.1l-9.4-12.8-18.4-25.2-6.4-8.7z"></path>
+                  </svg>
+                </span>
+
+                                <h4 class="u-text u-text-default u-text-9">Скорость<span class="u-text-custom-color-6"></span></h4>
+                                <p class="u-text u-text-custom-color-6 u-text-10">Имея в базе множество актуальных объектов мы поможем быстро найти то что Вам подойдёт.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="u-align-center u-clearfix u-custom-color-5 u-section-3" id="sec-8397">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <h2 class="u-text u-text-custom-color-8 u-text-default u-text-1">Esoft</h2>
+                <p class="u-text u-text-custom-color-8 u-text-2"> Команда профессионалов в сфере недвижимости</p>
+                <div class="u-list u-list-1">
+                    <div class="u-repeater u-repeater-1">
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-1">
+                                <img alt="" class="u-expanded-width u-image u-image-default u-image-1" data-image-width="150" data-image-height="150" src="{{ asset('images/woman.svg') }}">
+                                <h5 class="u-text u-text-custom-color-8 u-text-3">Здесь мог быть&nbsp;</h5>
+                                <p class="u-text u-text-4">Ваш сотрудник</p>
+                                <a href="tel:" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-custom-color-8 u-text-hover-custom-color-15 u-btn-1">
+                  <span class="u-icon u-text-custom-color-15">
+                    <svg class="u-svg-content" viewBox="0 0 405.333 405.333" x="0px" y="0px" style="width: 1em; height: 1em;">
+                      <path d="M373.333,266.88c-25.003,0-49.493-3.904-72.704-11.563c-11.328-3.904-24.192-0.896-31.637,6.699l-46.016,34.752
+                      c-52.8-28.181-86.592-61.952-114.389-114.368l33.813-44.928c8.512-8.512,11.563-20.971,7.915-32.64
+                      C142.592,81.472,138.667,56.96,138.667,32c0-17.643-14.357-32-32-32H32C14.357,0,0,14.357,0,32
+                      c0,205.845,167.488,373.333,373.333,373.333c17.643,0,32-14.357,32-32V298.88C405.333,281.237,390.976,266.88,373.333,266.88z">
+                      </path>
+                    </svg><img>
+                  </span>&nbsp;+1 (234) 567-****
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-2">
+                                <img alt="" class="u-expanded-width u-image u-image-default u-image-2" data-image-width="150" data-image-height="150" src="{{ asset('images/woman.svg') }}">
+                                <h5 class="u-text u-text-custom-color-8 u-text-5"> Здесь мог быть&nbsp;</h5>
+                                <p class="u-text u-text-6"> Ваш сотрудник</p>
+                                <a href="tel:" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-custom-color-8 u-text-hover-custom-color-15 u-btn-2">
+                  <span class="u-icon u-text-custom-color-15">
+                    <svg class="u-svg-content" viewBox="0 0 405.333 405.333" x="0px" y="0px" style="width: 1em; height: 1em;">
+                      <path d="M373.333,266.88c-25.003,0-49.493-3.904-72.704-11.563c-11.328-3.904-24.192-0.896-31.637,6.699l-46.016,34.752
+                      c-52.8-28.181-86.592-61.952-114.389-114.368l33.813-44.928c8.512-8.512,11.563-20.971,7.915-32.64
+                      C142.592,81.472,138.667,56.96,138.667,32c0-17.643-14.357-32-32-32H32C14.357,0,0,14.357,0,32
+                      c0,205.845,167.488,373.333,373.333,373.333c17.643,0,32-14.357,32-32V298.88C405.333,281.237,390.976,266.88,373.333,266.88z">
+                      </path>
+                    </svg><img>
+                  </span>&nbsp;+1 (234) 567-****
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-3">
+                                <img alt="" class="u-expanded-width u-image u-image-default u-image-3" data-image-width="150" data-image-height="150" src="{{ asset('images/man.svg') }}">
+                                <h5 class="u-text u-text-custom-color-8 u-text-7"> Здесь мог быть&nbsp;</h5>
+                                <p class="u-text u-text-8"> Ваш сотрудник</p>
+                                <a href="tel:" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-custom-color-8 u-text-hover-custom-color-15 u-btn-3">
+                  <span class="u-icon u-text-custom-color-15">
+                    <svg class="u-svg-content" viewBox="0 0 405.333 405.333" x="0px" y="0px" style="width: 1em; height: 1em;">
+                      <path d="M373.333,266.88c-25.003,0-49.493-3.904-72.704-11.563c-11.328-3.904-24.192-0.896-31.637,6.699l-46.016,34.752
+                      c-52.8-28.181-86.592-61.952-114.389-114.368l33.813-44.928c8.512-8.512,11.563-20.971,7.915-32.64
+                      C142.592,81.472,138.667,56.96,138.667,32c0-17.643-14.357-32-32-32H32C14.357,0,0,14.357,0,32
+                      c0,205.845,167.488,373.333,373.333,373.333c17.643,0,32-14.357,32-32V298.88C405.333,281.237,390.976,266.88,373.333,266.88z">
+                      </path>
+                    </svg><img>
+                  </span>&nbsp;+1 (234) 567-****
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                            <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-4">
+                                <img alt="" class="u-expanded-width u-image u-image-default u-image-4" data-image-width="150" data-image-height="150" src="{{ asset('images/man.svg') }}">
+                                <h5 class="u-text u-text-custom-color-8 u-text-9">Боб</h5>
+                                <p class="u-text u-text-10">Это просто Боб</p>
+                                <a href="tel:" class="u-active-none u-btn u-button-style u-hover-none u-none u-text-custom-color-8 u-text-hover-custom-color-15 u-btn-4">
+                  <span class="u-icon u-text-custom-color-15">
+                    <svg class="u-svg-content" viewBox="0 0 405.333 405.333" x="0px" y="0px" style="width: 1em; height: 1em;">
+                      <path d="M373.333,266.88c-25.003,0-49.493-3.904-72.704-11.563c-11.328-3.904-24.192-0.896-31.637,6.699l-46.016,34.752
+                      c-52.8-28.181-86.592-61.952-114.389-114.368l33.813-44.928c8.512-8.512,11.563-20.971,7.915-32.64
+                      C142.592,81.472,138.667,56.96,138.667,32c0-17.643-14.357-32-32-32H32C14.357,0,0,14.357,0,32
+                      c0,205.845,167.488,373.333,373.333,373.333c17.643,0,32-14.357,32-32V298.88C405.333,281.237,390.976,266.88,373.333,266.88z">
+                      </path>
+                    </svg><img>
+                  </span>&nbsp;+1 (234) 567-****
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="u-align-center u-clearfix u-custom-color-10 u-section-4" id="sec-d75f">
+            <div class="u-clearfix u-sheet u-sheet-1">
+                <h1 class="u-text u-text-custom-color-8 u-text-default u-text-1">Сделки с недвижимостью в России</h1>
+                <p class="u-custom-font u-heading-font u-text u-text-2">Esoft специализируется на обеспечении комфорта и выгоды при совершении сделок с недвижимостью для всех её сторон. Опыт и квалификация наших специалистов помогут подобрать нужный объект, либо продать собственность выгодно и в сжатые сроки.&nbsp;</p>
+            </div>
+        </section>
+        <style class="u-overlap-style">.u-overlap:not(.u-sticky-scroll) .u-header {background-color: #263238 !important; background-image: linear-gradient(#263238, rgba(55,71,79,0.39)) !important}</style>
+
+
+        <footer class="u-clearfix u-footer u-grey-80" id="sec-8702"><div class="u-clearfix u-sheet u-sheet-1">
+                <a href="" class="u-image u-logo u-image-1">
+                    <img src="{{ asset('images/default-logo.png') }}" class="u-logo-image u-logo-image-1">
+                </a>
+                <div class="u-align-left u-border-1 u-border-custom-color-8 u-expanded-width u-line u-line-horizontal u-opacity u-opacity-30 u-line-1"></div>
+                <p class="u-heading-font u-large-text u-text u-text-custom-color-8 u-text-default u-text-variant u-text-1">Данный сайт создан студентами ДВФУ в целях сдачи курсовой</p>
+            </div>
+        </footer>
     </body>
 </html>
