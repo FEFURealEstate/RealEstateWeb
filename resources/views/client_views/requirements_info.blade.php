@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
@@ -22,104 +23,108 @@
 
 </head>
 <body class="antialiased">
-    <h1>Детали заявки</h1>
-    <div class="client_card">
-        <p>Фамилия: {{ $user->last_name }}</p>
-        <p>Имя: {{ $user->first_name }}</p>
-        <p>Отчество: {{ $user->middle_name }}</p>
-        @if ($user_payload->phone !== null)
-            <p>Телефон: {{ $user_payload->phone }}</p>
-        @endif
-        @if ($user_payload->email !== null)
-            <p>Email: {{ $user_payload->email }}</p>
-        @endif
-    </div>
-    <div class="req_card">
-        <p>Город: {{ $demand->address_city }}</p>
-        <p>Улица: {{ $demand->address_street }}</p>
-        <p>Номер дома: {{ $demand->address_house }}</p>
-        <p>Номер квартиры: {{ $demand->address_number }}</p>
-        <p>Начальная цена: {{ $demand->min_price }}</p>
-        <p>Максимальная цена: {{ $demand->max_price }}</p>
-        @if ($type === 1)
-            <p>Тип недвижимости: квартира</p>
-            <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
-            <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
-            <p>Минум комнат {{ $estate_payload->min_rooms }}</p>
-            <p>Максимум комнат {{ $estate_payload->max_rooms }}</p>
-            <p>Минимальный этаж {{ $estate_payload->min_floor }}</p>
-            <p>Максимальный этаж {{ $estate_payload->max_floor }}</p>
-        @endif
-        @if ($type === 2)
-            <p>Тип недвижимости: дом</p>
-            <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
-            <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
-            <p>Минум комнат {{ $estate_payload->min_rooms }}</p>
-            <p>Максимум комнат {{ $estate_payload->max_rooms }}</p>
-            <p>Минимум этажей {{ $estate_payload->min_floors }}</p>
-            <p>Максимум этажей {{ $estate_payload->max_floors }}</p>
-        @endif
-        @if ($type === 3)
-            <p>Тип недвижимости: участок</p>
-            <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
-            <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
-        @endif
-    </div>
-    <br>
-    <div class="offers_list">
-        @if (!$finished->isEmpty())
-            Заявка закрыта
-        @else
-            @if ($not_finish_deals->isEmpty())
-                <h3>Пока нет предложений от риэлтора</h3>            
-            @else
-                @foreach ($not_finish_deals as $deal)
-                    <form action="{{ route('buy_estate', ['req_id' => $deal->demand_id]) }}" method="post">
-                        @csrf
-                        <div>
-                            <div class="seller_card">
-                                <h3>Данные продавца</h3>
-                                <p>Фамилия: {{ $deal->supply->client->person->last_name }}</p>
-                                <p>Имя: {{ $deal->supply->client->person->first_name }}</p>
-                                <p>Отчество: {{ $deal->supply->client->person->middle_name }}</p>
-                                <p>Email: {{ $deal->supply->client->email }}</p>
-                                <p>Телефон: {{ $deal->supply->client->phone }}</p>
-                            </div>
-
-                            <div class="sell_card">
-                                <h3>Данные недвижимости</h3>
-                                <p>Город: {{ $deal->supply->realEstate->address_city }}</p>
-                                <p>Улица: {{ $deal->supply->realEstate->address_street }}</p>
-                                <p>Номер дома: {{ $deal->supply->realEstate->address_house }}</p>
-                                <p>Номер квартиры: {{ $deal->supply->realEstate->address_number }}</p>
-                                <p>Широта: {{ $deal->supply->realEstate->coordinate_latitude }}</p>
-                                <p>Долгота: {{ $deal->supply->realEstate->coordinate_longtitude }}</p>
-                                @if ($type === 1)
-                                    <p>Тип недвижимости: квартира</p>
-                                    <p>Площадь {{ $deal->supply->realEstate->apartment->total_area }}</p>
-                                    <p>Количество комнат {{ $deal->supply->realEstate->apartment->rooms }}</p>
-                                    <p>Этаж {{ $deal->supply->realEstate->apartment->floor }}</p>
-                                @endif
-                                @if ($type === 2)
-                                    <p>Тип недвижимости: дом</p>
-                                    <p>Площадь {{ $deal->supply->realEstate->house->total_area }}</p>
-                                    <p>Количество комнат {{ $deal->supply->realEstate->house->total_rooms }}</p>
-                                    <p>Этаж {{ $deal->supply->realEstate->house->total_floors }}</p>
-                                @endif
-                                @if ($type === 3)
-                                    <p>Тип недвижимости: участок</p>
-                                    <p>Площадь {{ $deal->supply->realEstate->land->total_area }}</p>
-                                @endif
-                                <p>Цена: {{ $deal->supply->price }}</p>
-                            </div>
-                            <br>
-                        </div>
-                        <input type="hidden" name="supply_id" value={{ $deal->supply_id }}">
-                        <input type="submit" value="Купить">
-                    </form>
-                @endforeach
+    @include("partials.navbar")
+    <div style="margin: 20px;">
+        <h1>Детали заявки</h1>
+        <div class="client_card">
+            <p>Фамилия: {{ $user->last_name }}</p>
+            <p>Имя: {{ $user->first_name }}</p>
+            <p>Отчество: {{ $user->middle_name }}</p>
+            @if ($user_payload->phone !== null)
+                <p>Телефон: {{ $user_payload->phone }}</p>
             @endif
-        @endif
+            @if ($user_payload->email !== null)
+                <p>Email: {{ $user_payload->email }}</p>
+            @endif
+        </div>
+        <div class="req_card">
+            <p>Город: {{ $demand->address_city }}</p>
+            <p>Улица: {{ $demand->address_street }}</p>
+            <p>Номер дома: {{ $demand->address_house }}</p>
+            <p>Номер квартиры: {{ $demand->address_number }}</p>
+            <p>Начальная цена: {{ $demand->min_price }}</p>
+            <p>Максимальная цена: {{ $demand->max_price }}</p>
+            @if ($type === 1)
+                <p>Тип недвижимости: квартира</p>
+                <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
+                <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
+                <p>Минум комнат {{ $estate_payload->min_rooms }}</p>
+                <p>Максимум комнат {{ $estate_payload->max_rooms }}</p>
+                <p>Минимальный этаж {{ $estate_payload->min_floor }}</p>
+                <p>Максимальный этаж {{ $estate_payload->max_floor }}</p>
+            @endif
+            @if ($type === 2)
+                <p>Тип недвижимости: дом</p>
+                <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
+                <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
+                <p>Минум комнат {{ $estate_payload->min_rooms }}</p>
+                <p>Максимум комнат {{ $estate_payload->max_rooms }}</p>
+                <p>Минимум этажей {{ $estate_payload->min_floors }}</p>
+                <p>Максимум этажей {{ $estate_payload->max_floors }}</p>
+            @endif
+            @if ($type === 3)
+                <p>Тип недвижимости: участок</p>
+                <p>Минимальная площадь {{ $estate_payload->min_area }}</p>
+                <p>Максимальная площадь {{ $estate_payload->max_area }}</p>
+            @endif
+        </div>
+        <br>
+        <div class="offers_list">
+            @if (!$finished->isEmpty())
+                Заявка закрыта
+            @else
+                @if ($not_finish_deals->isEmpty())
+                    <h3>Пока нет предложений от риэлтора</h3>
+                @else
+                    @foreach ($not_finish_deals as $deal)
+                        <form action="{{ route('buy_estate', ['req_id' => $deal->demand_id]) }}" method="post">
+                            @csrf
+                            <div>
+                                <div class="seller_card">
+                                    <h3>Данные продавца</h3>
+                                    <p>Фамилия: {{ $deal->supply->client->person->last_name }}</p>
+                                    <p>Имя: {{ $deal->supply->client->person->first_name }}</p>
+                                    <p>Отчество: {{ $deal->supply->client->person->middle_name }}</p>
+                                    <p>Email: {{ $deal->supply->client->email }}</p>
+                                    <p>Телефон: {{ $deal->supply->client->phone }}</p>
+                                </div>
+
+                                <div class="sell_card">
+                                    <h3>Данные недвижимости</h3>
+                                    <p>Город: {{ $deal->supply->realEstate->address_city }}</p>
+                                    <p>Улица: {{ $deal->supply->realEstate->address_street }}</p>
+                                    <p>Номер дома: {{ $deal->supply->realEstate->address_house }}</p>
+                                    <p>Номер квартиры: {{ $deal->supply->realEstate->address_number }}</p>
+                                    <p>Широта: {{ $deal->supply->realEstate->coordinate_latitude }}</p>
+                                    <p>Долгота: {{ $deal->supply->realEstate->coordinate_longtitude }}</p>
+                                    @if ($type === 1)
+                                        <p>Тип недвижимости: квартира</p>
+                                        <p>Площадь {{ $deal->supply->realEstate->apartment->total_area }}</p>
+                                        <p>Количество комнат {{ $deal->supply->realEstate->apartment->rooms }}</p>
+                                        <p>Этаж {{ $deal->supply->realEstate->apartment->floor }}</p>
+                                    @endif
+                                    @if ($type === 2)
+                                        <p>Тип недвижимости: дом</p>
+                                        <p>Площадь {{ $deal->supply->realEstate->house->total_area }}</p>
+                                        <p>Количество комнат {{ $deal->supply->realEstate->house->total_rooms }}</p>
+                                        <p>Этаж {{ $deal->supply->realEstate->house->total_floors }}</p>
+                                    @endif
+                                    @if ($type === 3)
+                                        <p>Тип недвижимости: участок</p>
+                                        <p>Площадь {{ $deal->supply->realEstate->land->total_area }}</p>
+                                    @endif
+                                    <p>Цена: {{ $deal->supply->price }}</p>
+                                </div>
+                                <br>
+                            </div>
+                            <input type="hidden" name="supply_id" value="{{ $deal->supply_id }}">
+                            <input type="submit" value="Купить">
+                        </form>
+                    @endforeach
+                @endif
+            @endif
+        </div>
     </div>
+    @include("partials.footer")
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
@@ -21,53 +22,59 @@
     </style>
 
 </head>
-<body class="antialiased">
-    <h1>Мои предложения</h1>
-    <h2>Открытые предложения</h2>
-    @if ($sells_open->isEmpty())
-        <h3>Отсутствуют открытые предложения</h3>
-    @else
-        @foreach ($sells_open as $sell)
-        <ul>
-            <li>Id предложения: {{ $sell->id }}</li>
-            <li>Id продавца: {{ $sell->client_id }}</li>
-            @if ($sell->agent_id == null)
-                <li>
-                    Риэлтор ещё не назначен
-                </li>
+<body class="antialiased" style="height: 100%;">
+    <div style="min-height: 100%; display: flex; flex-direction: column;">
+        @include("partials.navbar")
+        <div style="margin: 20px; flex: 1 1 auto">
+            <h1>Мои предложения</h1>
+            <h2>Открытые предложения</h2>
+            @if ($sells_open->isEmpty())
+                <h3>Отсутствуют открытые предложения</h3>
             @else
-            <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                @foreach ($sells_open as $sell)
+                    <ul>
+                        <li>Id предложения: {{ $sell->id }}</li>
+                        <li>Id продавца: {{ $sell->client_id }}</li>
+                        @if ($sell->agent_id == null)
+                            <li>
+                                Риэлтор ещё не назначен
+                            </li>
+                        @else
+                            <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                        @endif
+                    </ul>
+                    <a href="{{ route('my_sell_info', ['sell_id' => $sell->id]) }}"> Открыть предложение </a>
+                    <form action="{{ route('delete_sell', ['sell_id' => $sell->id]) }}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Удалить заявку" @if($sell->agent_id != null) disabled @endif>
+                    </form>
+                    <br>
+                @endforeach
             @endif
-        </ul>
-        <a href="{{ route('my_sell_info', ['sell_id' => $sell->id]) }}"> Открыть предложение </a>
-        <form action="{{ route('delete_sell', ['sell_id' => $sell->id]) }}" method="post">
-            @method('DELETE')
-            @csrf
-            <input type="submit" value="Удалить заявку" @if($sell->agent_id != null) disabled @endif>
-        </form>
-        <br>
-        @endforeach
-    @endif
-    
-    <h2>Закрытые предложения</h2>
-    @if ($sells_close->isEmpty())
-        <h3>Отсутствуют закрытые заявки</h3>
-    @else
-        @foreach ($sells_close as $sell)
-        <ul>
-            <li>Id предложения: {{ $sell->id }}</li>
-            <li>Id продавца: {{ $sell->client_id }}</li>
-            @if ($sell->agent_id == null)
-                <li>
-                    Риэлтор ещё не назначен
-                </li>
+
+            <h2>Закрытые предложения</h2>
+            @if ($sells_close->isEmpty())
+                <h3>Отсутствуют закрытые заявки</h3>
             @else
-            <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                @foreach ($sells_close as $sell)
+                    <ul>
+                        <li>Id предложения: {{ $sell->id }}</li>
+                        <li>Id продавца: {{ $sell->client_id }}</li>
+                        @if ($sell->agent_id == null)
+                            <li>
+                                Риэлтор ещё не назначен
+                            </li>
+                        @else
+                            <li>Id риэлтора: {{ $sell->agent_id }}</li>
+                        @endif
+                    </ul>
+                    <a href="{{ route('my_sell_info', ['sell_id' => $sell->id]) }}"> Открыть заявку </a>
+                    <br>
+                @endforeach
             @endif
-        </ul>
-        <a href="{{ route('my_sell_info', ['sell_id' => $sell->id]) }}"> Открыть заявку </a>
-        <br>
-        @endforeach
-    @endif
+        </div>
+        @include("partials.footer")
+    </div>
 </body>
 </html>

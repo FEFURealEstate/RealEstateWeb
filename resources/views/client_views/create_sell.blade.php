@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
@@ -64,57 +65,63 @@
 
 </head>
 <body class="antialiased">
-    <h1>Выставление на продажу</h1>
-    <form action="{{route('create_sell')}}" method="post">
-        @csrf
-        <div class="client_card">
-            <h2>Данные клиента</h2>
-            <p>Фамилия</p>
-            <p><input name="middlename" type="text" placeholder="..."  value="{{ $user->middle_name }}" readonly/></p>
-            <p>Имя</p>
-            <p><input name="firstname" type="text"  value="{{ $user->first_name }}" readonly/></p>
-            <p>Отчество</p>
-            <p><input name="lastname" type="text" placeholder="..."  value="{{ $user->last_name }}"readonly /></p>
-            <p>Номер телефона</p>
-            <p><input name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ $payload->phone }}" readonly/></p>
-            <p>Эл. почта</p>
-            <p><input name="email" type="email" value="{{ $payload->email }}" placeholder="..." readonly/></p>
-        </div>
+    <div>
+        @include("partials.navbar")
+        <div style="margin: 20px;">
+            <h1>Выставление на продажу</h1>
+            <form action="{{route('create_sell')}}" method="post">
+                @csrf
+                <div class="client_card">
+                    <h2>Данные клиента</h2>
+                    <p>Фамилия</p>
+                    <p><input name="middlename" type="text" placeholder="..."  value="{{ $user->middle_name }}" readonly/></p>
+                    <p>Имя</p>
+                    <p><input name="firstname" type="text"  value="{{ $user->first_name }}" readonly/></p>
+                    <p>Отчество</p>
+                    <p><input name="lastname" type="text" placeholder="..."  value="{{ $user->last_name }}"readonly /></p>
+                    <p>Номер телефона</p>
+                    <p><input name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ $payload->phone }}" readonly/></p>
+                    <p>Эл. почта</p>
+                    <p><input name="email" type="email" value="{{ $payload->email }}" placeholder="..." readonly/></p>
+                </div>
 
-        <div class="adress_card">
-            <h2>Адрес</h2>
-            <p>Город</p>
-            <p><input name="city" type="text" value="{{ old('city') }}" placeholder="..."/></p>
-            <p>Улица</p>
-            <p><input name="street" type="text" value="{{ old('street') }}" placeholder="..."/></p>
-            <p>Номер дома</p>
-            <p><input name="house_num" type="number" value="{{ old('house_num') }}" placeholder="..."/></p>
-            <p>Номер квартиры</p>
-            <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
-            <p>Широта</p>
-            <p><input name="latitude" type="number" value="{{ old('latitude') }}" placeholder="..."/></p>
-            <p>Долгота</p>
-            <p><input name="longtitude" type="number" value="{{ old('longtitude') }}" placeholder="..."/></p>
-        </div>
+                <div class="adress_card">
+                    <h2>Адрес</h2>
+                    <p>Город</p>
+                    <p><input name="city" type="text" value="{{ old('city') }}" placeholder="..."/></p>
+                    <p>Улица</p>
+                    <p><input name="street" type="text" value="{{ old('street') }}" placeholder="..."/></p>
+                    <p>Номер дома</p>
+                    <p><input name="house_num" type="number" value="{{ old('house_num') }}" placeholder="..."/></p>
+                    <p>Номер квартиры</p>
+                    <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
+                    <p>Широта</p>
+                    <p><input name="latitude" type="number" value="{{ old('latitude') }}" placeholder="..."/></p>
+                    <p>Долгота</p>
+                    <p><input name="longtitude" type="number" value="{{ old('longtitude') }}" placeholder="..."/></p>
+                </div>
 
-        <div class="req_card">
-            <h2>Данные недвижимости</h2>
-            <select onload="optchange(this)" onchange="optchange(this)" required="required" name="estate_type" id="opt">
-                <option id="0" value="">Выбирите тип недвижимости</option>
-                <option id="1">Квартира</option>
-                <option id="2">Дом</option>
-                <option id="3">Земельный участок</option>
-            </select>
-            <div id="estateopt">
-                {{-- содержимое меняется скриптом --}}
-            </div>
-            <p>Цена продажи</p>
-            <p><input name="price" type="number" value="{{ old('price') }}" placeholder="..."/></p>
+                <div class="req_card">
+                    <h2>Данные недвижимости</h2>
+                    <select onload="optchange(this)" onchange="optchange(this)" required="required" name="estate_type" id="opt">
+                        <option id="0" value="">Выбирите тип недвижимости</option>
+                        <option id="1">Квартира</option>
+                        <option id="2">Дом</option>
+                        <option id="3">Земельный участок</option>
+                    </select>
+                    <div id="estateopt">
+                        {{-- содержимое меняется скриптом --}}
+                    </div>
+                    <p>Цена продажи</p>
+                    <p><input name="price" type="number" value="{{ old('price') }}" placeholder="..."/></p>
 
-            <input type="hidden" id="estate_type" name="estate_type" type="text" value="">
-            <input type="hidden" name="user_id" type="number" value="{{ $user->id }}">
+                    <input type="hidden" id="estate_type" name="estate_type" type="text" value="">
+                    <input type="hidden" name="user_id" type="number" value="{{ $user->id }}">
+                </div>
+                <button type="submit">Выставить недвижимость на продажу</button>
+            </form>
         </div>
-        <button type="submit">Выставить недвижимость на продажу</button>
-    </form>
+        @include("partials.footer")
+    </div>
 </body>
 </html>
