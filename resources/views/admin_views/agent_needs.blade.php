@@ -21,12 +21,26 @@
     </style>
 </head>
 <body class="antialiased">
-    <h1>Заявки без риэлтора</h1>
-    @foreach ($req as $re)
-        <p>Id заявки: {{ $re->id }}</p>
-        <p>Id клиента: {{ $re->client_id}}</p>
-        <a href="{{ route('admin_needs_view', ['req_id' => $re->id])}}">Назначить риэлтора</a>
-        <br>
-    @endforeach
+    <h1>Заявка клиента</h1>
+    <p>Id заявки: {{ $req_id }}</p>
+    <p>Id клиента: {{ $demand->client_id }}</p>
+    <p>Город: {{ $demand->address_city}}</p>
+    <p>Улица: {{ $demand->address_street}}</p>
+    <p>Дом: {{ $demand->address_house}}</p>
+    <p>Квартира: {{ $demand->address_number}}</p>
+    <p>Мин цена: {{ $demand->min_price}}</p>
+    <p>Макс цена: {{ $demand->max_price}}</p>
+    <div class="reltors_list">
+        <h1>Выбирите риэлтора для заявки</h1>
+        @foreach ($realtors as $realtor)
+            <form action="{{ route('realtor_select', ['req_id' => $req_id]) }}" method="post">
+                @csrf
+                <p>Id риэлтора: {{ $realtor->id}}</p>
+                <p>Доля риэлтора от сделки: {{ $realtor->deal_share}}</p>
+                <input type="hidden" name="realtor_id" type="number" value="{{ $realtor->id }}">
+                <input type="submit" value="Выбрать риэлтора">
+            </form>
+        @endforeach
+    </div>
 </body>
 </html>
