@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Предложения</title>
+    <title>Потребности</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -21,13 +21,26 @@
     </style>
 </head>
 <body class="antialiased">
-    <h1>Предложения без риэлтора</h1>
-    @foreach ($sells as $sell)
-        <p>Id предложения: {{ $sell->id }}</p>
-        <p>Id клиента: {{ $sell->client_id}}</p>
-        <p>Цена: {{ $sell->price}}</p>
-        <a href="{{ route('admin_offers_view', ['sell_id' => $sell->id])}}">Назначить риэлтора</a>
-        <br>
-    @endforeach
+    <h1>Заявка клиента</h1>
+    <p>Id предложения: {{ $sell_id }}</p>
+    <p>Id клиента: {{ $supply->client_id }}</p>
+    <p>Цена: {{ $supply->price}}</p>
+    <p>Улица: {{ $supply->realEstate->address_city }}</p>
+    <p>Дом: {{ $supply->realEstate->address_house}}</p>
+    <p>Квартира: {{ $supply->realEstate->address_number}}</p>
+    <p>Мин цена: {{ $supply->realEstate->coordinate_latitude}}</p>
+    <p>Макс цена: {{ $supply->realEstate->coordinate_longitude}}</p>
+    <div class="reltors_list">
+        <h1>Выбирите риэлтора для заявки</h1>
+        @foreach ($realtors as $realtor)
+            <form action="{{ route('realtor_select_off', ['sell_id' => $sell_id]) }}" method="post">
+                @csrf
+                <p>Id риэлтора: {{ $realtor->id}}</p>
+                <p>Доля риэлтора от сделки: {{ $realtor->deal_share}}</p>
+                <input type="hidden" name="realtor_id" type="number" value="{{ $realtor->id }}">
+                <input type="submit" value="Выбрать риэлтора">
+            </form>
+        @endforeach
+    </div>
 </body>
 </html>

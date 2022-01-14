@@ -60,7 +60,10 @@ Route::middleware('is_admin')->group(function () {
     Route::get('/admin/needs/{req_id}', [admin\NeedsController::class, 'cur_view'])->name('admin_needs_view');
     Route::post('/admin/needs/{req_id}', [admin\NeedsController::class, 'realtor_select'])->name('realtor_select');
     
-    Route::get('/admin/offers', admin\OffersController::class)->name('admin_offers');
+    Route::get('/admin/offers', [admin\OffersController::class, 'view'])->name('admin_offers');
+    Route::get('/admin/offers/{sell_id}', [admin\OffersController::class, 'cur_view'])->name('admin_offers_view');
+    Route::post('/admin/offers/{sell_id}', [admin\OffersController::class, 'realtor_select'])->name('realtor_select_off');
+
 });
 
 Route::middleware('is_user')->group(function(){
