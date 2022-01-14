@@ -57,12 +57,12 @@
             $user = \Illuminate\Support\Facades\Auth::user();
             $user_id = $user->id;
 
-            if (\App\Models\PersonSet_Agent::whereId($user_id)->first() !== null)
-                $role = Roles::AGENT;
-            elseif (\App\Models\PersonSet_Admin::whereId($user_id)->first() !== null)
+            if (\App\Models\PersonSet_Admin::whereId($user_id)->first() !== null)
                 $role = Roles::ADMIN;
             elseif (\App\Models\PersonSet_Client::whereId($user_id)->first() !== null)
                 $role = Roles::CLIENT;
+            elseif (\App\Models\PersonSet_Agent::whereId($user_id)->first() !== null)
+                $role = Roles::AGENT;
 
         @endphp
         <div style="min-height: 100%; display: flex; flex-direction: column;">

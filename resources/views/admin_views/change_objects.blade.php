@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Laravel</title>
 
@@ -20,74 +21,80 @@
         }
     </style>
 </head>
-<body class="antialiased">
-<h2>Изменить данные обЪекта</h2>
-<form method="POST" action="{{ route('admin_objects_change') }}">
-    @csrf
-    <div>
-        <label>Город</label>
-        <hr>
-        <label>
-            <input class="bordered" name="city" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h2>Изменить данные обЪекта</h2>
+        <form method="POST" action="{{ route('admin_objects_change') }}">
+            @csrf
+            <div>
+                <label>Город</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="city" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Улица</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="street" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Номер дома</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="street_number" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Номер квартиры</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="apartment_number" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Широта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="latitude" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Долгота</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="longitude" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Тип объекта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="object_type" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <input type="submit">
+        </form>
     </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Улица</label>
-        <hr>
-        <label>
-            <input class="bordered" name="street" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Номер дома</label>
-        <hr>
-        <label>
-            <input class="bordered" name="street_number" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Номер квартиры</label>
-        <hr>
-        <label>
-            <input class="bordered" name="apartment_number" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Широта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="latitude" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Долгота</label>
-        <hr>
-        <label>
-            <input class="bordered" name="longitude" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Тип объекта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="object_type" type="text" value=""> <!-- Хз как засунуть данные выбранного объекта -->
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <input type="submit">
-</form>
+    @include("partials.footer")
+</div>
 </body>
 </html>

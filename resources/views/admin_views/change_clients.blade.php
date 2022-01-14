@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Laravel</title>
 
@@ -20,60 +21,66 @@
         }
     </style>
 </head>
-<body class="antialiased">
-<h2>Изменить данные клиента</h2>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h2>Изменить данные клиента</h2>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form method="POST" action="{{ route('admin_clients_change', ['id' => $client->id]) }}">
+            @csrf
+            <div>
+                <label>Фамилиля</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="last_name" type="text" value="{{ $client->person->last_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Имя</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="first_name" type="text" value="{{ $client->person->first_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Отчество</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="middle_name" type="text" value="{{ $client->person->middle_name }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Номер телефона</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="phone" type="text" value="{{ $client->phone }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Электронная почта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="email" type="text" value="{{ $client->email }}">
+                </label>
+            </div>
+            <hr>
+            <input type="submit">
+        </form>
     </div>
-@endif
-<form method="POST" action="{{ route('admin_clients_change', ['id' => $client->id]) }}">
-    @csrf
-    <div>
-        <label>Фамилиля</label>
-        <hr>
-        <label>
-            <input class="bordered" name="last_name" type="text" value="{{ $client->person->last_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Имя</label>
-        <hr>
-        <label>
-            <input class="bordered" name="first_name" type="text" value="{{ $client->person->first_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Отчество</label>
-        <hr>
-        <label>
-            <input class="bordered" name="middle_name" type="text" value="{{ $client->person->middle_name }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Номер телефона</label>
-        <hr>
-        <label>
-            <input class="bordered" name="phone" type="text" value="{{ $client->phone }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Электронная почта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="email" type="text" value="{{ $client->email }}">
-        </label>
-    </div>
-    <hr>
-    <input type="submit">
-</form>
+    @include("partials.footer")
+</div>
 </body>
 </html>

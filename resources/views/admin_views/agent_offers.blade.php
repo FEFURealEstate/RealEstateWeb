@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Потребности</title>
 
@@ -20,27 +21,33 @@
         }
     </style>
 </head>
-<body class="antialiased">
-    <h1>Заявка клиента</h1>
-    <p>Id предложения: {{ $sell_id }}</p>
-    <p>Id клиента: {{ $supply->client_id }}</p>
-    <p>Цена: {{ $supply->price}}</p>
-    <p>Улица: {{ $supply->realEstate->address_city }}</p>
-    <p>Дом: {{ $supply->realEstate->address_house}}</p>
-    <p>Квартира: {{ $supply->realEstate->address_number}}</p>
-    <p>Мин цена: {{ $supply->realEstate->coordinate_latitude}}</p>
-    <p>Макс цена: {{ $supply->realEstate->coordinate_longitude}}</p>
-    <div class="reltors_list">
-        <h1>Выбирите риэлтора для заявки</h1>
-        @foreach ($realtors as $realtor)
-            <form action="{{ route('realtor_select_off', ['sell_id' => $sell_id]) }}" method="post">
-                @csrf
-                <p>Id риэлтора: {{ $realtor->id}}</p>
-                <p>Доля риэлтора от сделки: {{ $realtor->deal_share}}</p>
-                <input type="hidden" name="realtor_id" type="number" value="{{ $realtor->id }}">
-                <input type="submit" value="Выбрать риэлтора">
-            </form>
-        @endforeach
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <h1>Заявка клиента</h1>
+        <p>Id предложения: {{ $sell_id }}</p>
+        <p>Id клиента: {{ $supply->client_id }}</p>
+        <p>Цена: {{ $supply->price}}</p>
+        <p>Улица: {{ $supply->realEstate->address_city }}</p>
+        <p>Дом: {{ $supply->realEstate->address_house}}</p>
+        <p>Квартира: {{ $supply->realEstate->address_number}}</p>
+        <p>Мин цена: {{ $supply->realEstate->coordinate_latitude}}</p>
+        <p>Макс цена: {{ $supply->realEstate->coordinate_longitude}}</p>
+        <div class="reltors_list">
+            <h1>Выбирите риэлтора для заявки</h1>
+            @foreach ($realtors as $realtor)
+                <form action="{{ route('realtor_select_off', ['sell_id' => $sell_id]) }}" method="post">
+                    @csrf
+                    <p>Id риэлтора: {{ $realtor->id}}</p>
+                    <p>Доля риэлтора от сделки: {{ $realtor->deal_share}}</p>
+                    <input type="hidden" name="realtor_id" type="number" value="{{ $realtor->id }}">
+                    <input type="submit" value="Выбрать риэлтора">
+                </form>
+            @endforeach
+        </div>
     </div>
+    @include("partials.footer")
+</div>
 </body>
 </html>

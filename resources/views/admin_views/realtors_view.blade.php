@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Риэлторы</title>
 
@@ -29,97 +30,105 @@
         }
     </style>
 </head>
-<body class="antialiased">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-<h2>Добавить риэлтора</h2>
-<form method="POST" action="{{ route('admin_realtors_add') }}">
-    @csrf
-    <div>
-        <label>Фамилиля</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="last_name" type="text" value="{{ old('last_name') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Имя</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="first_name" type="text" value="{{ old('first_name') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Отчество</label>
-        <hr>
-        <label>
-            <input class="bordered" required name="middle_name" type="text" value="{{ old('middle_name') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Доля от комиссии</label>
-        <hr>
-        <label>
-            <input class="bordered" name="deal_share" type="number" min="0" max="100" value="{{ old('deal_share') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Логин</label>
-        <hr>
-        <label>
-            <input class="bordered" name="login" type="text" value="{{ old('login') }}">
-        </label>
-    </div>
-    <hr>
-    <div>
-        <label>Пароль</label>
-        <hr>
-        <label>
-            <input class="bordered" name="password" type="password" value="">
-        </label>
-    </div>
-    <hr>
-    <input type="submit">
-</form>
-@foreach($agents as $index => $agent)
-    @if ($index > 0)
-        <hr>
-    @endif
-    <div class="realtor bordered">
-        <div class="realtor__full_name">
-            <a href="{{ route('admin_realtor_view', ['id' => $agent->id]) }}">
-                {{ $agent->person->last_name }} {{ $agent->person->first_name }} {{ $agent->person->middle_name }}
-            </a>
-        </div>
-        <div class="realtor__deal_share">
-            <p>{{ $agent->deal_share }}</p>
-        </div>
-        <div class="realtor__buttons">
-            <div class="realtor__change_button">
-                <a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a>
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <div class="realtor__delete_button">
-                <a href="{{ route('admin_realtors_delete', ['id' => $agent->id]) }}">Удалить</a>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
-        </div>
+        @endif
+        <h2>Добавить риэлтора</h2>
+        <form method="POST" action="{{ route('admin_realtors_add') }}">
+            @csrf
+            <div>
+                <label>Фамилиля</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="last_name" type="text" value="{{ old('last_name') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Имя</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="first_name" type="text" value="{{ old('first_name') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Отчество</label>
+                <hr>
+                <label>
+                    <input class="bordered" required name="middle_name" type="text" value="{{ old('middle_name') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Доля от комиссии</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="deal_share" type="number" min="0" max="100" value="{{ old('deal_share') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Логин</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="login" type="text" value="{{ old('login') }}">
+                </label>
+            </div>
+            <hr>
+            <div>
+                <label>Пароль</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="password" type="password" value="">
+                </label>
+            </div>
+            <hr>
+            <input type="submit">
+        </form>
+            <br>
+            <h2>Список риэлторов</h2>
+        @foreach($agents as $index => $agent)
+            @if ($index > 0)
+                <hr>
+            @endif
+            <div class="realtor bordered" style="display: flex; flex-direction: row">
+                <div class="realtor__full_name" style="margin: 10px;">
+                    <a href="{{ route('admin_realtor_view', ['id' => $agent->id]) }}">
+                        {{ $agent->person->last_name }} {{ $agent->person->first_name }} {{ $agent->person->middle_name }}
+                    </a>
+                </div>
+                <div class="realtor__deal_share" style="margin: 10px">
+                    <p>{{ $agent->deal_share }}</p>
+                </div>
+                <div class="realtor__buttons" style="margin: 10px;">
+                    <div class="realtor__change_button">
+                        <a href="{{ route('admin_realtors_change', ['id' => $agent->id]) }}">Изменить</a>
+                    </div>
+                    <div class="realtor__delete_button">
+                        <a href="{{ route('admin_realtors_delete', ['id' => $agent->id]) }}">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        {{ $agents->links() }}
     </div>
-@endforeach
-{{ $agents->links() }}
+    @include("partials.footer")
+</div>
 </body>
 </html>

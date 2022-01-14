@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
 
     <title>Объекты</title>
 
@@ -29,115 +30,121 @@
         }
     </style>
 </head>
-<body class="antialiased">
-<form method="POST" action="{{ route('admin_objects') }}">
-    @csrf
-    <div>
-        <label>Город</label>
-        <hr>
-        <label>
-            <input class="bordered" name="city" type="text" value="{{ request()->isMethod('post') ? old('city') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Улица</label>
-        <hr>
-        <label>
-            <input class="bordered" name="street" type="text" value="{{ request()->isMethod('post') ? old('street') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Номер дома</label>
-        <hr>
-        <label>
-            <input class="bordered" name="street_number" type="text" value="{{ request()->isMethod('post') ? old('street_number') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Номер квартиры</label>
-        <hr>
-        <label>
-            <input class="bordered" name="apartment_number" type="text" value="{{ request()->isMethod('post') ? old('apartment_number') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Широта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="latitude" type="text" value="{{ request()->isMethod('post') ? old('latitude') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Долгота</label>
-        <hr>
-        <label>
-            <input class="bordered" name="longitude" type="text" value="{{ request()->isMethod('post') ? old('longitude') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <div>
-        <label>Тип объекта</label>
-        <hr>
-        <label>
-            <input class="bordered" name="object_type" type="text" value="{{ request()->isMethod('post') ? old('object_type') : '' }}">
-        </label>
-    </div>
-    <!-- Ошибок тоже пока нет -->
-    <hr>
-    <input type="submit">
-</form>
-@foreach($objects as $index => $object)
-    @if ($index > 0)
-        <hr>
-    @endif
-    <div class="object bordered">
-        <div class="object__type">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__city">
-            <p>{{ $object->address_city }}</p>
-        </div>
-        <div class="object__street">
-            <p>{{ $object->address_street }}</p>
-        </div>
-        <div class="object__house">
-            <p>{{ $object->address_house }}</p>
-        </div>
-        <div class="object__number">
-            <p>{{ $object->address_number }}</p>
-        </div>
-        <div class="object__latitude">
-            <p>{{ $object->coordinate_latitude }}</p>
-        </div>
-        <div class="object__longitude">
-            <p>{{ $object->coordinate_longitude }}</p>
-        </div>
-        <div class="object__floor">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__rooms_number">
-            <!-- Хз, что выводить -->
-        </div>
-        <div class="object__buttons">
-            <div class="object__change_button">
-                <a href="#">Изменить</a> <!-- Не знаю как ты захочешь прям это реализовать, но я создал страницу для изменения change_objects -->
+<body class="antialiased" style="height: 100%">
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+    @include("partials.navbar")
+    <div style="margin: 20px; flex: 1 1 auto;">
+        <form method="POST" action="{{ route('admin_objects') }}">
+            @csrf
+            <div>
+                <label>Город</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="city" type="text" value="{{ request()->isMethod('post') ? old('city') : '' }}">
+                </label>
             </div>
-            <div class="object__delete_button">
-                <a href="#">Удалить</a> <!-- Не знаю как удалять из базы -->
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Улица</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="street" type="text" value="{{ request()->isMethod('post') ? old('street') : '' }}">
+                </label>
             </div>
-        </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Номер дома</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="street_number" type="text" value="{{ request()->isMethod('post') ? old('street_number') : '' }}">
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Номер квартиры</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="apartment_number" type="text" value="{{ request()->isMethod('post') ? old('apartment_number') : '' }}">
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Широта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="latitude" type="text" value="{{ request()->isMethod('post') ? old('latitude') : '' }}">
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Долгота</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="longitude" type="text" value="{{ request()->isMethod('post') ? old('longitude') : '' }}">
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <div>
+                <label>Тип объекта</label>
+                <hr>
+                <label>
+                    <input class="bordered" name="object_type" type="text" value="{{ request()->isMethod('post') ? old('object_type') : '' }}">
+                </label>
+            </div>
+            <!-- Ошибок тоже пока нет -->
+            <hr>
+            <input type="submit">
+        </form>
+        @foreach($objects as $index => $object)
+            @if ($index > 0)
+                <hr>
+            @endif
+            <div class="object bordered">
+                <div class="object__type">
+                    <!-- Хз, что выводить -->
+                </div>
+                <div class="object__city">
+                    <p>{{ $object->address_city }}</p>
+                </div>
+                <div class="object__street">
+                    <p>{{ $object->address_street }}</p>
+                </div>
+                <div class="object__house">
+                    <p>{{ $object->address_house }}</p>
+                </div>
+                <div class="object__number">
+                    <p>{{ $object->address_number }}</p>
+                </div>
+                <div class="object__latitude">
+                    <p>{{ $object->coordinate_latitude }}</p>
+                </div>
+                <div class="object__longitude">
+                    <p>{{ $object->coordinate_longitude }}</p>
+                </div>
+                <div class="object__floor">
+                    <!-- Хз, что выводить -->
+                </div>
+                <div class="object__rooms_number">
+                    <!-- Хз, что выводить -->
+                </div>
+                <div class="object__buttons">
+                    <div class="object__change_button">
+                        <a href="#">Изменить</a> <!-- Не знаю как ты захочешь прям это реализовать, но я создал страницу для изменения change_objects -->
+                    </div>
+                    <div class="object__delete_button">
+                        <a href="#">Удалить</a> <!-- Не знаю как удалять из базы -->
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-@endforeach
+    @include("partials.footer")
+</div>
 </body>
 </html>
