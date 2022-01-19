@@ -13,7 +13,7 @@
         <a href="{{ route('admin_clients_get') }}">Клиенты</a>
     </div>
     <div style="margin: 20px">
-        <a href="{{ route('all_sells') }}">Объекты</a>
+        <a href="{{ route('admin_objects_get') }}">Объекты</a>
     </div>
     <div style="margin: 20px">
         <a href="{{ route('profile') }}">Личный кабинет</a>
