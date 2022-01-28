@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property float|null $total_area
  * @property int|null $rooms
  * @property int|null $floor
+ * @property-read \App\Models\RealEstateSet $realEstate
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Apartment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Apartment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Apartment query()
@@ -22,4 +23,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet_Apartment extends BaseModel
 {
     use HasFactory;
+
+    public function realEstate()
+    {
+        return $this->belongsTo(RealEstateSet::class, 'id');
+    }
 }

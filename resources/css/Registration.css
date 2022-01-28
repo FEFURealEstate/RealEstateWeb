@@ -1,0 +1,49 @@
+ .u-section-1 {
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("../images/home1.jpg");
+  background-position: 50% 50%;
+  background-size: 145%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 590px;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    min-height: 412px;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 486px;
+  }
+}
+
+@media (max-width: 991px) {
+   .u-section-1 {
+    min-height: 316px;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 372px;
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    min-height: 237px;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 279px;
+  }
+}
+
+@media (max-width: 575px) {
+   .u-section-1 {
+    min-height: 149px;
+  }
+
+  .u-section-1 .u-sheet-1 {
+    min-height: 176px;
+  }
+}

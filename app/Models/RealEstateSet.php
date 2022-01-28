@@ -14,6 +14,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $address_number
  * @property float|null $coordinate_latitude
  * @property float|null $coordinate_longitude
+ * @property-read \App\Models\RealEstateSet_Apartment|null $apartment
+ * @property-read \App\Models\RealEstateSet_House|null $house
+ * @property-read \App\Models\RealEstateSet_Land|null $land
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SupplySet[] $supply
+ * @property-read int|null $supply_count
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet query()
@@ -28,4 +33,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet extends BaseModel
 {
     use HasFactory;
+
+    public function supply()
+    {
+        return $this->hasMany(SupplySet::class, 'real_estate_id');
+    }
+
+    public function apartment()
+    {
+        return $this->hasOne(RealEstateSet_Apartment::class, 'id');
+    }
+
+    public function land()
+    {
+        return $this->hasOne(RealEstateSet_Land::class, 'id');
+    }
+
+    public function house()
+    {
+        return $this->hasOne(RealEstateSet_House::class, 'id');
+    }
 }

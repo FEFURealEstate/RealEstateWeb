@@ -3,6 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <meta name="page_type" content="np-template-header-footer-from-plugin">
+        <title>Registration</title>
+        <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
+        <link rel="stylesheet" href="{{ asset('css/Registration.css') }}" media="screen">
+        <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
+        <script class="u-script" type="text/javascript" src="{{ asset('js/page.js') }}" defer=""></script>
+        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
+
+        <script type="application/ld+json">{
+		"@type": "Organization",
+		"name": "coursework",
+		"logo": "{{ asset('images/default-logo.png') }}"}</script>
+        <meta name="theme-color" content="#478ac9">
+        <meta property="og:title" content="Registration">
+        <meta property="og:type" content="website">
 
         <title>Форма регистрации</title>
 
@@ -34,47 +52,56 @@
             }
         </script>
     </head>
-    <body class="antialiased">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <article class="container">
-            <div class="form-box">
-                <form action="{{route('sign_up')}}" method="post" class="form">
+    <body class="u-body">
+    @include("partials.navbar")
+    <section class="u-clearfix u-image u-shading u-section-1" id="sec-325b" data-image-width="150" data-image-height="100" style="background-image: {{ asset('images/home1.jpg') }} ">
+        <div class="u-clearfix u-sheet u-valign-top u-sheet-1" style="color: white">
+            <div class="body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <article class="container">
+                    <div class="form-box">
+                        <form action="{{route('sign_up')}}" method="post" class="form">
 
-                    @csrf
+                            @csrf
 
-                    <h2 class="form__title">Регистрация</h2>
-                    <div class="form__input" style="height: 400px; overflow: auto;">
-                        <p>Фамилия<font color="BA1313">*</font></p>
-                        <p><input tabindex="1" name="middlename" type="text" placeholder="..." required class="form__input-next" value="{{ old('middlename') }}"></p>
-                        <p>Имя<font color="BA1313">*</font></p>
-                        <p><input tabindex="2" name="firstname" type="text" required class="form__input-next" value="{{ old('firstname') }}"/></p>
-                        <p>Отчество<font color="BA1313">*</font></p>
-                        <p><input tabindex="3" name="lastname" type="text" placeholder="..." required class="form__input-next" value="{{ old('lastname') }}"></p>
-                        <p>Номер телефона</p>
-                        <p><input tabindex="4" name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ old('phone') }}" class="form__input-next"/></p>
-                        <p>Эл. почта</p>
-                        <p><input tabindex="5" name="email" type="email" value="{{ old('email') }}" placeholder="..." class="form__input-next"/></p>
-                        <p>Логин<font color="BA1313">*</font></p>
-                        <p><input tabindex="6" name="login" type="text" value="{{ old('login') }}" placeholder="..." required class="form__input-next"></p>
-                        <p>Пароль<font color="BA1313">*</font></p>
-                        <p><input tabindex="7" name="password" type="password" placeholder="..." required class="form__input-next"></p>
-                        <button tabindex="8" type="submit" class="form__bth">Зарегистрироваться</button>
-                        <br>
-                        <span text-align="center">
+                            <h2 class="form__title">Регистрация</h2>
+                            <div class="form__input" style="height: 400px; overflow: auto;">
+                                <p>Фамилия<font color="BA1313">*</font></p>
+                                <p><input tabindex="1" name="middlename" type="text" placeholder="..." required class="form__input-next" value="{{ old('middlename') }}" style="color: black"></p>
+                                <p>Имя<font color="BA1313">*</font></p>
+                                <p><input tabindex="2" name="firstname" type="text" required class="form__input-next" value="{{ old('firstname') }}" style="color: black"/></p>
+                                <p>Отчество<font color="BA1313">*</font></p>
+                                <p><input tabindex="3" name="lastname" type="text" placeholder="..." required class="form__input-next" value="{{ old('lastname') }}" style="color: black"></p>
+                                <p>Номер телефона</p>
+                                <p><input tabindex="4" name="phone" type="tel" placeholder="8xxx-xxx-xx-xx" value="{{ old('phone') }}" class="form__input-next" style="color: black"/></p>
+                                <p>Эл. почта</p>
+                                <p><input tabindex="5" name="email" type="email" value="{{ old('email') }}" placeholder="..." class="form__input-next" style="color: black"/></p>
+                                <p>Логин<font color="BA1313">*</font></p>
+                                <p><input tabindex="6" name="login" type="text" value="{{ old('login') }}" placeholder="..." required class="form__input-next" style="color: black"></p>
+                                <p>Пароль<font color="BA1313">*</font></p>
+                                <p><input tabindex="7" name="password" type="password" placeholder="..." required class="form__input-next" style="color: black"></p>
+                                <button tabindex="8" type="submit" class="form__bth">Зарегистрироваться</button>
+                                <br>
+                                <span text-align="center">
                  Уже есть аккаунт?
                  <a href="{{ route('sign_in') }}" tabindex="-1" class="form__reg">Войти</a>
               </span>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </article>
             </div>
-        </article>
+        </div>
+    </section>
+
+    @include("partials.footer")
     </body>
 </html>

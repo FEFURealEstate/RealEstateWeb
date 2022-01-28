@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @property int $id
  * @property float|null $total_area
+ * @property-read \App\Models\RealEstateSet $realEstate
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Land newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Land newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RealEstateSet_Land query()
@@ -18,4 +19,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class RealEstateSet_Land extends BaseModel
 {
     use HasFactory;
+
+    public function realEstate()
+    {
+        return $this->belongsTo(RealEstateSet::class, 'id');
+    }
 }
