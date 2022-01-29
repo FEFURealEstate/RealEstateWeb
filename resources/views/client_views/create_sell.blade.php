@@ -96,9 +96,9 @@
                     <p>Номер квартиры</p>
                     <p><input name="flat_num" type="number" value="{{ old('flat_num') }}" placeholder="..."/></p>
                     <p>Широта</p>
-                    <p><input name="latitude" type="number" value="{{ old('latitude') }}" placeholder="..."/></p>
+                    <p><input name="latitude" type="text" value="" placeholder="..."/></p>
                     <p>Долгота</p>
-                    <p><input name="longtitude" type="number" value="{{ old('longtitude') }}" placeholder="..."/></p>
+                    <p><input name="longitude" type="text" value="" placeholder="..."/></p>
                 </div>
 
                 <div class="req_card">

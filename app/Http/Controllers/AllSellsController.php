@@ -35,6 +35,7 @@ class AllSellsController extends Controller
     public function cur_sell($sell_id)
     {
         $client = SupplySet::whereId($sell_id)->first()->client;
+        $agent = SupplySet::whereId($sell_id)->first()->agent;
         $supply = SupplySet::whereId($sell_id)->first();
         $filter = SupplySet::whereId($sell_id)->first()->realEstate;
         $finished = DealSet::query()->whereSupplyId($supply->id)->get();
@@ -42,6 +43,7 @@ class AllSellsController extends Controller
 
         $req = DemandSet::query()
             ->where('client_id', '!=', $client->id)
+            ->where('agent_id', '=', $agent->id)
             ->leftJoin('deal_sets', 'demand_sets.id', 'deal_sets.demand_id')
             ->whereNull('deal_sets.demand_id')
             ->select('demand_sets.*')

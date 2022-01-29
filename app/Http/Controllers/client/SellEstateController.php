@@ -34,7 +34,7 @@ class SellEstateController extends Controller
                 $estate_set->address_house = $request['house_num'];
                 $estate_set->address_number = $request['flat_num'];
                 $estate_set->coordinate_latitude = $request['latitude'];
-                $estate_set->coordinate_longitude = $request['longtitude'];
+                $estate_set->coordinate_longitude = $request['longitude'];
                 $estate_set->save();
                 
                 $supply = new SupplySet();
