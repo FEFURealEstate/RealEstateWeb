@@ -13,69 +13,63 @@
     align-items: center;
 }
 
-:root {
-    --scrollbarBgColor: rgba(0, 0, 0, .01);
-    --scrollbarThumbColor: rgba(0, 166, 143, .15);
-    --scrollbarThumbColorSecond: rgba(0, 166, 143, .7);
-    --scrollbarWidth: 16px;
-    --scrollbarBorder: 0 solid var(--scrollbarBgColor);
-    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 4);
-}
-.form__input {
-    scrollbar-width: var(--scrollbarWidth);
-    scrollbar-color: var(--scrollbarThumbColor) var(--scrollbarBgColor);
-}
-.form__input::-webkit-scrollbar {
-    width: var(--scrollbarWidth);
-}
-.form__input::-webkit-scrollbar-track {
-    background: var(--scrollbarBgColor);
-    border-radius: var(--scrollbarBorderRadius);
-}
-.form__input::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbarThumbColor);
-    border-radius: var(--scrollbarBorderRadius);
-    border: var(--scrollbarBorder);
-    background-image: linear-gradient(
-        180deg,
-        var(--scrollbarThumbColor) 0%,
-        var(--scrollbarThumbColorSecond) 90%
-    );
-}
+/*:root {*/
+/*    --scrollbarBgColor: rgba(0, 0, 0, .01);*/
+/*    --scrollbarThumbColor: rgba(0, 166, 143, .15);*/
+/*    --scrollbarThumbColorSecond: rgba(0, 166, 143, .7);*/
+/*    --scrollbarWidth: 16px;*/
+/*    --scrollbarBorder: 0 solid var(--scrollbarBgColor);*/
+/*    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 4);*/
+/*}*/
+/*.form__input {*/
+/*    scrollbar-width: var(--scrollbarWidth);*/
+/*    scrollbar-color: var(--scrollbarThumbColor) var(--scrollbarBgColor);*/
+/*}*/
+/*.form__input::-webkit-scrollbar {*/
+/*    width: var(--scrollbarWidth);*/
+/*}*/
+/*.form__input::-webkit-scrollbar-track {*/
+/*    background: var(--scrollbarBgColor);*/
+/*    border-radius: var(--scrollbarBorderRadius);*/
+/*}*/
+/*.form__input::-webkit-scrollbar-thumb {*/
+/*    background-color: var(--scrollbarThumbColor);*/
+/*    border-radius: var(--scrollbarBorderRadius);*/
+/*    border: var(--scrollbarBorder);*/
+/*    background-image: linear-gradient(*/
+/*        180deg,*/
+/*        var(--scrollbarThumbColor) 0%,*/
+/*        var(--scrollbarThumbColorSecond) 90%*/
+/*    );*/
+/*}*/
 
-.form__input {
-    width: clamp(200px, 50%, 300px);
-    height: 75vh;
-    overflow: auto;
-}
+/*.form__input {*/
+/*    width: clamp(200px, 50%, 300px);*/
+/*    height: 75vh;*/
+/*    overflow: auto;*/
+/*}*/
 
 /* Поля ввода полной ширины */
 input[type=text], input[type=password] {
     padding: 16px;
-    margin: 2px 0 22px 0;
     display: inline-block;
     border: solid 1px rgba(200, 200, 200);
     border-radius:10px;
     font-size: 18px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-    background-color: rgb(189, 240, 221, 0.4);
-    outline: none;
-}
-
 /* Стиль для всех кнопок*/
 button {
-    width: 80%;
+    width: 70%;
     border: none;
     cursor: pointer;
-    padding: 14px 20px;
+    padding: 12px;
     background: #00A68F;
     color: white;
     font-size: 18px;
-    font-weight: 40;
+    font-weight: 800;
     border-radius: 10px;
-    margin: 8px 0;
+    /*margin: 8px 0;*/
     opacity:1;
     text-align: center;
 }
@@ -113,16 +107,14 @@ button:hover {
 }
 
 .form-box {
-    top: 0;
-    left: 0;
-    z-index: 1000;
     display: flex;
+    align-items: center;
     text-align: center;
 }
 
 .form {
     width: 100%;
-    padding: 16px;
+    padding: 40px;
     font-size: 18px;
     font-weight: 300;
 }
@@ -130,11 +122,11 @@ button:hover {
 .form__title {
     font-size: 1.9rem;
     font-weight: 700;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .form__input {
-    width: 100%;
-    padding: 4px;
     font-size: 18px;
 }
 
@@ -142,14 +134,8 @@ button:hover {
     border: solid 1px rgba(200, 200, 200);
     border-radius:10px;
     font-size: 18px;
-    padding: 16px;
-    width:100%;
-}
-
-p {
-    text-align: left;
-    margin: 10px 0 0 10px;
-    padding: 10px 0 0 10px;
+    padding: 12px;
+    width: 80%;
 }
 
 a {
