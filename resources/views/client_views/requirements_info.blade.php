@@ -29,8 +29,8 @@
                     <p><b>Максимальная цена:</b> {{ $demand->max_price." ₽" }}</p>
                     @if ($type === 1)
                         <p><b>Тип объекта: Квартира</b></p>
-                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area }}</p>
-                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area }}</p>
+                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area." м" }}<sup>2</sup></p>
+                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area." м" }}<sup>2</sup></p>
                         <p><b>Минимум комнат:</b> {{ $estate_payload->min_rooms }}</p>
                         <p><b>Максимум комнат:</b> {{ $estate_payload->max_rooms }}</p>
                         <p><b>Минимальный этаж:</b> {{ $estate_payload->min_floor }}</p>
@@ -38,8 +38,8 @@
                     @endif
                     @if ($type === 2)
                         <p><b>Тип недвижимости: Дом</b></p>
-                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area }}</p>
-                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area }}</p>
+                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area." м" }}<sup>2</sup></p>
+                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area." м" }}<sup>2</sup></p>
                         <p><b>Минум комнат:</b> {{ $estate_payload->min_rooms }}</p>
                         <p><b>Максимум комнат:</b> {{ $estate_payload->max_rooms }}</p>
                         <p><b>Минимум этажей:</b> {{ $estate_payload->min_floors }}</p>
@@ -47,8 +47,8 @@
                     @endif
                     @if ($type === 3)
                         <p><b>Тип недвижимости: Участок</b></p>
-                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area }}</p>
-                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area }}</p>
+                        <p><b>Минимальная площадь:</b> {{ $estate_payload->min_area." м" }}<sup>2</sup></p>
+                        <p><b>Максимальная площадь:</b> {{ $estate_payload->max_area." м" }}<sup>2</sup></p>
                     @endif
                 </div>
             </div>

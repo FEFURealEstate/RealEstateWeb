@@ -446,7 +446,7 @@
     }
 
 @endphp
-<div style="min-height: 100%;" class="bg_gradient">
+<div style="min-height: 100vh;" class="bg_gradient">
     @if(\Illuminate\Support\Facades\Auth::check() === false)
         <div class="flex-col">
             @include('partials.navbar')

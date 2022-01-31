@@ -435,7 +435,7 @@
                     <input tabindex="1" type="text" name="login" required placeholder="ivanov.ii"
                            class="form__input-name text-center text-md">
                     <p>Пароль<span style="color: #BA1313; ">*</span></p>
-                    <input tabindex="2" type="password" name="password" required placeholder="********"
+                    <input tabindex="2" type="password" name="password" required placeholder="••••••••"
                            class="form__input-password text-center text-md">
                 </div>
                 @if ($errors->any())

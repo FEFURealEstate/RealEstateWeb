@@ -18,7 +18,7 @@
             border-radius: 10px;
         }
     </style>
-    <section class="h-full w-full" id="carousel_fc23">
+    <section id="carousel_fc23">
         <div class="w-2/5 m-auto p-6 mt-24 rounded-lg shadow-2xl backdrop-blur-lg text-xl"
              style="background-color: rgba(255, 255, 255, 0.2);">
             <p class="text-2xl">

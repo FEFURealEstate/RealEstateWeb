@@ -491,7 +491,7 @@
                     <input tabindex="6" name="login" type="text" placeholder="ivanov.ii" value="{{ old('login') }}"
                            required class="form__input-next text-center text-md mt-5 mb-5 fu" style="color: black">
                     <p>Пароль<span style="color: #BA1313; ">*</span></p>
-                    <input tabindex="7" name="password" type="password" placeholder="********" required
+                    <input tabindex="7" name="password" type="password" placeholder="••••••••" required
                            class="form__input-next text-center text-md mt-5 mb-5 fu" style="color: black">
                     @if ($errors->any())
                         <div class="alert alert-danger">

@@ -82,10 +82,10 @@
                                         <p class="text-xl font-bold mb-4">Информация</p>
                                         <p><b>Тип объекта:</b> Квартира</p>
                                         <p><b>Мин.
-                                                площадь:</b> {{ $deal->demand->realEstateFilter->apartmentFilter->min_area }}
+                                                площадь:</b> {{ $deal->demand->realEstateFilter->apartmentFilter->min_area." м" }}<sup>2</sup>
                                         </p>
                                         <p><b>Макс.
-                                                площадь:</b> {{ $deal->demand->realEstateFilter->apartmentFilter->max_area }}
+                                                площадь:</b> {{ $deal->demand->realEstateFilter->apartmentFilter->max_area." м" }}<sup>2</sup>
                                         </p>
                                         <p><b>Мин количество
                                                 комнат:</b> {{ $deal->demand->realEstateFilter->apartmentFilter->min_rooms }}
@@ -106,9 +106,9 @@
                                         <p class="text-xl font-bold mb-4">Информация</p>
                                         <p><b>Тип объекта:</b> Дом</p>
                                         <p><b>Мин.
-                                                площадь:</b> {{ $deal->demand->realEstateFilter->houseFilter->min_area }}
+                                                площадь:</b> {{ $deal->demand->realEstateFilter->houseFilter->min_area." м" }}<sup>2</sup>
                                         </p>
-                                        <p><b>Площадь:</b> {{ $deal->demand->realEstateFilter->houseFilter->max_area }}
+                                        <p><b>Площадь:</b> {{ $deal->demand->realEstateFilter->houseFilter->max_area." м" }}<sup>2</sup>
                                         </p>
                                         <p><b>Мин.
                                                 комнат:</b> {{ $deal->demand->realEstateFilter->houseFilter->min_rooms }}
@@ -129,10 +129,10 @@
                                         <p class="text-xl font-bold mb-4">Информация</p>
                                         <p><b>Тип объекта:</b> Участок</p>
                                         <p><b>Мин
-                                                площадь:</b> {{ $deal->demand->realEstateFilter->landFilter->min_area }}
+                                                площадь:</b> {{ $deal->demand->realEstateFilter->landFilter->min_area." м" }}<sup>2</sup>
                                         </p>
                                         <p><b>Макс
-                                                площадь:</b> {{ $deal->demand->realEstateFilter->landFilter->max_area }}
+                                                площадь:</b> {{ $deal->demand->realEstateFilter->landFilter->max_area." м" }}<sup>2</sup>
                                         </p>
                                     </div>
                                 @endif
