@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 .bg_gradient {
-    background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .tailwind_input {
@@ -20,9 +22,18 @@
 }
 
 .primary_button {
-    @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
+    @apply text-white bg-blue-700 outline-none font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600;
 }
 
 .grid_group {
     @apply grid grid-cols-3 col-start-1 col-span-3 row-start-4 gap-4;
+}
+
+html {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.sidebar_bg {
+    background: #263238;  /* fallback for old browsers */
+
 }

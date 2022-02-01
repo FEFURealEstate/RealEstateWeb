@@ -2,7 +2,6 @@
 
 @section('title', 'Профиль')
 
-
 @section('content')
     <style>
         .logout_button {
