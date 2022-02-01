@@ -80,7 +80,7 @@ class RealtorsController extends Controller
         $supplyEmpty = SupplySet::whereAgentId($id)->get()->isEmpty();
 
         if ($demandEmpty && $supplyEmpty) {
-            PersonSet_Agent::whereId($id)->delete();
+            PersonSet::whereId($id)->delete();
         } else {
             $request->session()->flash('error', 'Ошибка удаления: клиент связан с потребностью или предложением');
         }

@@ -87,7 +87,7 @@ class ClientsController extends Controller
         $supplyEmpty = SupplySet::whereClientId($id)->get()->isEmpty();
 
         if ($demandEmpty && $supplyEmpty) {
-            PersonSet_Client::whereId($id)->delete();
+            PersonSet::whereId($id)->delete();
         } else {
             $request->session()->flash('error', 'Ошибка удаления: клиент связан с потребностью или предложением');
         }
