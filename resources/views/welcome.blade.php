@@ -6,8 +6,9 @@
     <meta name="keywords" content="Недвижимость в России">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>@yield('title', "Main")</title>
+    <title>@yield('title', "Главная страница")</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="{{ asset('logo.png')  }}">
     <link rel="stylesheet" href="{{ asset('css/Property.css') }}" media="screen">
     <link id="u-theme-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">

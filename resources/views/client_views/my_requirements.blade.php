@@ -1,6 +1,6 @@
 @extends('welcome')
 
-@section('title', 'Мои заявки')
+@section('title', 'Мои потребности')
 
 @section('content')
     <div class="p-4">

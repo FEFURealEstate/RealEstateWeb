@@ -1,6 +1,6 @@
 @extends('welcome')
 
-@section('title', 'Создать заявку')
+@section('title', 'Создать потребность')
 
 @section('content')
     <script>

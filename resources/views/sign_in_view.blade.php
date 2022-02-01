@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Форма авторизации</title>
+    <title>Авторизация</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style_login.css') }}">
+    <link rel="icon" href="{{ asset('logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/Login.css') }}" media="screen">
     <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>

@@ -6,7 +6,8 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Registration</title>
+    <title>Регистрация</title>
+    <link rel="icon" href="{{ asset('logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/page.css') }}" media="screen">
     <link rel="stylesheet" href="{{ asset('css/Registration.css') }}" media="screen">
     <script class="u-script" type="text/javascript" src="{{ asset('js/jquery.js') }}" defer=""></script>
