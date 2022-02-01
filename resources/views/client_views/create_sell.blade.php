@@ -42,6 +42,7 @@
                     <input class="tailwind_input" name="rooms" type="number" placeholder="4"  value=""/>
                 </div>
 
+
                 <div>
                     <label for="total_area" class="tailwind_input_label">Площадь</label>
                     <input class="tailwind_input" name="total_area" type="number"  value="" placeholder="90"/>
@@ -95,7 +96,6 @@
                                placeholder="..."
                                readonly/>
                     </div>
-                </div>
             </div>
 
             <div class="card">
