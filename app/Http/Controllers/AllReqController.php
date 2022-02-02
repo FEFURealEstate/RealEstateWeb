@@ -21,7 +21,7 @@ class AllReqController extends Controller
             ->select('demand_sets.*')
             ->orderByDesc('real_estate_filter_id')
             ->get();
-        
+
         $req_close = DemandSet::query()
             ->where('agent_id', $user->id)
             ->leftJoin('deal_sets', 'demand_sets.id', 'deal_sets.demand_id')

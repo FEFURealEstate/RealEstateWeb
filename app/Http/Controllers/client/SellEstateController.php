@@ -36,7 +36,7 @@ class SellEstateController extends Controller
                 $estate_set->coordinate_latitude = $request['latitude'];
                 $estate_set->coordinate_longitude = $request['longitude'];
                 $estate_set->save();
-                
+
                 $supply = new SupplySet();
                 $supply->price = $request['price'];
                 $supply->client_id = $request['user_id'];
@@ -72,7 +72,6 @@ class SellEstateController extends Controller
                     $estate_set_land->save();
                 }
                 DB::commit();
-                
             }
             catch(Throwable $e){
                 DB::rollBack();

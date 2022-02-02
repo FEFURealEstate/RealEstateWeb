@@ -21,7 +21,7 @@ class AllSellsController extends Controller
             ->select('supply_sets.*')
             ->orderByDesc('real_estate_id')
             ->get();
-        
+
         $sells_close = SupplySet::query()
             ->where('agent_id', $user->id)
             ->leftJoin('deal_sets', 'supply_sets.id', 'deal_sets.supply_id')
