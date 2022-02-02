@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg_gradient {
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.tailwind_input {
+    @apply shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none;
+}
+
+.tailwind_input_label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.75);
+    @apply p-4 rounded shadow-xl mb-4;
+}
+
+.primary_button {
+    @apply text-white bg-blue-700 outline-none font-medium rounded-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600;
+}
+
+.grid_group {
+    @apply grid grid-cols-3 col-start-1 col-span-3 row-start-4 gap-4;
+}
+
+html {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.sidebar_bg {
+    background: #263238;  /* fallback for old browsers */
+
+}

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.body {
+    font-family: 'Roboto',sans-serif;
+
+    margin: 0;
+
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Контейнер*/
+.container {
+    width: 700px;
+    height: 500px;
+}
+
+/*Блок формы*/
+.form-box {
+    z-index: 1000;
+    display: flex;
+    text-align: center;
+}
+
+/*Форма*/
+.form {
+    width: 100%;
+    padding: 40px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.form__title {
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+.form__input {
+    width: 100%;
+    padding: 4px;
+    font-size: 18px;
+}
+
+.form__input-name {
+    border: solid 1px rgba(200, 200, 200);
+    border-radius:10px;
+    font-size: 18px;
+    padding: 12px;
+    width:80%;
+}
+
+.form__input-password {
+    border: solid 1px rgba(200, 200, 200);
+    border-radius:10px;
+    font-size: 18px;
+    padding: 12px;
+    width:80%;
+}
+
+.form__bth {
+    width: 70%;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    background: #00A68F;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 800;
+    border-radius: 10px;
+    opacity:1;
+}
+
+.form__bth:hover {
+    opacity:0.9;
+}
+
+.form__reg {
+    text-decoration: none;
+    color: #04A0FF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
